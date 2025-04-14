@@ -10,6 +10,11 @@ import coffe from "@/app/assets/coffe.jpeg";
 import birth from "@/app/assets/birth.jpg";
 import engage from "@/app/assets/engagment.jpeg";
 import wedding from "@/app/assets/wedding.jpeg";
+import slider1 from "@/app/assets/slider (1).jpeg";
+import slider2 from "@/app/assets/slider (2).jpeg";
+import slider3 from "@/app/assets/slider (3).jpeg";
+import slider4 from "@/app/assets/slider (4).jpeg";
+import slider5 from "@/app/assets/slider (5).jpeg";
 
 export const mainlogo = {
   src: LogoImage,
@@ -125,4 +130,12 @@ export const ourEvents = [
     buttonText: "Discover",
     icon: LogoImage,
   },
+];
+
+export const imagesSlider = [
+  slider1.src,
+  slider2.src,
+  slider3.src,
+  slider4.src,
+  slider5.src,
 ];

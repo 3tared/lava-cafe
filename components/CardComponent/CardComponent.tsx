@@ -1,4 +1,5 @@
-"use client";
+"use client"; // Enables Next.js Client Component behavior
+
 import React from "react";
 import {
   Card,
@@ -7,12 +8,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "../ui/button";
-import Image, { StaticImageData } from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
+} from "@/components/ui/card"; // Importing custom Card components
+import { Button } from "../ui/button"; // Importing a custom Button component
+import Image, { StaticImageData } from "next/image"; // Next.js optimized Image component
+import Link from "next/link"; // Next.js Link component for navigation
+import { motion } from "framer-motion"; // Importing Framer Motion for animations
 
+// Defining TypeScript interface for the expected props
 interface ICardProps {
   data: {
     title: string;
@@ -24,26 +26,30 @@ interface ICardProps {
   };
 }
 
+// Creating motion-enhanced versions of the Card and Image components
 const MotionCard = motion(Card);
 const MotionImage = motion(Image);
 
 const CardComponent = ({ data }: ICardProps) => {
+  // Destructuring properties from data prop
   const { title, description, image, icon, buttonText, href } = data;
 
   return (
     <MotionCard
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, y: 20 }} // Initial animation state
+      animate={{ opacity: 1, y: 0 }} // Final animation state
+      transition={{ duration: 0.5 }} // Animation duration
       whileHover={{
-        y: -8,
+        y: -8, // Moves card slightly up on hover
         boxShadow:
           "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
       }}
       className="bg-opacity-10 rounded-lg w-full h-full flex flex-col overflow-hidden"
-      style={{ backgroundColor: "#b20084" }}
+      style={{ backgroundColor: "#b20084" }} // Sets background color
     >
+      {/* Card Header Section */}
       <CardHeader className="flex flex-col flex-grow">
+        {/* Animated Card Title */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -57,6 +63,7 @@ const CardComponent = ({ data }: ICardProps) => {
           </motion.div>
         </motion.div>
 
+        {/* Animated Card Description */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -69,6 +76,7 @@ const CardComponent = ({ data }: ICardProps) => {
         </motion.div>
       </CardHeader>
 
+      {/* Card Content Section with Image */}
       <CardContent className="flex-grow min-h-[250px] overflow-hidden">
         <motion.div className="w-full h-[250px] overflow-hidden rounded-lg">
           <MotionImage
@@ -83,8 +91,10 @@ const CardComponent = ({ data }: ICardProps) => {
         </motion.div>
       </CardContent>
 
+      {/* Card Footer Section */}
       <CardFooter className="mt-auto">
         <div className="flex items-center justify-between w-full">
+          {/* Animated Icon */}
           <motion.div
             whileHover={{ rotate: 5, scale: 1.1 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -98,6 +108,7 @@ const CardComponent = ({ data }: ICardProps) => {
             />
           </motion.div>
 
+          {/* Animated Button with Link */}
           <motion.div
             whileHover={{ x: -5 }}
             transition={{ type: "spring", stiffness: 500 }}
@@ -112,7 +123,7 @@ const CardComponent = ({ data }: ICardProps) => {
                 </span>
                 <motion.span
                   className="ml-1"
-                  animate={{ x: [0, 4, 0] }}
+                  animate={{ x: [0, 4, 0] }} // Subtle left-right animation on arrow
                   transition={{
                     repeat: Infinity,
                     repeatType: "reverse",

@@ -12,17 +12,33 @@ function Navbar() {
   // State to manage mobile menu open/close
   const [isOpen, setIsOpen] = useState(false);
 
-  // State to track scroll position
+  // State to track scroll position and direction
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
   // Get current pathname to highlight active page
   const pathname = usePathname();
 
   // Scroll effect handler
   useEffect(() => {
+    // Set initial position
+    setPrevScrollPos(window.scrollY);
+
     const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+
+      // Determine if we're scrolling up or down
+      const isScrollingUp = prevScrollPos > currentScrollPos;
+
       // Add background and shadow when scrolled more than 50px
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(currentScrollPos > 50);
+
+      // Show navbar when scrolling up or at the top, hide when scrolling down
+      setIsVisible(isScrollingUp || currentScrollPos < 50);
+
+      // Update previous scroll position
+      setPrevScrollPos(currentScrollPos);
     };
 
     // Add scroll event listener
@@ -32,7 +48,7 @@ function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [prevScrollPos]);
 
   // Animation configuration for mobile menu slide-in effect
   // Defines how the mobile menu enters, stays, and exits the screen
@@ -136,9 +152,27 @@ function Navbar() {
     },
   };
 
+  // Navbar animation variants for slide in/out
+  const navbarVariants = {
+    hidden: {
+      y: "-100%",
+    },
+    visible: {
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      },
+    },
+  };
+
   return (
     // Main header with fixed positioning, background color, and responsive padding
-    <header
+    <motion.header
+      variants={navbarVariants}
+      initial="visible"
+      animate={isVisible ? "visible" : "hidden"}
       className={`
         fixed top-0 left-0 right-0 z-50 
         px-5 md:px-6 lg:px-7 
@@ -339,7 +373,7 @@ function Navbar() {
           </AnimatePresence>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 }
 
