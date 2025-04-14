@@ -5,6 +5,7 @@ import React, {
   useState,
   createContext,
   useContext,
+  JSX,
 } from "react";
 import {
   IconArrowNarrowLeft,
@@ -164,6 +165,7 @@ export const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onCardClose, currentIndex } = useContext(CarouselContext);
 
   useEffect(() => {
@@ -181,9 +183,12 @@ export const Card = ({
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  useOutsideClick(containerRef, () => handleClose());
+  useOutsideClick(containerRef as React.RefObject<HTMLDivElement>, () =>
+    handleClose()
+  );
 
   const handleOpen = () => {
     setOpen(true);
