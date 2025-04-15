@@ -6,7 +6,8 @@ import birth2 from "@/app/assets/birth2.jpeg";
 import birth from "@/app/assets/birth.jpg";
 import engagment from "@/app/assets/engagment.jpeg";
 import CardContent from "../CardContent/CardContent";
-
+import engagment2 from "@/app/assets/engagment2.jpeg";
+import all from "@/app/assets/alllava.png";
 export const EventsCardata = [
   {
     category: "Birthday",
@@ -17,6 +18,8 @@ export const EventsCardata = [
         title="A special day for special people"
         description="Plan a unique birthday party filled with joy, gifts, and lasting memories."
         image={birth2.src}
+        href="birthday"
+        buttonText="Birthday"
       />
     ),
   },
@@ -28,43 +31,51 @@ export const EventsCardata = [
       <CardContent
         title="Celebrate your engagement differently"
         description="Make your engagement day full of love, laughter, and stunning decorations."
-        image={slider1.src}
+        image={engagment2.src}
+        href="engagement"
+        buttonText="Engagement"
       />
     ),
   },
   {
     category: "Wedding",
     title: "Your big day is coming!",
-    src: slider1.src,
+    src: engagment2.src,
     content: (
       <CardContent
         title="Your dream wedding, perfectly planned"
         description="From the first moment to the last dance, we’ll make your wedding unforgettable."
         image={slider1.src}
+        href="wedding"
+        buttonText="Wedding"
       />
     ),
   },
   {
     category: "Katb El Ketab",
     title: "A spiritual and joyful ceremony",
-    src: slider1.src,
+    src: engagment.src,
     content: (
       <CardContent
         title="Elegant and memorable Katb El Ketab"
         description="We help you prepare for a beautifully simple and heartwarming Katb El Ketab ceremony."
-        image={slider1.src}
+        image={engagment2.src}
+        href="wedding"
+        buttonText="Wedding"
       />
     ),
   },
   {
     category: "All Occasions",
     title: "Whatever the event, we’ve got you",
-    src: slider1.src,
+    src: all.src,
     content: (
       <CardContent
         title="Every occasion, any time"
         description="Birthday, engagement, wedding, or more — we cover all events with top quality."
-        image={slider1.src}
+        image={all.src}
+        href="/"
+        buttonText="All Events"
       />
     ),
   },
@@ -76,7 +87,7 @@ export function CurCard() {
   ));
 
   return (
-    <div className="w-full h-full pb-20">
+    <div className="w-full h-full">
       <Carousel items={cards} />
     </div>
   );

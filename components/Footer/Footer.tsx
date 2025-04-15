@@ -1,6 +1,12 @@
 "use client";
 // Import necessary dependencies and components
-import { mainlogo, navItems, socialItems } from "@/constants";
+import {
+  mainlogo,
+  managerPhoneNumber,
+  navItems,
+  ownerPhoneNumber,
+  socialItems,
+} from "@/constants";
 import { Mail, MapPin, UserCheck, UserCog } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,10 +36,6 @@ const socialColors: Record<SocialPlatform, string> = {
 };
 
 const Footer = () => {
-  // Store contact phone numbers for easy management
-  const managerPhoneNumber = "+201223411732";
-  const ownerPhoneNumber = "+201148494119";
-
   // Utility function to open WhatsApp chat with manager
   // Removes non-digit characters and opens WhatsApp web
   const openWhatsAppManager = () => {

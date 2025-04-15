@@ -15,6 +15,10 @@ import slider2 from "@/app/assets/slider (2).jpeg";
 import slider3 from "@/app/assets/slider (3).jpeg";
 import slider4 from "@/app/assets/slider (4).jpeg";
 import slider5 from "@/app/assets/slider (5).jpeg";
+import { ICafePackage } from "./types";
+
+export const ownerPhoneNumber = "+201148494119";
+export const managerPhoneNumber = "+201223411732";
 
 export const mainlogo = {
   src: LogoImage,
@@ -138,4 +142,62 @@ export const imagesSlider = [
   slider3.src,
   slider4.src,
   slider5.src,
+];
+
+export const cafePackages: ICafePackage[] = [
+  {
+    name: "Standard Package",
+    originalPrice: "EGP 50",
+    price: "EGP 40",
+    per: "per person",
+    description: "Includes only Pepsi for each person.",
+    items: ["Pepsi"],
+    emoji: "🥤",
+    popular: false,
+    tag: "Basic",
+    discount: "20% OFF",
+  },
+  {
+    name: "Classic Package",
+    originalPrice: "EGP 60",
+    price: "EGP 45",
+    per: "per person",
+    description: "Includes Pepsi and water for each person.",
+    items: ["Pepsi", "Water"],
+    emoji: "💧🥤",
+    popular: false,
+    tag: "Value",
+    discount: "25% OFF",
+  },
+  {
+    name: "High Tea (1)",
+    originalPrice: "EGP 90",
+    price: "EGP 70",
+    per: "per person",
+    description: "Includes premium gateau from Laren + Pepsi per person.",
+    items: ["Premium gateau from Laren", "Pepsi", "Water"],
+    emoji: "🍰🥤",
+    popular: true,
+    tag: "Most Popular",
+    discount: "22% OFF",
+  },
+  {
+    name: "High Tea (2)",
+    originalPrice: "EGP 110",
+    price: "EGP 80",
+    per: "per person",
+    description:
+      "Includes premium gateau from Laren + Pepsi + mini pizza + mini paté per person.",
+    items: [
+      "Premium gateau from Laren",
+      "Pepsi",
+      "Water",
+      "Mini pizza",
+      "Mini paté",
+    ],
+    emoji: "🍕🥐🥤",
+    popular: false,
+    tag: "Premium",
+    discount: "27% OFF",
+  },
 ];
