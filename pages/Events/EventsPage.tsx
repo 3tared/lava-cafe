@@ -1,8 +1,9 @@
 import CafePackages from "@/components/CafePackages/CafePackages";
 import { CurCard } from "@/components/CurCard/CurCard";
+import EventsList from "@/components/EventsList/EventsList";
 import { ImageSlider } from "@/components/ImageSlider/ImageSlider";
 import GradientHeading from "@/components/ui/GradientHeading";
-import { imagesSlider } from "@/constants";
+import { events, imagesSlider } from "@/constants";
 import React from "react";
 
 const EventsPage = () => {
@@ -21,6 +22,9 @@ const EventsPage = () => {
       <section className="w-full text-center my-5 sm:my-5 md:my-7 lg:mb-10  space-y-10">
         <GradientHeading>Choose Your Perfect Package</GradientHeading>
         <CafePackages />
+      </section>
+      <section className="w-full text-center my-5 sm:my-5 md:my-7 lg:mb-10  space-y-10">
+        <EventsList events={events} />
       </section>
     </main>
   );

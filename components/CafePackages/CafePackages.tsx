@@ -51,7 +51,7 @@ const CafePackages = () => {
   };
 
   return (
-    <div className="pb-16 px-4 md:px-8">
+    <div className=" px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-gray-600 max-w-2xl mx-auto">

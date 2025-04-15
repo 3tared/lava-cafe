@@ -15,6 +15,10 @@ import slider2 from "@/app/assets/slider (2).jpeg";
 import slider3 from "@/app/assets/slider (3).jpeg";
 import slider4 from "@/app/assets/slider (4).jpeg";
 import slider5 from "@/app/assets/slider (5).jpeg";
+import birth2 from "@/app/assets/birth2.jpeg";
+import engagment from "@/app/assets/engagment.jpeg";
+// import engagment2 from "@/app/assets/engagment2.jpeg";
+// import all from "@/app/assets/alllava.png";
 import { ICafePackage } from "./types";
 
 export const ownerPhoneNumber = "+201148494119";
@@ -199,5 +203,40 @@ export const cafePackages: ICafePackage[] = [
     popular: false,
     tag: "Premium",
     discount: "27% OFF",
+  },
+];
+
+export const events = [
+  {
+    title: "Mohamed Mosaad's Birthday Party 🎉",
+    date: "2025-04-17T20:00:00",
+    image: birth2.src,
+    type: "birthday",
+    location: "Lava Cafe, Cairo",
+    time: "8:00 PM",
+  },
+  {
+    title: "Manar's Engagement Ceremony 💍",
+    date: "2025-04-20T19:00:00",
+    image: engagment.src,
+    type: "engagement",
+    location: "Lava Cafe, Cairo",
+    time: "7:00 PM",
+  },
+  {
+    title: "Amira's Birthday Party 🎉",
+    date: "2025-04-24T17:00:00",
+    image: birth2.src,
+    type: "birthday",
+    location: "Lava Cafe, Cairo",
+    time: "5:00 PM",
+  },
+  {
+    title: "Mohamed Mosaad's Birthday Party 🎉",
+    date: "2025-04-25T20:00:00",
+    image: birth2.src,
+    type: "birthday",
+    location: "Lava Cafe, Cairo",
+    time: "8:00 PM",
   },
 ];
