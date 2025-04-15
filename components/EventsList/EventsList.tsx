@@ -82,17 +82,21 @@ export default function EventsList({
   });
 
   return (
-    <div className="bg-gradient-to-b from-white to-zinc-50 dark:from-zinc-950 dark:to-zinc-900 py-16">
+    <div className="bg-gradient-to-b from-white to-zinc-50 dark:from-zinc-950 dark:to-zinc-900 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
           <div>
-            <div className="flex items-center text-blue-600 dark:text-blue-400 mb-2">
+            <div className="flex items-center text-lavasecondary-600 dark:text-blue-400 mb-2">
               <CalendarClock className="w-5 h-5 mr-2" />
               <span className="font-medium text-sm">{currentDate}</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white mb-3">
+            <h1
+              className="text-3xl sm:text-4xl font-bold text-transparent 
+        bg-clip-text bg-gradient-to-r 
+        from-lavasecondary-500 to-lavaprimary-500  dark:text-white mb-3"
+            >
               {title}
             </h1>
 
