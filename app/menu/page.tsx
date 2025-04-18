@@ -1,7 +1,13 @@
-import React from "react";
+import MenuPage from "@/pages/Menu/Menu";
+
+export const metadata = {
+  title: "Menu - Lava Cafe",
+  description:
+    "Discover our delicious menu at Lava Cafe. From handcrafted coffees to mouthwatering desserts and savory dishes — there's something for everyone.",
+};
 
 const Menu = () => {
-  return <div>Menu</div>;
+  return <MenuPage />;
 };
 
 export default Menu;
