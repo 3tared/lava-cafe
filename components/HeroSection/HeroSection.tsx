@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { motion } from "framer-motion";
 import { HeroMainImage } from "@/constants";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -67,12 +68,18 @@ const HeroSection = () => {
           }}
           className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
         >
-          <button className="w-60 transform rounded-lg bg-lavaprimary-700 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-            Visit Us
-          </button>
-          <button className="w-60 transform rounded-lg border border-lavasecondary-500 bg-white px-6 py-2 font-medium text-text-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900">
+          <Link
+            href={"/gallery"}
+            className="text-center w-60 transform rounded-lg bg-lavaprimary-700 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+          >
+            See Our Gallery
+          </Link>
+          <Link
+            href={"/menu"}
+            className="text-center w-60 transform rounded-lg border border-lavasecondary-500 bg-white px-6 py-2 font-medium text-text-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 dark:border-gray-700 dark:bg-black dark:text-white dark:hover:bg-gray-900"
+          >
             Explore Menu
-          </button>
+          </Link>
         </motion.div>
         <motion.div
           initial={{

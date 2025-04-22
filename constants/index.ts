@@ -57,7 +57,7 @@ import event6 from "@/app/assets/place/event6.jpeg";
 import event7 from "@/app/assets/place/event7.jpeg";
 import event8 from "@/app/assets/place/event8.jpeg";
 
-import { GalleryImage, ICafePackage, MenuItem } from "../types";
+import { GalleryImage, ICafePackage, MenuItem, TeamSection } from "../types";
 
 export const ownerPhoneNumber = "+201148494119";
 export const managerPhoneNumber = "+201223411732";
@@ -65,6 +65,213 @@ export const managerPhoneNumber = "+201223411732";
 export const mainlogo = {
   src: LogoImage,
   alt: "logo",
+};
+
+// Features section data
+export const cafeFeatures = [
+  {
+    icon: "Coffee",
+    title: "Specialty Coffee",
+    description: "Expertly sourced and crafted signature blends",
+  },
+  {
+    icon: "Clock",
+    title: "Open Daily",
+    description: "9:00 AM - 3:00 AM",
+  },
+  {
+    icon: "Award",
+    title: "Award Winning",
+    description: "Best New Café 2025",
+  },
+];
+
+export const teamData: TeamSection[] = [
+  {
+    id: "leadership",
+    title: "Owners & Founders",
+    description:
+      "Meet the visionaries who brought our coffee experience to life.",
+    members: [
+      {
+        id: "owner-1",
+        name: "Yehia Mostafa",
+        position: "Founder & Owner",
+        bio: "With over 15 years in the coffee industry, Jane's passion for quality coffee and community spaces led to the creation of our café.",
+        imageUrl:
+          "https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSUb0nknyNvW1tDmR2VHhknY037XN48IAvCuLKb",
+        funFact: "Jane has visited coffee farms in over 12 countries.",
+      },
+      {
+        id: "owner-2",
+        name: "Galal Elsakr",
+        position: "Ceo-Owner & Partner",
+        bio: "Michael brings his financial expertise and business acumen to ensure our café thrives while maintaining our core values.",
+        imageUrl:
+          "https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSUGP5iLc1DFLq6ZIUY0BRpig5aPfV3HN7KECSt",
+        funFact: "Makes the best latte art in the entire company.",
+      },
+    ],
+  },
+  {
+    id: "management",
+    title: "Management Team",
+    description:
+      "Our experienced managers ensure everything runs smoothly day to day.",
+    members: [
+      {
+        id: "manager-1",
+        name: "Mohamed Tarek",
+        position: "General Manager",
+        bio: "Mohamed oversees daily operations and has been instrumental in developing our customer service philosophy.",
+        imageUrl:
+          "https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSUM1O8eYZBwCQDbIAOWTfX61LkHepK2u5lciGS",
+      },
+    ],
+  },
+  {
+    id: "baristas",
+    title: "Barista Team",
+    description: "Our skilled baristas are the heart of our coffee service.",
+    members: [
+      {
+        id: "barista-1",
+        name: "Youssef Elshikh",
+        position: "Barista",
+        bio: "A certified coffee expert who has competed in national barista championships.",
+        imageUrl:
+          "https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSU6efWENo2d67hLNOqCoZRvUl9bTVEgQ4aYerP",
+      },
+    ],
+  },
+  {
+    id: "service",
+    title: "Service Staff",
+    description:
+      "Our friendly team dedicated to making your visit exceptional.",
+    members: [
+      {
+        id: "service-6",
+        name: "Ramy Nasr",
+        position: "Kitchen chief",
+        bio: "Chef Ramy creates our seasonal menu and ensures the highest quality in every dish that leaves our kitchen.",
+        // No image provided
+      },
+      {
+        id: "service-1",
+        name: "Abdelrahman Celia",
+        position: "Captain",
+        bio: "Abdelrahman leads our front-of-house team with a warm, welcoming approach to service.",
+        imageUrl:
+          "https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSUD8o8ya8kblqoPpiQXIkLS5TeJgH8YhCayv6E",
+      },
+      {
+        id: "service-2",
+        name: "Mariam",
+        position: "Captain",
+        bio: "Known for remembering regular customers' orders and making everyone feel at home.",
+      },
+      {
+        id: "service-3",
+        name: "Kareem Ashraf",
+        position: "Steward",
+        bio: "ss",
+      },
+      {
+        id: "service-7",
+        name: "Menna",
+        position: "Steward",
+        bio: "ss",
+      },
+      {
+        id: "service-4",
+        name: "Mohamed ElHosseny",
+        position: "Hookah Specialist",
+        bio: "ss",
+        imageUrl:
+          "https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSUn79SXBD0z8AHYoTZLh2UMC4xQqRejJpyVtIr",
+      },
+      {
+        id: "service-5",
+        name: "Basmala Saad",
+        position: "Host",
+        bio: "ss",
+      },
+    ],
+  },
+];
+
+// About section content
+export const aboutContent = {
+  title: "About Our Café",
+  paragraphs: [
+    'Welcome to <span class="font-semibold text-lavasecondary-500">Lava Café</span>, established in 2025 with a simple idea — to create a cozy, unique spot for coffee lovers to relax and enjoy exceptional brews in a welcoming atmosphere.',
+    "We chose the name Lava because it represents warmth, flow, and energy — just like a great cup of coffee bursting with flavor and comfort. Our passion for quality coffee and community building drives everything we do.",
+  ],
+};
+
+// Contact information
+export const contactInfo = {
+  address: "32 El Central Street, Mokattam, off Street 9",
+  phone: "+201148494119",
+  email: "lavaacafee@gmail.com",
+  socialLinks: [
+    {
+      platform: "Instagram",
+      icon: "Instagram",
+      url: "https://www.instagram.com/lavaa.cafe.restaurant",
+    },
+    {
+      platform: "Facebook",
+      icon: "Facebook",
+      url: "https://www.facebook.com/lavacafe.reg",
+    },
+  ],
+};
+
+// Working hours
+export const workingHours = [
+  {
+    days: "Monday - Thursday",
+    hours: "9:00 AM - 2:00 AM",
+  },
+  {
+    days: "Friday - Sunday",
+    hours: "9:00 AM - 3:00 AM",
+  },
+];
+
+// Google Maps embed URL
+export const googleMapsUrl =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3126.4803989587585!2d31.29835622499086!3d30.011794120117987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145839faa5560081%3A0x36608dad604b7c9f!2sLava%20Cafe!5e1!3m2!1sar!2seg!4v1745263104022!5m2!1sar!2seg";
+export const googleMapsDirectUrl =
+  "https://maps.app.goo.gl/oMMuuqHPL2W2iycS9?g_st=aw";
+
+// CTA Banner content
+// Updated CTA Banner content
+export const ctaBanner = {
+  heading: "Ready for a unique coffee experience?",
+  subtext: "Visit us today or order online for pickup!",
+  buttons: [
+    {
+      text: "Order From Talabat",
+      link: "https://www.talabat.com/ar/egypt/restaurant/750261/لافا?aid=7429",
+      isPrimary: false,
+      isExternal: true,
+    },
+    {
+      text: "View Menu",
+      link: "/menu",
+      isPrimary: true,
+      isExternal: false,
+    },
+  ],
+};
+
+// Hero section content
+export const heroContent = {
+  title: "Lava Café",
+  subtitle: "Where every sip tells a story",
 };
 
 export const navItems = [

@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "../ui/button";
-import Link from "next/link";
 
 interface ICardContentProps {
   title: string;
@@ -12,13 +10,7 @@ interface ICardContentProps {
   buttonText: string;
 }
 
-const CardContent = ({
-  description,
-  image,
-  title,
-  buttonText,
-  href,
-}: ICardContentProps) => {
+const CardContent = ({ description, image, title }: ICardContentProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -68,9 +60,6 @@ const CardContent = ({
             className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain rounded-lg transition-all duration-300 hover:opacity-90"
           />
         </div>
-        <Button>
-          <Link href={`/events/${href}`}>See More About {buttonText}</Link>
-        </Button>
       </div>
 
       {/* Modal for enlarged image with animation */}

@@ -44,3 +44,20 @@ export interface MenuItem {
     author: string;
   }[];
 }
+
+// Team member types
+export interface TeamMember {
+  id: string;
+  name: string;
+  position: string;
+  bio: string;
+  imageUrl?: string; // Optional image
+  funFact?: string; // Optional fun fact
+}
+
+export interface TeamSection {
+  id: string;
+  title: string;
+  description: string;
+  members: TeamMember[];
+}

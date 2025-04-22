@@ -115,7 +115,7 @@ const CardComponent = ({ data }: ICardProps) => {
           >
             <Button className="bg-lavasecondary-500 hover:bg-lavasecondary-600">
               <Link
-                href={`/events/${href}`}
+                href={`/events`}
                 className="text-white capitalize flex items-center"
               >
                 <span>
