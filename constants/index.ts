@@ -251,7 +251,6 @@ export const teamData: TeamSection[] = [
         name: "Ramy Nasr",
         position: "Kitchen chief",
         bio: "Chef Ramy creates our seasonal menu and ensures the highest quality in every dish that leaves our kitchen.",
-        // No image provided
       },
       {
         id: "service-1",
@@ -293,6 +292,12 @@ export const teamData: TeamSection[] = [
         position: "Host",
         bio: "ss",
       },
+      {
+        id: "service-8",
+        name: "ziad",
+        position: "Waiter",
+        bio: "ss",
+      },
     ],
   },
 ];
@@ -301,7 +306,7 @@ export const teamData: TeamSection[] = [
 export const aboutContent = {
   title: "About Our Café",
   paragraphs: [
-    'Welcome to <span class="font-semibold text-lavasecondary-500">Lava Café</span>, established in 2025 with a simple idea — to create a cozy, unique spot for coffee lovers to relax and enjoy exceptional brews in a welcoming atmosphere.',
+    'Welcome to <span class="font-semibold text-lavasecondary-500">Lava Café</span>, established in 2024 with a simple idea — to create a cozy, unique spot for coffee lovers to relax and enjoy exceptional brews in a welcoming atmosphere.',
     "We chose the name Lava because it represents warmth, flow, and energy — just like a great cup of coffee bursting with flavor and comfort. Our passion for quality coffee and community building drives everything we do.",
   ],
 };
