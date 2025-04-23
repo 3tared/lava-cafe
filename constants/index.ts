@@ -86,6 +86,102 @@ export const cafeFeatures = [
   },
 ];
 
+export const contactInfo2 = {
+  companyName: "Lava Café",
+  details: [
+    {
+      type: "location",
+      title: "Our Location",
+      value: "32 El Central Street, Mokattam, Cairo",
+      bgColor: "bg-blue-600",
+    },
+    {
+      type: "phone",
+      title: "Phone Number",
+      value: "+201148494119",
+      bgColor: "bg-green-500",
+    },
+    {
+      type: "email",
+      title: "Email Address",
+      value: "lavaacafee@gmail.com",
+      bgColor: "bg-red-500",
+    },
+    {
+      type: "hours",
+      title: "Working Hours",
+      value: "Open Daily: 9 AM - 3 AM",
+      bgColor: "bg-yellow-500",
+    },
+  ],
+  mapEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3126.4803989587585!2d31.29835622499086!3d30.011794120117987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145839faa5560081%3A0x36608dad604b7c9f!2sLava%20Cafe!5e1!3m2!1sar!2seg!4v1745263104022!5m2!1sar!2seg",
+
+  // Detailed hours
+  hours: [
+    { day: "Monday", hours: "9:00 AM - 3:00 AM", isClosed: false },
+    { day: "Tuesday", hours: "9:00 AM - 3:00 AM", isClosed: false },
+    { day: "Wednesday", hours: "9:00 AM - 3:00 AM", isClosed: false },
+    { day: "Thursday", hours: "9:00 AM - 3:00 AM", isClosed: false },
+    { day: "Friday", hours: "9:00 AM - 3:00 AM", isClosed: false },
+    { day: "Saturday", hours: "9:00 AM - 3:00 AM", isClosed: false },
+    { day: "Sunday", hours: "9:00 AM - 3:00 AM", isClosed: false },
+  ],
+
+  specialNotes:
+    "We offer special arrangements for private events and celebrations. Contact us for more details!",
+
+  socialLinks: [
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/lavacafe.reg",
+      iconColor: "text-blue-500",
+      hoverBg: "bg-gradient-to-r from-blue-600 to-blue-400",
+      hoverColor:
+        "hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-400",
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/lavaa.cafe.restaurant",
+      iconColor: "text-pink-600",
+      hoverBg: "bg-gradient-to-r from-purple-500 to-pink-500",
+      hoverColor: "hover:bg-gradient-to-r from-purple-500 to-pink-500",
+    },
+  ],
+
+  // Frequently asked questions
+  faq: [
+    {
+      question: "What are the birthday package prices?",
+      answer:
+        "We offer 4 packages starting at EGP 40 (includes Pepsi only) up to EGP 80 (includes premium gateaux from Lareine, Pepsi, mini pizza, and mini pâté).",
+    },
+    {
+      question: "Is there a discount for large bookings?",
+      answer:
+        "Yes! For bookings of 80 guests or more, you get EGP 5 off per person on any package, plus free professional photography.",
+    },
+    {
+      question: "Do you host events other than birthdays?",
+      answer:
+        "Absolutely! We host engagements, weddings, mini weddings, graduations, baby showers, aqiqahs, and conferences.",
+    },
+  ],
+
+  // For social proof
+  visitorCount: 15780,
+
+  // If you have multiple locations
+  branches: [
+    {
+      name: "Lava Café Mokattam",
+      address: "32 El Central Street, Mokattam, Cairo",
+      phone: "+201148494119",
+      directions: "https://maps.app.goo.gl/oMMuuqHPL2W2iycS9?g_st=aw",
+    },
+  ],
+};
+
 export const teamData: TeamSection[] = [
   {
     id: "leadership",

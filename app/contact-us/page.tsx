@@ -1,7 +1,8 @@
+import ContactusPage from "@/pages/Contactus/ContactusPage";
 import React from "react";
 
 const ContactUs = () => {
-  return <div>ContactUs</div>;
+  return <ContactusPage />;
 };
 
 export default ContactUs;
