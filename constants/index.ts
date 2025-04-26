@@ -57,7 +57,13 @@ import event6 from "@/app/assets/place/event6.jpeg";
 import event7 from "@/app/assets/place/event7.jpeg";
 import event8 from "@/app/assets/place/event8.jpeg";
 
-import { GalleryImage, ICafePackage, MenuItem, TeamSection } from "../types";
+import {
+  GalleryImage,
+  ICafePackage,
+  JobPosition,
+  MenuItem,
+  TeamSection,
+} from "../types";
 
 export const ownerPhoneNumber = "+201148494119";
 export const managerPhoneNumber = "+201223411732";
@@ -66,6 +72,76 @@ export const mainlogo = {
   src: LogoImage,
   alt: "logo",
 };
+
+export const jobPositions: JobPosition[] = [
+  {
+    id: "barista",
+    title: "Barista",
+    description:
+      "Create delicious coffee beverages and provide exceptional customer service in a fast-paced environment.",
+    requirements: [
+      "Previous barista experience preferred",
+      "Knowledge of coffee preparation techniques",
+      "Excellent customer service skills",
+      "Ability to work in a fast-paced environment",
+    ],
+  },
+  {
+    id: "captain-order",
+    title: "Captain Order",
+    description:
+      "Oversee the order process, ensure accuracy, and coordinate between front and back of house operations.",
+    requirements: [
+      "1+ years of restaurant experience",
+      "Strong leadership and communication skills",
+      "Ability to work under pressure",
+      "Detail-oriented with excellent organizational skills",
+    ],
+  },
+  {
+    id: "steward",
+    title: "Steward",
+    description:
+      "Maintain cleanliness and organization of kitchen areas, ensuring smooth operations and sanitation standards.",
+    requirements: [
+      "Previous kitchen or cleaning experience preferred",
+      "Knowledge of sanitation standards",
+      "Ability to work independently",
+      "Physical stamina for extended periods of standing and lifting",
+    ],
+  },
+  {
+    id: "waiter",
+    title: "Waiter",
+    description:
+      "Provide excellent service to guests, take orders accurately, and ensure a positive dining experience.",
+    requirements: [
+      "Previous serving experience preferred",
+      "Strong communication skills",
+      "Ability to multitask in a fast-paced environment",
+      "Knowledge of food and beverage items",
+    ],
+  },
+  {
+    id: "host",
+    title: "Host",
+    description:
+      "Welcome guests, manage reservations, and coordinate seating to provide an excellent first impression.",
+    requirements: [
+      "Previous customer service experience preferred",
+      "Excellent communication and interpersonal skills",
+      "Professional appearance and friendly demeanor",
+      "Ability to remain calm under pressure",
+    ],
+  },
+];
+
+export const companyValues: string[] = [
+  "Excellence in service",
+  "Team collaboration",
+  "Continuous learning",
+  "Passion for hospitality",
+];
 
 // Features section data
 export const cafeFeatures = [
@@ -181,6 +257,19 @@ export const contactInfo2 = {
     },
   ],
 };
+
+export const announcements = [
+  {
+    imageUrl:
+      "https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSUd0FmGpCJM4quD6CvO7aiw3sU1XbAkxI8KGhg",
+    title: "We're Hiring!",
+    description:
+      "Join our team of talented catains , stewards , baristas and more. Apply now for positions available.",
+    link: "/careers",
+    linkText: "Apply Now",
+    badge: "New",
+  },
+];
 
 export const teamData: TeamSection[] = [
   {

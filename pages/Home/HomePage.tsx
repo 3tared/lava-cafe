@@ -1,14 +1,17 @@
 import Curesol from "@/components/Curesol/Curesol";
 import HeroSection from "@/components/HeroSection/HeroSection";
+import AnnouncementBanner from "@/components/AnnouncementBanner/AnnouncementBanner";
 import OurEvents from "@/components/OurEvents/OurEvents";
 import GradientHeading from "@/components/ui/GradientHeading";
 import WhyUs from "@/components/WhyUs/WhyUs";
+import { announcements } from "@/constants";
 
 const HomePage = () => {
   return (
     <main className="container mx-auto flex flex-col items-center justify-center min-h-screen px-4">
       <HeroSection />
 
+      <AnnouncementBanner announcements={announcements} />
       <section className="w-full text-center py-10">
         <GradientHeading>Why Choose Us?</GradientHeading>
         <WhyUs />

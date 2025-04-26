@@ -61,3 +61,19 @@ export interface TeamSection {
   description: string;
   members: TeamMember[];
 }
+
+export interface Announcement {
+  imageUrl?: string;
+  title: string;
+  description?: string;
+  link?: string;
+  linkText?: string;
+  badge?: string;
+}
+
+export interface JobPosition {
+  id: string;
+  title: string;
+  description: string;
+  requirements: string[];
+}
