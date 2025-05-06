@@ -21,3 +21,15 @@ model GalleryItem {
   image       String
   description String?
 }
+
+model User {
+  id            String   @id @default(cuid())
+  kindeId       String   @unique
+  email         String   @unique
+  firstName     String?
+  lastName      String?
+  profileImage  String?
+  role          String   @default("user") // "user" or "admin"
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
