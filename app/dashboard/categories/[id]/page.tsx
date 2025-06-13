@@ -5,25 +5,44 @@ import { useRouter } from "next/navigation";
 import { Category } from "@/lib/generated/prisma";
 import CategoryForm from "@/components/CategoryForm/CategoryForm";
 
-export default function CategoryPage({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default function CategoryPage({ params }: PageProps) {
   const router = useRouter();
-  const isEditing = params.id !== "new";
+  const [resolvedParams, setResolvedParams] = useState<{ id: string } | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [category, setCategory] = useState<Category | undefined>(undefined);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
+  // Resolve params on component mount
   useEffect(() => {
-    if (isEditing) {
+    const resolveParams = async () => {
+      const resolved = await params;
+      setResolvedParams(resolved);
+    };
+    resolveParams();
+  }, [params]);
+
+  const isEditing = resolvedParams?.id !== "new";
+
+  useEffect(() => {
+    if (resolvedParams && isEditing) {
       fetchCategory();
     }
-  }, [isEditing, params.id]);
+  }, [resolvedParams, isEditing]);
 
   const fetchCategory = async () => {
+    if (!resolvedParams) return;
+
     setIsLoading(true);
     setFetchError(null);
     try {
-      const response = await fetch(`/api/categories/${params.id}`);
+      const response = await fetch(`/api/categories/${resolvedParams.id}`);
       if (!response.ok) {
         throw new Error("Failed to fetch category");
       }
@@ -44,11 +63,13 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
     isActive: boolean;
     displayOrder: number;
   }) => {
+    if (!resolvedParams) return;
+
     setIsSaving(true);
 
     try {
       const url = isEditing
-        ? `/api/categories/${params.id}`
+        ? `/api/categories/${resolvedParams.id}`
         : "/api/categories";
       const method = isEditing ? "PUT" : "POST";
 
@@ -74,6 +95,18 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
       setIsSaving(false);
     }
   };
+
+  // Show loading while resolving params
+  if (!resolvedParams) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex justify-center items-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-indigo-500 border-t-transparent mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   // Show loading spinner while fetching category data
   if (isLoading) {
