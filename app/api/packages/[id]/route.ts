@@ -6,11 +6,13 @@ import { prisma } from "@/lib/prisma";
 // GET - Fetch single package
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     const packageData = await prisma.package.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!packageData) {
@@ -30,13 +32,14 @@ export async function GET(
 // PUT - Update package
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body: Partial<UpdatePackageData> = await request.json();
 
     const packageData = await prisma.package.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         ...(body.name && { name: body.name }),
         ...(body.originalPrice && { originalPrice: body.originalPrice }),
@@ -64,12 +67,14 @@ export async function PUT(
 // DELETE - Delete package
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     // Check if package is being used by any events
     const eventsUsingPackage = await prisma.event.findMany({
-      where: { packageId: params.id },
+      where: { packageId: id },
     });
 
     if (eventsUsingPackage.length > 0) {
@@ -80,7 +85,7 @@ export async function DELETE(
     }
 
     await prisma.package.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ message: "Package deleted successfully" });

@@ -1,14 +1,16 @@
 // app/api/job-applications/[id]/route.ts
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     const application = await prisma.jobApplication.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         position: true,
       },
@@ -32,16 +34,17 @@ export async function GET(
 }
 
 export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const { name, age, address, phone, email, experience, status, positionId } =
       body;
 
     const application = await prisma.jobApplication.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name,
         age,
@@ -68,12 +71,14 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     await prisma.jobApplication.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({

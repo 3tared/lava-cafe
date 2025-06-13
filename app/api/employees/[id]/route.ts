@@ -5,10 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 // GET - Fetch a specific employee by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     const employee = await prisma.employee.findUnique({
       where: { id },
@@ -37,10 +37,10 @@ export async function GET(
 // PATCH - Update an employee
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const data = await request.json();
 
     // Parse the date string into a Date object
@@ -80,10 +80,10 @@ export async function PATCH(
 // DELETE - Remove an employee
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     await prisma.employee.delete({
       where: { id },

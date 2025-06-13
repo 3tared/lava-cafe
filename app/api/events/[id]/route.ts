@@ -7,11 +7,13 @@ import { prisma } from "@/lib/prisma";
 // GET - Fetch single event
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     const event = await prisma.event.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         package: true,
       },
@@ -34,13 +36,14 @@ export async function GET(
 // PUT - Update event
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body: Partial<UpdateEventData> = await request.json();
 
     const event = await prisma.event.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         ...(body.title && { title: body.title }),
         ...(body.date && { date: new Date(body.date) }),
@@ -68,11 +71,13 @@ export async function PUT(
 // DELETE - Delete event
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     await prisma.event.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ message: "Event deleted successfully" });
