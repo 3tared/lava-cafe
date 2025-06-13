@@ -4,11 +4,13 @@ import { prisma } from "@/lib/prisma";
 // Handler for GET requests to fetch a specific category
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     const category = await prisma.category.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         _count: {
           select: { menuItems: true },
@@ -38,16 +40,17 @@ export async function GET(
 // Handler for PUT requests to update a category
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const data = await request.json();
 
     // Extract only the fields that should be updated
     const { name, description, isActive, displayOrder, image } = data;
 
     const category = await prisma.category.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name,
         description,
@@ -72,12 +75,14 @@ export async function PUT(
 // Handler for DELETE requests to delete a category
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     // First check if the category has any menu items
     const category = await prisma.category.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         _count: {
           select: { menuItems: true },
@@ -101,7 +106,7 @@ export async function DELETE(
 
     // If no menu items, proceed with deletion
     await prisma.category.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });
