@@ -1,9 +1,29 @@
 "use client";
-import { cafePackages, ownerPhoneNumber } from "@/constants";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ownerPhoneNumber } from "@/constants";
 
-const CafePackages = () => {
+interface Package {
+  id: string;
+  name: string;
+  originalPrice: string;
+  price: string;
+  per: string;
+  description: string;
+  items: string[];
+  emoji: string;
+  popular: boolean;
+  tag: string;
+  discount: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface CafePackagesClientProps {
+  packages: Package[];
+}
+
+const CafePackagesClient = ({ packages }: CafePackagesClientProps) => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
 
@@ -11,7 +31,7 @@ const CafePackages = () => {
   const openWhatsAppWithPackageDetails = () => {
     if (selectedPackage === null) return;
 
-    const selectedPkg = cafePackages[selectedPackage];
+    const selectedPkg = packages[selectedPackage];
     const cleanedNumber = ownerPhoneNumber.replace(/\D/g, "");
 
     // Create message with package details
@@ -51,7 +71,7 @@ const CafePackages = () => {
   };
 
   return (
-    <div className=" px-4 md:px-8">
+    <div className="px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -66,9 +86,9 @@ const CafePackages = () => {
           initial="hidden"
           animate="visible"
         >
-          {cafePackages.map((pkg, index) => (
+          {packages.map((pkg, index) => (
             <motion.div
-              key={index}
+              key={pkg.id}
               className={`rounded-2xl overflow-hidden ${
                 pkg.popular
                   ? "ring-2 ring-lavasecondary-600"
@@ -161,8 +181,8 @@ const CafePackages = () => {
                     selectedPackage === index
                       ? "bg-indigo-700 text-white"
                       : pkg.popular
-                      ? "bg-indigo-600 hover:bg-indigo-700 text-white"
-                      : "bg-white border border-indigo-600 text-indigo-600 hover:bg-indigo-50"
+                        ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+                        : "bg-white border border-indigo-600 text-indigo-600 hover:bg-indigo-50"
                   }`}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
@@ -233,4 +253,4 @@ const CafePackages = () => {
   );
 };
 
-export default CafePackages;
+export default CafePackagesClient;

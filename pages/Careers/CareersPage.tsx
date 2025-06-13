@@ -1,29 +1,24 @@
 "use client";
-import React, { useState, useEffect, ChangeEvent, FormEvent, JSX } from "react";
+import React, { useState, ChangeEvent, FormEvent, JSX } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
-import { jobPositions, companyValues } from "@/constants";
+import {
+  useJobPositions,
+  useCompanyValues,
+  useJobApplications,
+} from "@/hooks/useCareers";
+import { JobPosition } from "@/types";
 import Image from "next/image";
 
-// Define TypeScript interfaces
 interface FormData {
   name: string;
   age: string;
   address: string;
   phone: string;
-  position: string;
+  positionId: string;
   email: string;
   experience: string;
 }
 
-interface JobPosition {
-  id: string;
-  title: string;
-  description: string;
-  requirements: string[];
-}
-
-// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -37,19 +32,20 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
+  visible: { y: 0, opacity: 1 },
 };
 
 export default function CareersPage(): JSX.Element {
+  const { positions, loading: positionsLoading } = useJobPositions();
+  const { values, loading: valuesLoading } = useCompanyValues();
+  const { submitApplication } = useJobApplications();
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     age: "",
     address: "",
     phone: "",
-    position: "",
+    positionId: "",
     email: "",
     experience: "",
   });
@@ -61,18 +57,14 @@ export default function CareersPage(): JSX.Element {
     null
   );
 
-  useEffect(() => {
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
-  }, []);
-
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    if (name === "position") {
-      const position = jobPositions.find((pos) => pos.id === value);
+    if (name === "positionId") {
+      const position = positions.find((pos) => pos.id === value);
       setSelectedPosition(position || null);
     }
   };
@@ -83,49 +75,38 @@ export default function CareersPage(): JSX.Element {
     setError("");
 
     try {
-      // No need to assign to a variable if we don't use it
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        {
-          from_name: formData.name,
-          to_name: "Hiring Manager",
-          from_email: formData.email,
-          to_email: "lavaacafee@gmail.com",
-          message: `
-            Application Details:
-            Name: ${formData.name}
-            Age: ${formData.age}
-            Address: ${formData.address}
-            Phone: ${formData.phone}
-            Position: ${formData.position}
-            Experience: ${formData.experience}
-          `,
-        }
-      );
-
-      // Success path continues here
+      await submitApplication(formData);
       setSubmitted(true);
       setFormData({
         name: "",
         age: "",
         address: "",
         phone: "",
-        position: "",
+        positionId: "",
         email: "",
         experience: "",
       });
+      setSelectedPosition(null);
 
       setTimeout(() => {
         setSubmitted(false);
       }, 5000);
     } catch (err) {
-      setError("Failed to send application. Please try again later.");
-      console.error("Email send error:", err);
+      setError(
+        err instanceof Error ? err.message : "Failed to submit application"
+      );
     } finally {
       setSubmitting(false);
     }
   };
+
+  if (positionsLoading || valuesLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl">Loading careers page...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gray-50 min-h-screen mt-7 md:mt-12 lg:mt-15 xl:mt-16">
@@ -138,7 +119,7 @@ export default function CareersPage(): JSX.Element {
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <Image
-          src="https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSUd0FmGpCJM4quD6CvO7aiw3sU1XbAkxI8KGhg"
+          src="https://j8v6vnsfxb.ufs.sh/f/KWERu0J43fSU0RU4Afo4U2YJovA1HwaP8C7qNF3Qx6VXcdZm"
           alt="Team working in restaurant"
           className="object-cover w-full h-full"
           width={500}
@@ -183,14 +164,14 @@ export default function CareersPage(): JSX.Element {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {companyValues.map((value, index) => (
+          {values.map((value) => (
             <motion.div
-              key={index}
+              key={value.id}
               className="p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow bg-lavasecondary-500 text-white"
               variants={itemVariants}
               whileHover={{ y: -5, transition: { duration: 0.3 } }}
             >
-              <h3 className="text-lg font-semibold mb-2 ">{value}</h3>
+              <h3 className="text-lg font-semibold mb-2">{value.value}</h3>
             </motion.div>
           ))}
         </div>
@@ -211,11 +192,11 @@ export default function CareersPage(): JSX.Element {
         from-lavasecondary-500 to-lavaprimary-500"
             variants={itemVariants}
           >
-            Open Positions For Females Only
+            Open Positions
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {jobPositions.map((job) => (
+            {positions.map((job) => (
               <motion.div
                 key={job.id}
                 className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
@@ -389,21 +370,21 @@ export default function CareersPage(): JSX.Element {
 
               <div className="mb-4">
                 <label
-                  htmlFor="position"
+                  htmlFor="positionId"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
                   Position *
                 </label>
                 <select
-                  id="position"
-                  name="position"
-                  value={formData.position}
+                  id="positionId"
+                  name="positionId"
+                  value={formData.positionId}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                   <option value="">Select a position</option>
-                  {jobPositions.map((job) => (
+                  {positions.map((job) => (
                     <option key={job.id} value={job.id}>
                       {job.title}
                     </option>
@@ -447,9 +428,11 @@ export default function CareersPage(): JSX.Element {
                       Requirements:
                     </h5>
                     <ul className="list-disc pl-5 text-xs text-blue-600">
-                      {selectedPosition.requirements.map((req, idx) => (
-                        <li key={idx}>{req}</li>
-                      ))}
+                      {selectedPosition.requirements.map(
+                        (req: string, idx: number) => (
+                          <li key={idx}>{req}</li>
+                        )
+                      )}
                     </ul>
                   </div>
                 </motion.div>

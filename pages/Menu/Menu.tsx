@@ -3,50 +3,104 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MENU_ITEMS, CATEGORIES } from "@/constants";
 import MenuCard from "@/components/MenuCard/MenuCard";
 import Pagination from "@/components/Pagination/Pagination";
+import { MenuItem, Category, MenuApiResponse } from "@/types";
 
 export default function MenuPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [error, setError] = useState<string>("");
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(6);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [totalItems, setTotalItems] = useState<number>(0);
 
+  // Fetch categories on component mount
   useEffect(() => {
-    // Simulate loading for a smoother experience
-    const timer = setTimeout(() => {
+    fetchCategories();
+  }, []);
+
+  // Fetch menu items when filters change
+  useEffect(() => {
+    fetchMenuItems();
+  }, [selectedCategory, searchTerm, currentPage, itemsPerPage]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch("/api/categories");
+      if (!response.ok) throw new Error("Failed to fetch categories");
+
+      const data: Category[] = await response.json();
+      setCategories(data);
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+      setError("Failed to load categories");
+    }
+  };
+
+  const fetchMenuItems = async () => {
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const params = new URLSearchParams({
+        page: currentPage.toString(),
+        limit: itemsPerPage.toString(),
+      });
+
+      if (selectedCategory !== "All") {
+        params.append("category", selectedCategory);
+      }
+
+      if (searchTerm.trim()) {
+        params.append("search", searchTerm.trim());
+      }
+
+      const response = await fetch(`/api/menu?${params}`);
+      if (!response.ok) throw new Error("Failed to fetch menu items");
+
+      const data: MenuApiResponse = await response.json();
+      setMenuItems(data.items);
+      setTotalPages(data.pagination.totalPages);
+      setTotalItems(data.pagination.totalItems);
+    } catch (err) {
+      console.error("Error fetching menu items:", err);
+      setError("Failed to load menu items");
+    } finally {
       setIsLoading(false);
-    }, 600);
-
-    // Reset to first page when filters change
-    setCurrentPage(1);
-
-    return () => clearTimeout(timer);
-  }, [searchTerm, selectedCategory]);
-
-  const filteredItems = MENU_ITEMS.filter((item) => {
-    const matchesCategory =
-      selectedCategory === "All" || item.category === selectedCategory;
-    const matchesSearch = item.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  // Calculate pagination
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+    }
+  };
 
   const handlePageChange = (pageNumber: number) => {
-    // Scroll to top when changing pages
     window.scrollTo({ top: 0, behavior: "smooth" });
     setCurrentPage(pageNumber);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1); // Reset to first page when category changes
+  };
+
+  const handleSearchChange = (search: string) => {
+    setSearchTerm(search);
+    setCurrentPage(1); // Reset to first page when search changes
+  };
+
+  const handleItemsPerPageChange = (newItemsPerPage: number) => {
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(1); // Reset to first page when items per page changes
+  };
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setSelectedCategory("All");
+    setCurrentPage(1);
   };
 
   const container = {
@@ -58,6 +112,10 @@ export default function MenuPage() {
       },
     },
   };
+
+  // Calculate display range for results summary
+  const startIndex = (currentPage - 1) * itemsPerPage + 1;
+  const endIndex = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white mt-7 md:mt-12 lg:mt-15 xl:mt-20">
@@ -86,7 +144,7 @@ export default function MenuPage() {
           className="mb-10 bg-white rounded-xl shadow-md p-6"
         >
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-            {/* 🔍 Search Input */}
+            {/* Search Input */}
             <div className="relative flex-grow">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg
@@ -108,7 +166,7 @@ export default function MenuPage() {
                 type="text"
                 placeholder="Search for an item..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-lavasecondary-400 transition-all duration-300"
               />
             </div>
@@ -124,10 +182,9 @@ export default function MenuPage() {
               <select
                 id="perPage"
                 value={itemsPerPage}
-                onChange={(e) => {
-                  setItemsPerPage(Number(e.target.value));
-                  setCurrentPage(1); // Reset to first page when changing items per page
-                }}
+                onChange={(e) =>
+                  handleItemsPerPageChange(Number(e.target.value))
+                }
                 className="border border-gray-300 rounded-md px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-lavasecondary-400"
               >
                 <option value={6}>6 items</option>
@@ -138,41 +195,59 @@ export default function MenuPage() {
             </div>
           </div>
 
-          {/* 🗂️ Category Tabs */}
+          {/* Category Tabs */}
           <div className="flex flex-wrap gap-2 mt-4">
-            {["All", ...CATEGORIES].map((category) => (
+            <motion.button
+              key="All"
+              onClick={() => handleCategoryChange("All")}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-4 py-2 rounded-full text-sm font-medium border ${
+                selectedCategory === "All"
+                  ? "bg-lavasecondary-500 text-white border-lavasecondary-500"
+                  : "bg-white text-gray-700 border-gray-300"
+              } hover:bg-lavasecondary-400 hover:text-white hover:border-lavasecondary-400 transition-all duration-300`}
+            >
+              All
+            </motion.button>
+            {categories.map((category) => (
               <motion.button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
+                key={category.id}
+                onClick={() => handleCategoryChange(category.name)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-4 py-2 rounded-full text-sm font-medium border ${
-                  selectedCategory === category
+                  selectedCategory === category.name
                     ? "bg-lavasecondary-500 text-white border-lavasecondary-500"
                     : "bg-white text-gray-700 border-gray-300"
                 } hover:bg-lavasecondary-400 hover:text-white hover:border-lavasecondary-400 transition-all duration-300`}
               >
-                {category}
+                {category.name}
               </motion.button>
             ))}
           </div>
         </motion.div>
 
+        {/* Error message */}
+        {error && (
+          <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
+
         {/* Results summary */}
-        {!isLoading && filteredItems.length > 0 && (
+        {!isLoading && !error && totalItems > 0 && (
           <div className="flex justify-between items-center mb-6">
             <p className="text-gray-600 text-sm">
-              Showing {indexOfFirstItem + 1} to{" "}
-              {Math.min(indexOfLastItem, filteredItems.length)} of{" "}
-              {filteredItems.length} items
+              Showing {startIndex} to {endIndex} of {totalItems} items
             </p>
           </div>
         )}
 
-        {/* 🧾 Menu Items */}
+        {/* Menu Items */}
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {Array.from({ length: itemsPerPage }, (_, i) => (
               <div
                 key={i}
                 className="bg-white rounded-2xl shadow-lg h-64 animate-pulse"
@@ -194,7 +269,7 @@ export default function MenuPage() {
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               <AnimatePresence>
-                {currentItems.map((item) => (
+                {menuItems.map((item) => (
                   <motion.div
                     key={item.id}
                     layout
@@ -208,7 +283,7 @@ export default function MenuPage() {
                 ))}
               </AnimatePresence>
 
-              {filteredItems.length === 0 && (
+              {menuItems.length === 0 && !isLoading && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -237,11 +312,8 @@ export default function MenuPage() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      setSearchTerm("");
-                      setSelectedCategory("All");
-                    }}
-                    className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors"
+                    onClick={clearFilters}
+                    className="mt-4 px-4 py-2 bg-lavasecondary-500 text-white rounded-full hover:bg-lavasecondary-600 transition-colors"
                   >
                     Clear filters
                   </motion.button>
@@ -250,7 +322,7 @@ export default function MenuPage() {
             </motion.div>
 
             {/* Pagination component */}
-            {filteredItems.length > 0 && (
+            {totalItems > 0 && totalPages > 1 && (
               <div className="mt-12 mb-8">
                 <Pagination
                   currentPage={currentPage}
