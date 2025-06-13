@@ -3,38 +3,88 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Announcement } from "@/types";
 import Link from "next/link";
 
-interface AnnouncementBannerProps {
-  announcements: Announcement[];
+// Updated interface to match your database schema
+interface Announcement {
+  id: string;
+  imageUrl: string;
+  title: string;
+  description: string;
+  link: string;
+  linkText: string;
+  badge?: string | null;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
-const AnnouncementBanner: React.FC<AnnouncementBannerProps> = ({
-  announcements,
-}) => {
+// Component now fetches its own data
+const AnnouncementBanner: React.FC = () => {
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(true);
-  const [direction, setDirection] = useState<number>(1); // 1 for forward, -1 for backward
+  const [direction, setDirection] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // If no announcements or empty array, don't render anything
-  if (!announcements || announcements.length === 0) {
-    return null;
-  }
+  // Fetch announcements from API
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch("/api/announcements");
 
-  const currentAnnouncement: Announcement = announcements[currentIndex];
+        if (!response.ok) {
+          throw new Error("Failed to fetch announcements");
+        }
+
+        const data = await response.json();
+        setAnnouncements(data);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching announcements:", err);
+        setError("Failed to load announcements");
+        setAnnouncements([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAnnouncements();
+  }, []);
 
   // Auto-rotate announcements every 5 seconds
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
+    if (announcements.length <= 1 || !isVisible) return;
+
     const interval = setInterval(() => {
-      if (announcements.length > 1 && isVisible) {
-        handleNext();
-      }
+      handleNext();
     }, 5000);
 
     return () => clearInterval(interval);
   }, [currentIndex, announcements.length, isVisible]);
+
+  // Don't render if loading, error, or no announcements
+  if (isLoading) {
+    return (
+      <div className="w-full bg-gradient-to-r from-lavasecondary-500 to-lavaprimary-600 py-6 shadow-lg relative overflow-hidden rounded-lg">
+        <div className="max-w-6xl mx-auto px-4 flex items-center justify-center">
+          <div className="text-white">Loading announcements...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return null; // Silently fail - don't show error banner to users
+  }
+
+  if (!announcements || announcements.length === 0 || !isVisible) {
+    return null;
+  }
+
+  const currentAnnouncement: Announcement = announcements[currentIndex];
 
   const handlePrev = (): void => {
     setDirection(-1);
@@ -73,8 +123,6 @@ const AnnouncementBanner: React.FC<AnnouncementBannerProps> = ({
     visible: { opacity: 1, y: 0 },
     hidden: { opacity: 0, y: -100 },
   };
-
-  if (!isVisible) return null;
 
   return (
     <motion.div

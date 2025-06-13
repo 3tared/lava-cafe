@@ -6,35 +6,66 @@ import { CalendarClock, Filter, ArrowRight, ChevronDown } from "lucide-react";
 import EventCard from "../EventCard/EventCard";
 import clsx from "clsx";
 
-// Reuse the Event type
-type EventType = "birthday" | "engagement" | "wedding" | string;
-
+// Update the Event type to match your database schema
 interface Event {
+  id: string;
   title: string;
-  date: string;
-  image: string;
-  type: EventType;
-  location?: string;
-  time?: string;
-  featured?: boolean;
+  date: string; // This will be an ISO string from the database
+  image: string | null;
+  type: string;
+  location: string;
+  time: string;
+  packageId: string | null;
+  package?: {
+    id: string;
+    name: string;
+    // Add other package fields as needed
+  };
+  createdAt: string;
+  updatedAt: string;
+  featured?: boolean; //
 }
 
 interface EventsListProps {
-  events: Event[];
   title?: string;
   subtitle?: string;
 }
 
 export default function EventsList({
-  events,
   title = "Upcoming Events",
   subtitle,
 }: EventsListProps) {
+  const [events, setEvents] = useState<Event[]>([]);
   const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [displayCount, setDisplayCount] = useState(6);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch events from API
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("/api/events");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch events");
+        }
+
+        const data: Event[] = await response.json();
+        setEvents(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   // Get unique event types for filter
   const eventTypes = [
@@ -42,7 +73,10 @@ export default function EventsList({
     ...Array.from(new Set(events.map((event) => event.type))),
   ];
 
+  // Process events when data changes
   useEffect(() => {
+    if (events.length === 0) return;
+
     const now = new Date().getTime();
 
     // Sort by date (closest first)
@@ -50,6 +84,7 @@ export default function EventsList({
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
 
+    // Filter for upcoming events only
     const filtered = sorted.filter(
       (event) => new Date(event.date).getTime() > now
     );
@@ -80,6 +115,40 @@ export default function EventsList({
     month: "long",
     day: "numeric",
   });
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="bg-gradient-to-b from-white to-zinc-50 dark:from-zinc-950 dark:to-zinc-900 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="bg-gradient-to-b from-white to-zinc-50 dark:from-zinc-950 dark:to-zinc-900 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center py-20 bg-white dark:bg-zinc-900/50 rounded-2xl shadow-sm border border-zinc-100 dark:border-zinc-800">
+            <div className="inline-flex justify-center items-center w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/20 mb-4">
+              <CalendarClock className="w-8 h-8 text-red-500 dark:text-red-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-zinc-800 dark:text-white mb-2">
+              Error Loading Events
+            </h3>
+            <p className="text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
+              {error}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gradient-to-b from-white to-zinc-50 dark:from-zinc-950 dark:to-zinc-900 pb-16">
@@ -191,7 +260,7 @@ export default function EventsList({
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {filteredEvents.slice(0, displayCount).map((event, index) => (
                 <EventCard
-                  key={`${event.title}-${index}`}
+                  key={event.id}
                   event={{
                     ...event,
                     featured: index === 0,

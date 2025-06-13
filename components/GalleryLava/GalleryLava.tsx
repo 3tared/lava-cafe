@@ -1,22 +1,71 @@
 "use client";
 import { useState, useEffect, useRef, JSX } from "react";
-import { galleryImages } from "@/constants";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
-import { GalleryImage } from "@/types";
 
-type Category = "All" | "indoor" | "outdoor" | "Food" | "events";
+// Updated GalleryImage type to match your Prisma model
+interface GalleryImage {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  category: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
-const categories: Category[] = ["All", "indoor", "outdoor", "Food", "events"];
+type Category = "All" | "indoor" | "outdoor" | "commercial" | "residential";
+
+const categories: Category[] = [
+  "All",
+  "indoor",
+  "outdoor",
+  "commercial",
+  "residential",
+];
 
 export default function GalleryLava(): JSX.Element {
   const [selectedCategory, setSelectedCategory] = useState<Category>("All");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const imagesPerPage: number = 9;
   const galleryRef = useRef<HTMLElement | null>(null);
+
+  // Fetch images from API
+  const fetchImages = async (category?: string) => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const url =
+        category && category !== "All"
+          ? `/api/gallery?category=${category}`
+          : "/api/gallery";
+
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch images");
+      }
+
+      const data = await response.json();
+      setGalleryImages(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+      console.error("Error fetching gallery images:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Initial load
+  useEffect(() => {
+    fetchImages();
+  }, []);
 
   const filteredImages: GalleryImage[] =
     selectedCategory === "All"
@@ -40,14 +89,12 @@ export default function GalleryLava(): JSX.Element {
     }
   }, [selectedCategory]);
 
-  // Simulate loading
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
-    return () => clearTimeout(timer);
-  }, [selectedCategory, currentPage]);
+  // Handle category change
+  const handleCategoryChange = (category: Category) => {
+    setSelectedCategory(category);
+    // Optionally fetch filtered data from server instead of client-side filtering
+    // fetchImages(category);
+  };
 
   const openLightbox = (image: GalleryImage): void => {
     setSelectedImage(image);
@@ -85,6 +132,24 @@ export default function GalleryLava(): JSX.Element {
     }
   };
 
+  // Error state
+  if (error) {
+    return (
+      <section className="py-16 px-4 md:px-12 bg-gradient-to-b from-gray-50 to-white">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold mb-4 text-red-500">Error</h2>
+          <p className="text-gray-600">{error}</p>
+          <button
+            onClick={() => fetchImages()}
+            className="mt-4 px-6 py-2 bg-lavasecondary-500 text-white rounded-lg hover:bg-lavasecondary-600 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       ref={galleryRef}
@@ -114,7 +179,7 @@ export default function GalleryLava(): JSX.Element {
         {categories.map((cat) => (
           <motion.button
             key={cat}
-            onClick={() => setSelectedCategory(cat)}
+            onClick={() => handleCategoryChange(cat)}
             className={`px-6 py-2 rounded-full text-sm font-medium transition shadow-sm ${
               selectedCategory === cat
                 ? "bg-lavasecondary-500 text-white"
@@ -139,6 +204,16 @@ export default function GalleryLava(): JSX.Element {
             className="flex justify-center items-center h-96"
           >
             <div className="w-12 h-12 rounded-full border-4 border-lavasecondary-500 border-t-transparent animate-spin"></div>
+          </motion.div>
+        ) : galleryImages.length === 0 ? (
+          <motion.div
+            key="empty"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="text-center py-12"
+          >
+            <p className="text-gray-600 text-lg">No images found</p>
           </motion.div>
         ) : (
           <motion.div

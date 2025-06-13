@@ -3,28 +3,29 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { User, Crown, Coffee } from "lucide-react";
 
-// Define types for team data
-interface TeamMember {
+// Define types based on the Prisma schema
+interface Employee {
   id: string;
   name: string;
   position: string;
-  bio: string;
-  imageUrl?: string;
-  funFact?: string;
+  bio: string | null;
+  imageUrl: string | null;
+  funFact: string | null;
+  departmentId: string | null;
 }
 
-interface TeamSection {
+interface Department {
   id: string;
   title: string;
-  description: string;
-  members: TeamMember[];
+  description: string | null;
+  employees: Employee[];
 }
 
-interface TeamDataProps {
-  teamData: TeamSection[];
+interface TeamSectionProps {
+  departments: Department[];
 }
 
-export default function TeamSection({ teamData }: TeamDataProps) {
+export default function TeamSection({ departments }: TeamSectionProps) {
   const [hoveredMember, setHoveredMember] = useState<string | null>(null);
 
   const containerVariants = {
@@ -80,9 +81,9 @@ export default function TeamSection({ teamData }: TeamDataProps) {
           </p>
         </motion.div>
 
-        {teamData.map((section) => (
+        {departments.map((department) => (
           <motion.div
-            key={section.id}
+            key={department.id}
             className="mb-20"
             initial="hidden"
             whileInView="visible"
@@ -95,22 +96,24 @@ export default function TeamSection({ teamData }: TeamDataProps) {
         bg-clip-text bg-gradient-to-r 
         from-lavasecondary-500 to-lavaprimary-500 mb-3"
               >
-                {section.title}
+                {department.title}
               </h3>
               <div className="w-1/2 mx-auto h-1 bg-lavasecondary-500 mb-4"></div>
-              <p className="text-lg text-gray-600">{section.description}</p>
+              <p className="text-lg text-gray-600">
+                {department.description || ""}
+              </p>
             </motion.div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {section.members.map((member) => {
-                const isLeader = isLeadership(member.position);
+              {department.employees.map((employee) => {
+                const isLeader = isLeadership(employee.position);
                 const isOwner =
-                  member.position.toLowerCase().includes("owner") ||
-                  member.position.toLowerCase().includes("founder");
+                  employee.position.toLowerCase().includes("owner") ||
+                  employee.position.toLowerCase().includes("founder");
 
                 return (
                   <motion.div
-                    key={member.id}
+                    key={employee.id}
                     className={`overflow-hidden relative group ${
                       isLeader ? "z-10" : ""
                     }`}
@@ -119,7 +122,7 @@ export default function TeamSection({ teamData }: TeamDataProps) {
                       y: -8,
                       transition: { duration: 0.2 },
                     }}
-                    onHoverStart={() => setHoveredMember(member.id)}
+                    onHoverStart={() => setHoveredMember(employee.id)}
                     onHoverEnd={() => setHoveredMember(null)}
                   >
                     {/* Card Container */}
@@ -137,15 +140,15 @@ export default function TeamSection({ teamData }: TeamDataProps) {
                     >
                       {/* Image Section */}
                       <div className="aspect-[4/5] relative overflow-hidden">
-                        {member.imageUrl ? (
+                        {employee.imageUrl ? (
                           <motion.div
                             className="w-full h-full bg-cover bg-center"
                             style={{
-                              backgroundImage: `url(${member.imageUrl})`,
+                              backgroundImage: `url(${employee.imageUrl})`,
                             }}
                             initial={{ scale: 1 }}
                             animate={{
-                              scale: hoveredMember === member.id ? 1.07 : 1,
+                              scale: hoveredMember === employee.id ? 1.07 : 1,
                             }}
                             transition={{ duration: 0.4 }}
                           />
@@ -228,7 +231,7 @@ export default function TeamSection({ teamData }: TeamDataProps) {
                           initial={{ opacity: 1 }}
                           whileHover={{ scale: 1.03 }}
                         >
-                          {member.name}
+                          {employee.name}
                         </motion.h4>
 
                         <p
@@ -242,7 +245,7 @@ export default function TeamSection({ teamData }: TeamDataProps) {
                           }
                         `}
                         >
-                          {member.position}
+                          {employee.position}
                         </p>
                       </div>
                     </div>
@@ -260,7 +263,7 @@ export default function TeamSection({ teamData }: TeamDataProps) {
                       `}
                       initial={{ opacity: 0 }}
                       animate={{
-                        opacity: hoveredMember === member.id ? 0.15 : 0,
+                        opacity: hoveredMember === employee.id ? 0.15 : 0,
                       }}
                       transition={{ duration: 0.3 }}
                     />

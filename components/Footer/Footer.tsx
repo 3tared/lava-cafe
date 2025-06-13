@@ -9,6 +9,7 @@ import {
 } from "@/constants";
 import { Mail, MapPin, UserCheck, UserCog } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation"; // Import the usePathname hook
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
@@ -49,6 +50,10 @@ const Footer = () => {
     window.open(`https://wa.me/${cleanedNumber}`, "_blank");
   };
 
+  // Get current pathname to highlight active page
+  const pathname = usePathname();
+  // Check if we are on the dashboard page
+  const isDashboardPage = pathname?.startsWith("/dashboard") || false;
   // Framer Motion animation variants for different components
   // Provides interactive animations for hover and initial render states
 
@@ -121,7 +126,11 @@ const Footer = () => {
 
   return (
     // Footer main container with background and responsive layout
-    <footer className="bg-lavasecondary-500 py-8 px-4 relative">
+    <footer
+      className={`bg-lavasecondary-500 py-8 px-4 relative ${
+        isDashboardPage ? "hidden" : "block"
+      }`}
+    >
       {/* Copyright notice - positioned absolutely at the bottom */}
       <p className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center text-text-900 text-xs sm:text-sm px-4 max-w-full">
         &copy; {new Date().getFullYear()} Lava Restuarant & Cafe. All rights

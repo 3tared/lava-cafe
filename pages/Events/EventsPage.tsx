@@ -3,10 +3,12 @@ import { CurCard } from "@/components/CurCard/CurCard";
 import EventsList from "@/components/EventsList/EventsList";
 import { ImageSlider } from "@/components/ImageSlider/ImageSlider";
 import GradientHeading from "@/components/ui/GradientHeading";
-import { events, imagesSlider } from "@/constants";
+import { imagesSlider } from "@/constants";
+import { getPackages } from "@/lib/packages";
 import React from "react";
 
-const EventsPage = () => {
+const EventsPage = async () => {
+  const packages = await getPackages();
   return (
     <main className="container mx-auto flex flex-col items-center justify-center min-h-screen px-4">
       <section>
@@ -21,10 +23,10 @@ const EventsPage = () => {
       </section>
       <section className="w-full text-center my-5 sm:my-5 md:my-7 lg:mb-10  space-y-10">
         <GradientHeading>Choose Your Perfect Package</GradientHeading>
-        <CafePackages />
+        <CafePackages packages={packages} />
       </section>
       <section className="w-full text-center my-5 sm:my-5 md:my-7 lg:mb-10  space-y-10">
-        <EventsList events={events} />
+        <EventsList />
       </section>
     </main>
   );

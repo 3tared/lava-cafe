@@ -1,11 +1,43 @@
-// app/product/[id]/page.tsx
+// app/menu/[id]/page.tsx
 "use client";
 
 import { useEffect, useState, use } from "react";
-import { MENU_ITEMS } from "@/constants";
 import Image from "next/image";
 import { notFound, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+
+// Define types matching your Prisma schema
+interface Category {
+  id: string;
+  name: string;
+}
+
+interface NutritionalInfo {
+  id: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  menuItemId: string;
+}
+
+interface MenuItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string | null;
+  ingredients: string[];
+  isVegan: boolean;
+  isGlutenFree: boolean;
+  isPopular: boolean;
+  isNew: boolean;
+  categoryId: string;
+  category: Category;
+  nutritionalInfo: NutritionalInfo | null;
+  createdAt: string;
+  updatedAt: string;
+}
 
 type Props = {
   params: Promise<{
@@ -21,36 +53,81 @@ export default function ProductPage({ params }: Props) {
   const router = useRouter();
   const [selectedTab, setSelectedTab] = useState<string>("description");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  const product = MENU_ITEMS.find((item) => item.id === id);
+  const [product, setProduct] = useState<MenuItem | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<MenuItem[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate loading for smoother experience
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
+    const fetchProduct = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
 
-    return () => clearTimeout(timer);
-  }, []);
+        const productResponse = await fetch(`/api/menu/${id}`);
+        if (!productResponse.ok) {
+          if (productResponse.status === 404) {
+            return notFound();
+          }
+          throw new Error("Failed to fetch product");
+        }
 
-  if (!product) return notFound();
+        const productData = await productResponse.json();
+        setProduct(productData);
+        setRelatedProducts(productData.relatedItems || []);
+      } catch (err) {
+        console.error("Error fetching product:", err);
+        setError("Failed to load product data");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  // Find related products of the same category
-  const relatedProducts = MENU_ITEMS.filter(
-    (item) => item.category === product.category && item.id !== product.id
-  ).slice(0, 3);
+    fetchProduct();
+  }, [id]);
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white mt-7 md:mt-12 lg:mt-15 xl:mt-20">
+        <div className="max-w-6xl mx-auto p-6 pt-8 md:pt-12">
+          <div className="text-center py-12">
+            <h1 className="text-2xl font-bold text-gray-800 mb-4">
+              Error Loading Product
+            </h1>
+            <p className="text-gray-600 mb-6">{error}</p>
+            <button
+              onClick={() => router.push("/menu")}
+              className="px-6 py-3 bg-lavasecondary-500 text-white rounded-full font-medium hover:bg-lavasecondary-600 transition-colors"
+            >
+              Back to Menu
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
-      <div className="max-w-6xl mx-auto p-6 animate-pulse">
-        <div className="bg-gray-200 h-64 w-full rounded-2xl mb-6"></div>
-        <div className="bg-gray-200 h-8 w-2/3 rounded mb-4"></div>
-        <div className="bg-gray-200 h-4 w-full rounded mb-2"></div>
-        <div className="bg-gray-200 h-4 w-5/6 rounded mb-4"></div>
-        <div className="bg-gray-200 h-6 w-24 rounded mb-6"></div>
-        <div className="bg-gray-200 h-10 w-32 rounded-full"></div>
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white mt-7 md:mt-12 lg:mt-15 xl:mt-20">
+        <div className="max-w-6xl mx-auto p-6 pt-8 md:pt-12 animate-pulse">
+          <div className="bg-gray-200 h-4 w-64 rounded mb-6"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-gray-200 h-96 w-full rounded-2xl"></div>
+            <div>
+              <div className="bg-gray-200 h-8 w-2/3 rounded mb-4"></div>
+              <div className="bg-gray-200 h-4 w-full rounded mb-2"></div>
+              <div className="bg-gray-200 h-4 w-5/6 rounded mb-4"></div>
+              <div className="bg-gray-200 h-6 w-24 rounded mb-6"></div>
+              <div className="bg-gray-200 h-10 w-32 rounded-full"></div>
+            </div>
+          </div>
+        </div>
       </div>
     );
+  }
+
+  if (!product) {
+    return notFound();
   }
 
   const tabContent = {
@@ -132,36 +209,9 @@ export default function ProductPage({ params }: Props) {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
       >
-        {product.reviews && product.reviews.length > 0 ? (
-          <div className="space-y-4">
-            {product.reviews.map((review, index) => (
-              <div key={index} className="border-b pb-4 last:border-b-0">
-                <div className="flex items-center mb-2">
-                  <div className="flex text-lavasecondary-400">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <svg
-                        key={i}
-                        xmlns="http://www.w3.org/2000/svg"
-                        className={`h-4 w-4 ${i < review.rating ? "text-lavasecondary-400 fill-current" : "text-gray-300"}`}
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.799-2.034c-.784-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="ml-2 text-sm font-medium text-gray-600">
-                    {review.author}
-                  </span>
-                </div>
-                <p className="text-gray-700">{review.comment}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-6">
-            <p className="text-gray-500 italic">No reviews yet.</p>
-          </div>
-        )}
+        <div className="text-center py-6">
+          <p className="text-gray-500 italic">Reviews feature coming soon!</p>
+        </div>
       </motion.div>
     ),
   };
@@ -186,10 +236,12 @@ export default function ProductPage({ params }: Props) {
           </button>
           <span className="mx-2">/</span>
           <button
-            onClick={() => router.push(`/menu?category=${product.category}`)}
+            onClick={() =>
+              router.push(`/menu?categoryId=${product.categoryId}`)
+            }
             className="hover:text-lavasecondary-600 transition-colors"
           >
-            {product.category}
+            {product.category.name}
           </button>
           <span className="mx-2">/</span>
           <span className="text-gray-800 font-medium">{product.name}</span>
@@ -271,11 +323,11 @@ export default function ProductPage({ params }: Props) {
             </h1>
             <div className="mb-4">
               <span className="inline-block bg-lavasecondary-600 text-white text-sm font-medium px-2.5 py-0.5 rounded-full mr-2">
-                {product.category}
+                {product.category.name}
               </span>
-              {product.availableSizes && (
-                <span className="inline-block bg-gray-100 text-gray-800 text-sm font-medium px-2.5 py-0.5 rounded-full">
-                  {product.availableSizes.join(", ")} Available
+              {product.isNew && (
+                <span className="inline-block bg-orange-500 text-white text-sm font-medium px-2.5 py-0.5 rounded-full">
+                  New
                 </span>
               )}
             </div>
@@ -354,7 +406,7 @@ export default function ProductPage({ params }: Props) {
                   <button onClick={() => router.push(`/menu/${item.id}`)}>
                     <div className="relative h-40">
                       <Image
-                        src={item.image}
+                        src={item.image || "/fallback-image.jpg"}
                         alt={item.name}
                         className="w-full h-full object-cover"
                         width={300}

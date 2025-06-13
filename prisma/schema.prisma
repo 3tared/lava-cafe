@@ -1,0 +1,224 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model GalleryItem {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String
+  category    String   // indoor, outdoor, etc.
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("gallery_items")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  kindeId       String   @unique
+  email         String   @unique
+  firstName     String?
+  lastName      String?
+  profileImage  String?
+  role          String   @default("user") 
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Employee {
+  id           String   @id @default(cuid())
+  name         String
+  position     String
+  email        String?  @unique
+  phone        String?
+  bio          String?  @db.Text
+  imageUrl     String?
+  funFact      String?  @db.Text
+  status       String   @default("Active") 
+  startDate    DateTime @default(now())
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Department {
+  id          String     @id @default(cuid())
+  title       String
+  description String?    @db.Text
+  employees   Employee[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model MenuItem {
+  id              String          @id @default(uuid())
+  name            String
+  description     String
+  price           Float
+  image           String
+  categoryId      String         
+  category        Category        @relation(fields: [categoryId], references: [id])
+  ingredients     String[]
+  nutritionalInfo NutritionalInfo?
+  isVegan         Boolean
+  isGlutenFree    Boolean
+  isPopular       Boolean
+  isNew           Boolean
+  reviews         Review[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+}
+
+model Category {
+  id          String      @id @default(uuid())
+  name        String      @unique
+  description String?
+  image       String?
+  menuItems   MenuItem[]
+  isActive    Boolean     @default(true)
+  displayOrder Int         @default(999)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model NutritionalInfo {
+  id         String     @id @default(uuid())
+  calories   Int
+  protein    Int
+  carbs      Int
+  fat        Int
+  menuItem   MenuItem?  @relation(fields: [menuItemId], references: [id])
+  menuItemId String     @unique
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  rating     Int
+  comment    String
+  author     String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  menuItemId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  date        DateTime
+  image       String?
+  type        String
+  location    String
+  time        String
+  packageId   String?
+  package     Package? @relation(fields: [packageId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("events")
+}
+
+model Package {
+  id            String  @id @default(cuid())
+  name          String
+  originalPrice String
+  price         String
+  per           String
+  description   String
+  items         String[] // Array of strings
+  emoji         String
+  popular       Boolean @default(false)
+  tag           String
+  discount      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  events        Event[]
+
+  @@map("packages")
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+  imageUrl    String
+  title       String
+  description String
+  link        String
+  linkText    String
+  badge       String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+model JobPosition {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  requirements String[] // Array of strings for requirements
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relation to applications
+  applications JobApplication[]
+
+  @@map("job_positions")
+}
+
+model CompanyValue {
+  id        String   @id @default(cuid())
+  value     String
+  isActive  Boolean  @default(true)
+  order     Int      @default(0) // For ordering values
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("company_values")
+}
+
+model JobApplication {
+  id         String   @id @default(cuid())
+  name       String
+  age        String
+  address    String
+  phone      String
+  email      String
+  experience String?
+  status     ApplicationStatus @default(PENDING)
+  
+  // Relations
+  positionId String
+  position   JobPosition @relation(fields: [positionId], references: [id])
+  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("job_applications")
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWED
+  INTERVIEWED
+  ACCEPTED
+  REJECTED
+}
