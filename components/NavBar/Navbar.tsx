@@ -1,4 +1,5 @@
 "use client";
+// Import necessary dependencies and components
 import Image from "next/image";
 import Link from "next/link";
 import { LogOut, Menu, User, Shield, LogIn, UserPlus } from "lucide-react";
@@ -13,26 +14,35 @@ import {
 import { mainlogo, navItems } from "@/constants";
 
 function Navbar() {
+  // Kinde authentication hooks
   const { isAuthenticated, isLoading, user } = useKindeBrowserClient();
 
   const [isCheckingAdmin, setIsCheckingAdmin] = useState(false);
-  const [userRole, setUserRole] = useState("user");
-  const [isAdmin, setIsAdmin] = useState(false);
 
+  // Fixed admin check - fetch from database instead of Kinde permissions
+  const [userRole, setUserRole] = useState<string>("user");
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  // State to manage mobile menu open/close
   const [isOpen, setIsOpen] = useState(false);
+
+  // State to manage user dropdown menu
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
+  // State to track scroll position and direction
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
 
+  // Get current pathname to highlight active page
   const pathname = usePathname();
+
+  // Check if we are on the dashboard page
   const isDashboardPage = pathname?.startsWith("/dashboard") || false;
 
-  // Fixed admin check effect with proper dependencies
   useEffect(() => {
     const checkAdminStatus = async () => {
-      if (isAuthenticated && user?.email && !isLoading) {
+      if (isAuthenticated && user?.email) {
         setIsCheckingAdmin(true);
         try {
           const response = await fetch(
@@ -50,34 +60,43 @@ function Navbar() {
         } finally {
           setIsCheckingAdmin(false);
         }
-      } else if (!isAuthenticated && !isLoading) {
-        // Reset admin state when user is not authenticated
-        setIsAdmin(false);
-        setUserRole("user");
-        setIsCheckingAdmin(false);
       }
     };
 
     checkAdminStatus();
-  }, [isAuthenticated, user?.email, isLoading]); // Added isLoading to dependencies
+  }, [isAuthenticated, user]);
 
+  // Scroll effect handler
   useEffect(() => {
+    // Set initial position
     setPrevScrollPos(window.scrollY);
 
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
+
+      // Determine if we're scrolling up or down
       const isScrollingUp = prevScrollPos > currentScrollPos;
+
+      // Add background and shadow when scrolled more than 50px
       setIsScrolled(currentScrollPos > 50);
+
+      // Show navbar when scrolling up or at the top, hide when scrolling down
       setIsVisible(isScrollingUp || currentScrollPos < 50);
+
+      // Update previous scroll position
       setPrevScrollPos(currentScrollPos);
     };
 
+    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
+
+    // Cleanup event listener
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [prevScrollPos]);
 
+  // Close user menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -97,99 +116,172 @@ function Navbar() {
     };
   }, [isUserMenuOpen]);
 
+  // Animation configuration for mobile menu slide-in effect
   const mobileMenuVariants = {
-    hidden: { x: "100%", opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { type: "tween", duration: 0.3 } },
+    hidden: {
+      x: "100%",
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "tween",
+        duration: 0.3,
+      },
+    },
     exit: {
       x: "100%",
       opacity: 0,
-      transition: { type: "tween", duration: 0.3 },
+      transition: {
+        type: "tween",
+        duration: 0.3,
+      },
     },
   };
 
+  // Hover animation for interactive icons
   const iconHoverVariants = {
-    rest: { scale: 1, rotate: 0 },
+    rest: {
+      scale: 1,
+      rotate: 0,
+    },
     hover: {
       scale: 1.2,
       rotate: 5,
-      transition: { type: "spring", stiffness: 300 },
+      transition: {
+        type: "spring",
+        stiffness: 300,
+      },
     },
   };
 
+  // Animation variants for navigation links in mobile menu
   const navLinkVariants = {
-    rest: { scale: 1, x: 0, opacity: 1 },
+    rest: {
+      scale: 1,
+      x: 0,
+      opacity: 1,
+    },
     hover: {
       scale: 1.1,
       x: 10,
       opacity: 0.9,
-      transition: { type: "spring", stiffness: 300 },
+      transition: {
+        type: "spring",
+        stiffness: 300,
+      },
     },
   };
 
+  // Desktop Link Animation Variants
   const desktopLinkVariants = {
-    rest: { scale: 1, y: 0, opacity: 1 },
+    rest: {
+      scale: 1,
+      y: 0,
+      opacity: 1,
+    },
     hover: {
       scale: 1.05,
       y: -3,
       opacity: 0.9,
-      transition: { type: "spring", stiffness: 300 },
+      transition: {
+        type: "spring",
+        stiffness: 300,
+      },
     },
   };
 
+  // Logo Hover Animation Variants
   const logoHoverVariants = {
-    rest: { scale: 1, rotate: 0 },
+    rest: {
+      scale: 1,
+      rotate: 0,
+    },
     hover: {
       scale: 1.1,
       rotate: 3,
-      transition: { type: "spring", stiffness: 300 },
+      transition: {
+        type: "spring",
+        stiffness: 300,
+      },
     },
   };
 
+  // Navbar animation variants for slide in/out
   const navbarVariants = {
-    hidden: { y: "-100%" },
+    hidden: {
+      y: "-100%",
+    },
     visible: {
       y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      },
     },
   };
 
+  // Button animation variants
   const buttonVariants = {
-    rest: { scale: 1 },
-    hover: { scale: 1.05, transition: { type: "spring", stiffness: 300 } },
-    tap: { scale: 0.95 },
+    rest: {
+      scale: 1,
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+      },
+    },
+    tap: {
+      scale: 0.95,
+    },
   };
 
+  // User dropdown animation variants
   const dropdownVariants = {
-    hidden: { opacity: 0, scale: 0.95, y: -10 },
+    hidden: {
+      opacity: 0,
+      scale: 0.95,
+      y: -10,
+    },
     visible: {
       opacity: 1,
       scale: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 25 },
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 25,
+      },
     },
-    exit: { opacity: 0, scale: 0.95, y: -10, transition: { duration: 0.2 } },
+    exit: {
+      opacity: 0,
+      scale: 0.95,
+      y: -10,
+      transition: {
+        duration: 0.2,
+      },
+    },
   };
 
+  // Handle user logout
   const handleLogout = async () => {
     window.location.href = "/api/auth/logout";
   };
 
-  // Comprehensive loading check
-  const isFullyLoaded = !isLoading && !isCheckingAdmin;
-
-  // Improved renderAuthButtons with proper loading states
+  // Render authentication buttons for desktop
   const renderAuthButtons = () => {
-    // Show loading state until ALL async operations complete
     if (isLoading || isCheckingAdmin) {
       return (
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 bg-gray-300 rounded-full animate-pulse"></div>
-          <div className="w-16 h-4 bg-gray-300 rounded animate-pulse"></div>
         </div>
       );
     }
 
-    // Only render authenticated UI after loading is complete
     if (isAuthenticated && user) {
       return (
         <div className="relative user-menu-container">
@@ -236,6 +328,7 @@ function Navbar() {
                   </p>
                 </div>
 
+                {/* Account Management Section */}
                 <div className="py-1">
                   <Link
                     href="/account"
@@ -247,6 +340,7 @@ function Navbar() {
                   </Link>
                 </div>
 
+                {/* Admin Section */}
                 {isAdmin && (
                   <div className="py-1 border-t border-gray-200">
                     <Link
@@ -260,6 +354,7 @@ function Navbar() {
                   </div>
                 )}
 
+                {/* Logout Section */}
                 <div className="py-1 border-t border-gray-200">
                   <button
                     onClick={handleLogout}
@@ -276,48 +371,38 @@ function Navbar() {
       );
     }
 
-    // Only show sign in/up if definitely not authenticated and loading is complete
-    if (!isAuthenticated && isFullyLoaded) {
-      return (
-        <div className="flex items-center space-x-3">
-          <motion.div
-            variants={buttonVariants}
-            initial="rest"
-            whileHover="hover"
-            whileTap="tap"
-          >
-            <LoginLink className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-text-900 hover:text-white transition-colors duration-300">
-              <LogIn size={18} />
-              <span>Sign In</span>
-            </LoginLink>
-          </motion.div>
-
-          <motion.div
-            variants={buttonVariants}
-            initial="rest"
-            whileHover="hover"
-            whileTap="tap"
-          >
-            <RegisterLink className="flex items-center space-x-2 px-4 py-2 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg text-sm font-medium text-white transition-all duration-300">
-              <UserPlus size={18} />
-              <span>Sign Up</span>
-            </RegisterLink>
-          </motion.div>
-        </div>
-      );
-    }
-
-    // Fallback loading state
     return (
       <div className="flex items-center space-x-3">
-        <div className="w-8 h-8 bg-gray-300 rounded-full animate-pulse"></div>
+        <motion.div
+          variants={buttonVariants}
+          initial="rest"
+          whileHover="hover"
+          whileTap="tap"
+        >
+          <LoginLink className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-text-900 hover:text-white transition-colors duration-300">
+            <LogIn size={18} />
+            <span>Sign In</span>
+          </LoginLink>
+        </motion.div>
+
+        <motion.div
+          variants={buttonVariants}
+          initial="rest"
+          whileHover="hover"
+          whileTap="tap"
+        >
+          <RegisterLink className="flex items-center space-x-2 px-4 py-2 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg text-sm font-medium text-white transition-all duration-300">
+            <UserPlus size={18} />
+            <span>Sign Up</span>
+          </RegisterLink>
+        </motion.div>
       </div>
     );
   };
 
-  // Improved renderMobileAuth with proper loading states
+  // Render mobile authentication section
   const renderMobileAuth = () => {
-    if (isLoading || isCheckingAdmin) {
+    if (isLoading) {
       return (
         <div className="py-4 text-center">
           <div className="w-8 h-8 bg-gray-300 rounded-full animate-pulse mx-auto"></div>
@@ -397,45 +482,35 @@ function Navbar() {
       );
     }
 
-    // Only show sign in/up if definitely not authenticated and loading is complete
-    if (!isAuthenticated && isFullyLoaded) {
-      return (
-        <div className="py-4 border-t border-white border-opacity-20 space-y-2">
-          <motion.div
-            variants={navLinkVariants}
-            initial="rest"
-            whileHover="hover"
-          >
-            <LoginLink
-              onClick={() => setIsOpen(false)}
-              className="flex items-center space-x-2 w-full px-5 py-2 text-text-900 hover:text-white transition-colors duration-300"
-            >
-              <LogIn size={20} />
-              <span>Sign In</span>
-            </LoginLink>
-          </motion.div>
-
-          <motion.div
-            variants={navLinkVariants}
-            initial="rest"
-            whileHover="hover"
-          >
-            <RegisterLink
-              onClick={() => setIsOpen(false)}
-              className="flex items-center space-x-2 w-full px-5 py-2 text-white hover:text-text-900 transition-colors duration-300"
-            >
-              <UserPlus size={20} />
-              <span>Sign Up</span>
-            </RegisterLink>
-          </motion.div>
-        </div>
-      );
-    }
-
-    // Fallback loading state
     return (
-      <div className="py-4 text-center">
-        <div className="w-8 h-8 bg-gray-300 rounded-full animate-pulse mx-auto"></div>
+      <div className="py-4 border-t border-white border-opacity-20 space-y-2">
+        <motion.div
+          variants={navLinkVariants}
+          initial="rest"
+          whileHover="hover"
+        >
+          <LoginLink
+            onClick={() => setIsOpen(false)}
+            className="flex items-center space-x-2 w-full px-5 py-2 text-text-900 hover:text-white transition-colors duration-300"
+          >
+            <LogIn size={20} />
+            <span>Sign In</span>
+          </LoginLink>
+        </motion.div>
+
+        <motion.div
+          variants={navLinkVariants}
+          initial="rest"
+          whileHover="hover"
+        >
+          <RegisterLink
+            onClick={() => setIsOpen(false)}
+            className="flex items-center space-x-2 w-full px-5 py-2 text-white hover:text-text-900 transition-colors duration-300"
+          >
+            <UserPlus size={20} />
+            <span>Sign Up</span>
+          </RegisterLink>
+        </motion.div>
       </div>
     );
   };
@@ -445,14 +520,18 @@ function Navbar() {
       variants={navbarVariants}
       initial="visible"
       animate={isVisible ? "visible" : "hidden"}
-      className={`${isDashboardPage ? "hidden" : "block"} fixed top-0 left-0 right-0 z-50 px-5 md:px-6 lg:px-7 bg-lavasecondary-500 transition-all duration-300 ease-in-out ${
+      className={`${
+        isDashboardPage ? "hidden" : "block"
+      } fixed top-0 left-0 right-0 z-50 px-5 md:px-6 lg:px-7 bg-lavasecondary-500 transition-all duration-300 ease-in-out ${
         isScrolled
           ? "shadow-md bg-opacity-90 backdrop-blur-sm"
           : "bg-opacity-100"
       }`}
     >
       <nav className="mx-auto container">
+        {/* Desktop navigation */}
         <div className="justify-between items-center hidden sm:flex">
+          {/* First Half of Navigation Items */}
           <div className="flex items-center space-x-6 xl:space-x-8 2xl:space-x-12">
             {navItems.slice(0, 3).map(({ href, name }) => (
               <motion.div
@@ -464,11 +543,16 @@ function Navbar() {
               >
                 <Link
                   href={href}
-                  className={`text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium tracking-wide ${
-                    pathname === href
-                      ? "text-white font-bold"
-                      : "text-text-900 hover:text-white"
-                  } transition-colors duration-300 relative`}
+                  className={`
+                    text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl
+                    font-medium tracking-wide 
+                    ${
+                      pathname === href
+                        ? "text-white font-bold"
+                        : "text-text-900 hover:text-white"
+                    }
+                    transition-colors duration-300 relative
+                  `}
                 >
                   {name}
                   {pathname === href && (
@@ -485,13 +569,14 @@ function Navbar() {
             ))}
           </div>
 
+          {/* Centered Logo with Hover Animation */}
           <motion.div
             variants={logoHoverVariants}
             initial="rest"
             whileHover="hover"
             className="2xl:scale-110"
           >
-            <Link href="/">
+            <Link href={"/"}>
               <Image
                 src={mainlogo.src}
                 alt={mainlogo.alt}
@@ -502,6 +587,7 @@ function Navbar() {
             </Link>
           </motion.div>
 
+          {/* Second Half of Navigation Items + Auth */}
           <div className="flex items-center space-x-6 xl:space-x-8 2xl:space-x-12">
             {navItems.slice(3, 6).map(({ href, name }) => (
               <motion.div
@@ -513,11 +599,16 @@ function Navbar() {
               >
                 <Link
                   href={href}
-                  className={`text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium tracking-wide ${
-                    pathname === href
-                      ? "text-white font-bold"
-                      : "text-text-900 hover:text-white"
-                  } transition-colors duration-300 relative`}
+                  className={`
+                    text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl
+                    font-medium tracking-wide 
+                    ${
+                      pathname === href
+                        ? "text-white font-bold"
+                        : "text-text-900 hover:text-white"
+                    }
+                    transition-colors duration-300 relative
+                  `}
                 >
                   {name}
                   {pathname === href && (
@@ -533,13 +624,17 @@ function Navbar() {
               </motion.div>
             ))}
 
+            {/* Authentication Section */}
             {renderAuthButtons()}
           </div>
         </div>
 
+        {/* Mobile navigation */}
         <div className="flex justify-between items-center sm:hidden">
+          {/* Mobile logo */}
           <Image src={mainlogo.src} alt={mainlogo.alt} width={80} height={80} />
 
+          {/* Mobile menu open button */}
           <motion.span
             onClick={() => setIsOpen(true)}
             className="cursor-pointer"
@@ -554,6 +649,7 @@ function Navbar() {
             />
           </motion.span>
 
+          {/* Mobile menu */}
           <AnimatePresence>
             {isOpen && (
               <motion.div
@@ -563,6 +659,7 @@ function Navbar() {
                 animate="visible"
                 exit="exit"
               >
+                {/* Close button */}
                 <motion.span
                   className="absolute top-6 right-5 cursor-pointer"
                   onClick={() => setIsOpen(false)}
@@ -577,10 +674,11 @@ function Navbar() {
                   />
                 </motion.span>
 
+                {/* Home link with logo */}
                 <Link
                   className="absolute top-0 left-5 cursor-pointer"
                   onClick={() => setIsOpen(false)}
-                  href="/"
+                  href={"/"}
                 >
                   <Image
                     src={mainlogo.src}
@@ -590,6 +688,7 @@ function Navbar() {
                   />
                 </Link>
 
+                {/* Navigation links */}
                 <div className="flex-1 flex justify-center items-center">
                   <div className="p-5 flex justify-center items-center flex-col">
                     {navItems.map(({ href, name }) => (
@@ -603,7 +702,10 @@ function Navbar() {
                         <Link
                           href={href}
                           onClick={() => setIsOpen(false)}
-                          className={`${pathname === href ? "text-white" : "text-text-900"} hover:text-white transition-colors duration-300`}
+                          className={`
+                            ${pathname === href ? "text-white" : "text-text-900"}
+                            hover:text-white transition-colors duration-300
+                          `}
                         >
                           {name}
                         </Link>
@@ -612,6 +714,7 @@ function Navbar() {
                   </div>
                 </div>
 
+                {/* Mobile Authentication Section */}
                 {renderMobileAuth()}
               </motion.div>
             )}
