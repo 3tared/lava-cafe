@@ -36,21 +36,24 @@ async function getCategories() {
   }
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const menuItem = await getMenuItem(params.id);
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { id } = await params;
+  const menuItem = await getMenuItem(id);
 
   return {
     title: menuItem ? `Edit ${menuItem.name}` : "Edit Menu Item",
   };
 }
 
-export default async function EditMenuItemPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function EditMenuItemPage({ params }: PageProps) {
+  const { id } = await params;
+
   const [menuItem, categories] = await Promise.all([
-    getMenuItem(params.id),
+    getMenuItem(id),
     getCategories(),
   ]);
 
