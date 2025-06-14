@@ -15,13 +15,15 @@ interface UserFormData {
   role: string; // Add role field
 }
 
-export default function UserEditPage({
-  params,
-}: {
-  params: { userId: string };
-}) {
-  const { userId } = params;
+interface PageProps {
+  params: Promise<{ userId: string }>;
+}
+
+export default function UserEditPage({ params }: PageProps) {
   const router = useRouter();
+  const [resolvedParams, setResolvedParams] = useState<{
+    userId: string;
+  } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,8 +37,19 @@ export default function UserEditPage({
     role: "user", // Initialize role
   });
 
+  // Resolve params on component mount
+  useEffect(() => {
+    const resolveParams = async () => {
+      const resolved = await params;
+      setResolvedParams(resolved);
+    };
+    resolveParams();
+  }, [params]);
+
   // Fetch current user's role and target user data
   useEffect(() => {
+    if (!resolvedParams) return;
+
     async function fetchData() {
       try {
         // Fetch current user info to check if they're admin
@@ -47,7 +60,10 @@ export default function UserEditPage({
         }
 
         // Fetch target user data
-        const response = await fetch(`/api/users/${userId}`);
+        if (!resolvedParams) {
+          throw new Error("User parameters not resolved");
+        }
+        const response = await fetch(`/api/users/${resolvedParams.userId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch user");
         }
@@ -70,7 +86,7 @@ export default function UserEditPage({
     }
 
     fetchData();
-  }, [userId]);
+  }, [resolvedParams]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -84,11 +100,13 @@ export default function UserEditPage({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!resolvedParams) return;
+
     setIsSaving(true);
     setError(null);
 
     try {
-      const response = await fetch(`/api/users/${userId}`, {
+      const response = await fetch(`/api/users/${resolvedParams.userId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +119,7 @@ export default function UserEditPage({
         throw new Error(errorData.error || "Failed to update user");
       }
 
-      router.push(`/dashboard/users/${userId}`);
+      router.push(`/dashboard/users/${resolvedParams.userId}`);
       router.refresh();
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -116,7 +134,8 @@ export default function UserEditPage({
     }
   };
 
-  if (isLoading) {
+  // Show loading while resolving params
+  if (!resolvedParams || isLoading) {
     return (
       <div className="flex justify-center items-center h-64">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -132,7 +151,7 @@ export default function UserEditPage({
         <h1 className="text-2xl font-bold">Edit User</h1>
         <div className="flex space-x-4">
           <Link
-            href={`/dashboard/users/${userId}`}
+            href={`/dashboard/users/${resolvedParams.userId}`}
             className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-sm flex items-center"
           >
             <svg
@@ -339,7 +358,7 @@ export default function UserEditPage({
 
           <div className="flex justify-end mt-6">
             <Link
-              href={`/dashboard/users/${userId}`}
+              href={`/dashboard/users/${resolvedParams.userId}`}
               className="bg-gray-100 text-gray-700 px-4 py-2 rounded-md mr-4 hover:bg-gray-200"
             >
               Cancel
