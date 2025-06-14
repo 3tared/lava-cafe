@@ -8,12 +8,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
-export default async function EditEmployeePage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = params;
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default async function EditEmployeePage({ params }: PageProps) {
+  const { id } = await params;
 
   const [employeeResponse, departmentsResponse] = await Promise.all([
     getEmployeeById(id),
