@@ -48,7 +48,15 @@ const GalleryDashboard: React.FC = () => {
     category: "indoor",
   });
 
-  const categories = ["indoor", "outdoor", "commercial", "residential"];
+  const categories = [
+    "indoor",
+    "outdoor",
+    "Events",
+    "Food",
+    "Decoration",
+    "Drinks",
+    "Hokkah",
+  ];
 
   const categoryColors = {
     indoor: "bg-blue-100 text-blue-800 border-blue-200",
