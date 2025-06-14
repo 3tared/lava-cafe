@@ -17,6 +17,8 @@ function Navbar() {
   // Kinde authentication hooks
   const { isAuthenticated, isLoading, user } = useKindeBrowserClient();
 
+  const [isCheckingAdmin, setIsCheckingAdmin] = useState(false);
+
   // Fixed admin check - fetch from database instead of Kinde permissions
   const [userRole, setUserRole] = useState<string>("user");
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -38,10 +40,10 @@ function Navbar() {
   // Check if we are on the dashboard page
   const isDashboardPage = pathname?.startsWith("/dashboard") || false;
 
-  // Fetch user role from database when authenticated
   useEffect(() => {
     const checkAdminStatus = async () => {
       if (isAuthenticated && user?.email) {
+        setIsCheckingAdmin(true);
         try {
           const response = await fetch(
             `/api/admin-check?email=${encodeURIComponent(user.email)}`
@@ -55,10 +57,9 @@ function Navbar() {
           console.error("Failed to check admin status:", error);
           setIsAdmin(false);
           setUserRole("user");
+        } finally {
+          setIsCheckingAdmin(false);
         }
-      } else {
-        setIsAdmin(false);
-        setUserRole("user");
       }
     };
 
@@ -273,7 +274,7 @@ function Navbar() {
 
   // Render authentication buttons for desktop
   const renderAuthButtons = () => {
-    if (isLoading) {
+    if (isLoading || isCheckingAdmin) {
       return (
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 bg-gray-300 rounded-full animate-pulse"></div>
