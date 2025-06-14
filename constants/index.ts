@@ -67,13 +67,6 @@ export const mainlogo = {
   alt: "logo",
 };
 
-export const companyValues: string[] = [
-  "Excellence in service",
-  "Team collaboration",
-  "Continuous learning",
-  "Passion for hospitality",
-];
-
 // Features section data
 export const cafeFeatures = [
   {
