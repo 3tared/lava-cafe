@@ -15,10 +15,15 @@ datasource db {
 }
 
 model GalleryItem {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
-  image       String
-  description String?
+  description String
+  imageUrl    String
+  category    String // indoor, outdoor, etc.
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("gallery_items")
 }
 
 model User {
@@ -111,4 +116,251 @@ model Review {
   menuItemId String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  title     String
+  date      DateTime
+  image     String?
+  type      String
+  location  String
+  time      String
+  packageId String?
+  package   Package? @relation(fields: [packageId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("events")
+}
+
+model Package {
+  id            String   @id @default(cuid())
+  name          String
+  originalPrice String
+  price         String
+  per           String
+  description   String
+  items         String[] // Array of strings
+  emoji         String
+  popular       Boolean  @default(false)
+  tag           String
+  discount      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  events        Event[]
+
+  @@map("packages")
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+  imageUrl    String
+  title       String
+  description String
+  link        String
+  linkText    String
+  badge       String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+model JobPosition {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  requirements String[] // Array of strings for requirements
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relation to applications
+  applications JobApplication[]
+
+  @@map("job_positions")
+}
+
+model CompanyValue {
+  id        String   @id @default(cuid())
+  value     String
+  isActive  Boolean  @default(true)
+  order     Int      @default(0) // For ordering values
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("company_values")
+}
+
+model JobApplication {
+  id         String            @id @default(cuid())
+  name       String
+  age        String
+  address    String
+  phone      String
+  email      String
+  experience String?
+  status     ApplicationStatus @default(PENDING)
+
+  // Relations
+  positionId String
+  position   JobPosition @relation(fields: [positionId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("job_applications")
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWED
+  INTERVIEWED
+  ACCEPTED
+  REJECTED
+}
+
+model RestaurantSettings {
+  id           String @id @default(cuid())
+  siteName     String @default("My Restaurant")
+  contactEmail String @default("contact@restaurant.com")
+  phoneNumber  String @default("+1 (555) 123-4567")
+  address      String @default("123 Main Street, City, State, 12345")
+  timezone     String @default("America/New_York")
+  currency     String @default("USD")
+  taxRate      Float  @default(0.08)
+
+  // Operating Hours (JSON field for flexibility)
+  operatingHours Json @default("{\"monday\": {\"open\": \"09:00\", \"close\": \"22:00\", \"closed\": false}, \"tuesday\": {\"open\": \"09:00\", \"close\": \"22:00\", \"closed\": false}, \"wednesday\": {\"open\": \"09:00\", \"close\": \"22:00\", \"closed\": false}, \"thursday\": {\"open\": \"09:00\", \"close\": \"22:00\", \"closed\": false}, \"friday\": {\"open\": \"09:00\", \"close\": \"23:00\", \"closed\": false}, \"saturday\": {\"open\": \"10:00\", \"close\": \"23:00\", \"closed\": false}, \"sunday\": {\"open\": \"10:00\", \"close\": \"21:00\", \"closed\": false}}")
+
+  // Delivery Settings
+  deliveryEnabled Boolean @default(true)
+  deliveryFee     Float   @default(2.99)
+  minimumOrder    Float   @default(15.00)
+  deliveryRadius  Float   @default(5.0) // in miles/km
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("restaurant_settings")
+}
+
+model NotificationSettings {
+  id                    String  @id @default(cuid())
+  emailNotifications    Boolean @default(true)
+  newUserNotifications  Boolean @default(true)
+  newOrderNotifications Boolean @default(true)
+  systemUpdates         Boolean @default(false)
+  marketingEmails       Boolean @default(false)
+
+  // SMS Settings
+  smsNotifications Boolean @default(false)
+  smsOrderUpdates  Boolean @default(false)
+
+  // Push Notifications
+  pushNotifications Boolean @default(true)
+  pushOrderAlerts   Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("notification_settings")
+}
+
+model AppearanceSettings {
+  id                String  @id @default(cuid())
+  theme             String  @default("light") // light, dark, system
+  accentColor       String  @default("blue")
+  menuLayout        String  @default("grid") // grid, list
+  animationsEnabled Boolean @default(true)
+
+  // Logo and Branding
+  logoUrl    String?
+  faviconUrl String?
+  brandColor String  @default("#3b82f6")
+
+  // Layout Settings
+  showPrices      Boolean @default(true)
+  showDescription Boolean @default(true)
+  showImages      Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("appearance_settings")
+}
+
+model IntegrationSettings {
+  id String @id @default(cuid())
+
+  // Analytics
+  googleAnalyticsId String?
+  facebookPixelId   String?
+
+  // Email Marketing
+  mailchimpApiKey String?
+  mailchimpListId String?
+
+  // Payment Processing
+  stripePublicKey String?
+  stripeSecretKey String?
+  paypalClientId  String?
+
+  // Social Media
+  facebookPageId    String?
+  instagramUsername String?
+  twitterHandle     String?
+
+  // POS Integration
+  posSystemType String? // square, toast, clover, etc.
+  posApiKey     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("integration_settings")
+}
+
+model SecuritySettings {
+  id             String  @id @default(cuid())
+  twoFactorAuth  Boolean @default(false)
+  passwordExpiry String  @default("90days") // 30days, 60days, 90days, 180days, never
+  sessionTimeout String  @default("30min") // 15min, 30min, 1hour, 4hours, 8hours
+  ipRestriction  Boolean @default(false)
+
+  // Advanced Security
+  loginAttempts   Int @default(5)
+  lockoutDuration Int @default(30) // minutes
+
+  // Allowed IPs (JSON array)
+  allowedIPs Json @default("[]")
+
+  // Password Requirements
+  minPasswordLength   Int     @default(8)
+  requireSpecialChars Boolean @default(true)
+  requireNumbers      Boolean @default(true)
+  requireUppercase    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("security_settings")
+}
+
+// Activity Log for tracking changes
+model ActivityLog {
+  id         String  @id @default(cuid())
+  userId     String?
+  action     String // "UPDATED_SETTINGS", "CREATED_USER", etc.
+  resource   String // "RestaurantSettings", "User", etc.
+  resourceId String?
+  details    Json? // Store additional details about the change
+  ipAddress  String?
+  userAgent  String?
+
+  createdAt DateTime @default(now())
+
+  @@map("activity_logs")
 }

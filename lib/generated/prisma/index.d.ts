@@ -83,6 +83,36 @@ export type CompanyValue = $Result.DefaultSelection<Prisma.$CompanyValuePayload>
  * 
  */
 export type JobApplication = $Result.DefaultSelection<Prisma.$JobApplicationPayload>
+/**
+ * Model RestaurantSettings
+ * 
+ */
+export type RestaurantSettings = $Result.DefaultSelection<Prisma.$RestaurantSettingsPayload>
+/**
+ * Model NotificationSettings
+ * 
+ */
+export type NotificationSettings = $Result.DefaultSelection<Prisma.$NotificationSettingsPayload>
+/**
+ * Model AppearanceSettings
+ * 
+ */
+export type AppearanceSettings = $Result.DefaultSelection<Prisma.$AppearanceSettingsPayload>
+/**
+ * Model IntegrationSettings
+ * 
+ */
+export type IntegrationSettings = $Result.DefaultSelection<Prisma.$IntegrationSettingsPayload>
+/**
+ * Model SecuritySettings
+ * 
+ */
+export type SecuritySettings = $Result.DefaultSelection<Prisma.$SecuritySettingsPayload>
+/**
+ * Model ActivityLog
+ * 
+ */
+export type ActivityLog = $Result.DefaultSelection<Prisma.$ActivityLogPayload>
 
 /**
  * Enums
@@ -368,6 +398,66 @@ export class PrismaClient<
     * ```
     */
   get jobApplication(): Prisma.JobApplicationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.restaurantSettings`: Exposes CRUD operations for the **RestaurantSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RestaurantSettings
+    * const restaurantSettings = await prisma.restaurantSettings.findMany()
+    * ```
+    */
+  get restaurantSettings(): Prisma.RestaurantSettingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notificationSettings`: Exposes CRUD operations for the **NotificationSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NotificationSettings
+    * const notificationSettings = await prisma.notificationSettings.findMany()
+    * ```
+    */
+  get notificationSettings(): Prisma.NotificationSettingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.appearanceSettings`: Exposes CRUD operations for the **AppearanceSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AppearanceSettings
+    * const appearanceSettings = await prisma.appearanceSettings.findMany()
+    * ```
+    */
+  get appearanceSettings(): Prisma.AppearanceSettingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.integrationSettings`: Exposes CRUD operations for the **IntegrationSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more IntegrationSettings
+    * const integrationSettings = await prisma.integrationSettings.findMany()
+    * ```
+    */
+  get integrationSettings(): Prisma.IntegrationSettingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.securitySettings`: Exposes CRUD operations for the **SecuritySettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SecuritySettings
+    * const securitySettings = await prisma.securitySettings.findMany()
+    * ```
+    */
+  get securitySettings(): Prisma.SecuritySettingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.activityLog`: Exposes CRUD operations for the **ActivityLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ActivityLogs
+    * const activityLogs = await prisma.activityLog.findMany()
+    * ```
+    */
+  get activityLog(): Prisma.ActivityLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -821,7 +911,13 @@ export namespace Prisma {
     Announcement: 'Announcement',
     JobPosition: 'JobPosition',
     CompanyValue: 'CompanyValue',
-    JobApplication: 'JobApplication'
+    JobApplication: 'JobApplication',
+    RestaurantSettings: 'RestaurantSettings',
+    NotificationSettings: 'NotificationSettings',
+    AppearanceSettings: 'AppearanceSettings',
+    IntegrationSettings: 'IntegrationSettings',
+    SecuritySettings: 'SecuritySettings',
+    ActivityLog: 'ActivityLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -840,7 +936,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "galleryItem" | "user" | "employee" | "department" | "menuItem" | "category" | "nutritionalInfo" | "review" | "event" | "package" | "announcement" | "jobPosition" | "companyValue" | "jobApplication"
+      modelProps: "galleryItem" | "user" | "employee" | "department" | "menuItem" | "category" | "nutritionalInfo" | "review" | "event" | "package" | "announcement" | "jobPosition" | "companyValue" | "jobApplication" | "restaurantSettings" | "notificationSettings" | "appearanceSettings" | "integrationSettings" | "securitySettings" | "activityLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1880,6 +1976,450 @@ export namespace Prisma {
           }
         }
       }
+      RestaurantSettings: {
+        payload: Prisma.$RestaurantSettingsPayload<ExtArgs>
+        fields: Prisma.RestaurantSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RestaurantSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RestaurantSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.RestaurantSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RestaurantSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.RestaurantSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.RestaurantSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.RestaurantSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RestaurantSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.RestaurantSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+          }
+          update: {
+            args: Prisma.RestaurantSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.RestaurantSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RestaurantSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RestaurantSettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.RestaurantSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RestaurantSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.RestaurantSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRestaurantSettings>
+          }
+          groupBy: {
+            args: Prisma.RestaurantSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RestaurantSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RestaurantSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<RestaurantSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
+      NotificationSettings: {
+        payload: Prisma.$NotificationSettingsPayload<ExtArgs>
+        fields: Prisma.NotificationSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          update: {
+            args: Prisma.NotificationSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationSettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotificationSettings>
+          }
+          groupBy: {
+            args: Prisma.NotificationSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
+      AppearanceSettings: {
+        payload: Prisma.$AppearanceSettingsPayload<ExtArgs>
+        fields: Prisma.AppearanceSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AppearanceSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AppearanceSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.AppearanceSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AppearanceSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.AppearanceSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.AppearanceSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.AppearanceSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AppearanceSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.AppearanceSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>
+          }
+          update: {
+            args: Prisma.AppearanceSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.AppearanceSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AppearanceSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AppearanceSettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.AppearanceSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppearanceSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.AppearanceSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAppearanceSettings>
+          }
+          groupBy: {
+            args: Prisma.AppearanceSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AppearanceSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AppearanceSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<AppearanceSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
+      IntegrationSettings: {
+        payload: Prisma.$IntegrationSettingsPayload<ExtArgs>
+        fields: Prisma.IntegrationSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IntegrationSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IntegrationSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.IntegrationSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IntegrationSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.IntegrationSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.IntegrationSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.IntegrationSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.IntegrationSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.IntegrationSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>
+          }
+          update: {
+            args: Prisma.IntegrationSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.IntegrationSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IntegrationSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.IntegrationSettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.IntegrationSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IntegrationSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.IntegrationSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIntegrationSettings>
+          }
+          groupBy: {
+            args: Prisma.IntegrationSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IntegrationSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IntegrationSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<IntegrationSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
+      SecuritySettings: {
+        payload: Prisma.$SecuritySettingsPayload<ExtArgs>
+        fields: Prisma.SecuritySettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SecuritySettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SecuritySettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.SecuritySettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SecuritySettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>
+          }
+          findMany: {
+            args: Prisma.SecuritySettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>[]
+          }
+          create: {
+            args: Prisma.SecuritySettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>
+          }
+          createMany: {
+            args: Prisma.SecuritySettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SecuritySettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.SecuritySettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>
+          }
+          update: {
+            args: Prisma.SecuritySettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.SecuritySettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SecuritySettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SecuritySettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.SecuritySettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SecuritySettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.SecuritySettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSecuritySettings>
+          }
+          groupBy: {
+            args: Prisma.SecuritySettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SecuritySettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SecuritySettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<SecuritySettingsCountAggregateOutputType> | number
+          }
+        }
+      }
+      ActivityLog: {
+        payload: Prisma.$ActivityLogPayload<ExtArgs>
+        fields: Prisma.ActivityLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ActivityLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ActivityLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+          }
+          findFirst: {
+            args: Prisma.ActivityLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ActivityLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+          }
+          findMany: {
+            args: Prisma.ActivityLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>[]
+          }
+          create: {
+            args: Prisma.ActivityLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+          }
+          createMany: {
+            args: Prisma.ActivityLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ActivityLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>[]
+          }
+          delete: {
+            args: Prisma.ActivityLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+          }
+          update: {
+            args: Prisma.ActivityLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.ActivityLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ActivityLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ActivityLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.ActivityLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+          }
+          aggregate: {
+            args: Prisma.ActivityLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateActivityLog>
+          }
+          groupBy: {
+            args: Prisma.ActivityLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ActivityLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ActivityLogCountArgs<ExtArgs>
+            result: $Utils.Optional<ActivityLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1978,6 +2518,12 @@ export namespace Prisma {
     jobPosition?: JobPositionOmit
     companyValue?: CompanyValueOmit
     jobApplication?: JobApplicationOmit
+    restaurantSettings?: RestaurantSettingsOmit
+    notificationSettings?: NotificationSettingsOmit
+    appearanceSettings?: AppearanceSettingsOmit
+    integrationSettings?: IntegrationSettingsOmit
+    securitySettings?: SecuritySettingsOmit
+    activityLog?: ActivityLogOmit
   }
 
   /* Types for Logging */
@@ -17890,6 +18436,6676 @@ export namespace Prisma {
 
 
   /**
+   * Model RestaurantSettings
+   */
+
+  export type AggregateRestaurantSettings = {
+    _count: RestaurantSettingsCountAggregateOutputType | null
+    _avg: RestaurantSettingsAvgAggregateOutputType | null
+    _sum: RestaurantSettingsSumAggregateOutputType | null
+    _min: RestaurantSettingsMinAggregateOutputType | null
+    _max: RestaurantSettingsMaxAggregateOutputType | null
+  }
+
+  export type RestaurantSettingsAvgAggregateOutputType = {
+    taxRate: number | null
+    deliveryFee: number | null
+    minimumOrder: number | null
+    deliveryRadius: number | null
+  }
+
+  export type RestaurantSettingsSumAggregateOutputType = {
+    taxRate: number | null
+    deliveryFee: number | null
+    minimumOrder: number | null
+    deliveryRadius: number | null
+  }
+
+  export type RestaurantSettingsMinAggregateOutputType = {
+    id: string | null
+    siteName: string | null
+    contactEmail: string | null
+    phoneNumber: string | null
+    address: string | null
+    timezone: string | null
+    currency: string | null
+    taxRate: number | null
+    deliveryEnabled: boolean | null
+    deliveryFee: number | null
+    minimumOrder: number | null
+    deliveryRadius: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RestaurantSettingsMaxAggregateOutputType = {
+    id: string | null
+    siteName: string | null
+    contactEmail: string | null
+    phoneNumber: string | null
+    address: string | null
+    timezone: string | null
+    currency: string | null
+    taxRate: number | null
+    deliveryEnabled: boolean | null
+    deliveryFee: number | null
+    minimumOrder: number | null
+    deliveryRadius: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RestaurantSettingsCountAggregateOutputType = {
+    id: number
+    siteName: number
+    contactEmail: number
+    phoneNumber: number
+    address: number
+    timezone: number
+    currency: number
+    taxRate: number
+    operatingHours: number
+    deliveryEnabled: number
+    deliveryFee: number
+    minimumOrder: number
+    deliveryRadius: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RestaurantSettingsAvgAggregateInputType = {
+    taxRate?: true
+    deliveryFee?: true
+    minimumOrder?: true
+    deliveryRadius?: true
+  }
+
+  export type RestaurantSettingsSumAggregateInputType = {
+    taxRate?: true
+    deliveryFee?: true
+    minimumOrder?: true
+    deliveryRadius?: true
+  }
+
+  export type RestaurantSettingsMinAggregateInputType = {
+    id?: true
+    siteName?: true
+    contactEmail?: true
+    phoneNumber?: true
+    address?: true
+    timezone?: true
+    currency?: true
+    taxRate?: true
+    deliveryEnabled?: true
+    deliveryFee?: true
+    minimumOrder?: true
+    deliveryRadius?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RestaurantSettingsMaxAggregateInputType = {
+    id?: true
+    siteName?: true
+    contactEmail?: true
+    phoneNumber?: true
+    address?: true
+    timezone?: true
+    currency?: true
+    taxRate?: true
+    deliveryEnabled?: true
+    deliveryFee?: true
+    minimumOrder?: true
+    deliveryRadius?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RestaurantSettingsCountAggregateInputType = {
+    id?: true
+    siteName?: true
+    contactEmail?: true
+    phoneNumber?: true
+    address?: true
+    timezone?: true
+    currency?: true
+    taxRate?: true
+    operatingHours?: true
+    deliveryEnabled?: true
+    deliveryFee?: true
+    minimumOrder?: true
+    deliveryRadius?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RestaurantSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RestaurantSettings to aggregate.
+     */
+    where?: RestaurantSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RestaurantSettings to fetch.
+     */
+    orderBy?: RestaurantSettingsOrderByWithRelationInput | RestaurantSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RestaurantSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RestaurantSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RestaurantSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RestaurantSettings
+    **/
+    _count?: true | RestaurantSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RestaurantSettingsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RestaurantSettingsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RestaurantSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RestaurantSettingsMaxAggregateInputType
+  }
+
+  export type GetRestaurantSettingsAggregateType<T extends RestaurantSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateRestaurantSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRestaurantSettings[P]>
+      : GetScalarType<T[P], AggregateRestaurantSettings[P]>
+  }
+
+
+
+
+  export type RestaurantSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RestaurantSettingsWhereInput
+    orderBy?: RestaurantSettingsOrderByWithAggregationInput | RestaurantSettingsOrderByWithAggregationInput[]
+    by: RestaurantSettingsScalarFieldEnum[] | RestaurantSettingsScalarFieldEnum
+    having?: RestaurantSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RestaurantSettingsCountAggregateInputType | true
+    _avg?: RestaurantSettingsAvgAggregateInputType
+    _sum?: RestaurantSettingsSumAggregateInputType
+    _min?: RestaurantSettingsMinAggregateInputType
+    _max?: RestaurantSettingsMaxAggregateInputType
+  }
+
+  export type RestaurantSettingsGroupByOutputType = {
+    id: string
+    siteName: string
+    contactEmail: string
+    phoneNumber: string
+    address: string
+    timezone: string
+    currency: string
+    taxRate: number
+    operatingHours: JsonValue
+    deliveryEnabled: boolean
+    deliveryFee: number
+    minimumOrder: number
+    deliveryRadius: number
+    createdAt: Date
+    updatedAt: Date
+    _count: RestaurantSettingsCountAggregateOutputType | null
+    _avg: RestaurantSettingsAvgAggregateOutputType | null
+    _sum: RestaurantSettingsSumAggregateOutputType | null
+    _min: RestaurantSettingsMinAggregateOutputType | null
+    _max: RestaurantSettingsMaxAggregateOutputType | null
+  }
+
+  type GetRestaurantSettingsGroupByPayload<T extends RestaurantSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RestaurantSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RestaurantSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RestaurantSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], RestaurantSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RestaurantSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    siteName?: boolean
+    contactEmail?: boolean
+    phoneNumber?: boolean
+    address?: boolean
+    timezone?: boolean
+    currency?: boolean
+    taxRate?: boolean
+    operatingHours?: boolean
+    deliveryEnabled?: boolean
+    deliveryFee?: boolean
+    minimumOrder?: boolean
+    deliveryRadius?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["restaurantSettings"]>
+
+  export type RestaurantSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    siteName?: boolean
+    contactEmail?: boolean
+    phoneNumber?: boolean
+    address?: boolean
+    timezone?: boolean
+    currency?: boolean
+    taxRate?: boolean
+    operatingHours?: boolean
+    deliveryEnabled?: boolean
+    deliveryFee?: boolean
+    minimumOrder?: boolean
+    deliveryRadius?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["restaurantSettings"]>
+
+  export type RestaurantSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    siteName?: boolean
+    contactEmail?: boolean
+    phoneNumber?: boolean
+    address?: boolean
+    timezone?: boolean
+    currency?: boolean
+    taxRate?: boolean
+    operatingHours?: boolean
+    deliveryEnabled?: boolean
+    deliveryFee?: boolean
+    minimumOrder?: boolean
+    deliveryRadius?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["restaurantSettings"]>
+
+  export type RestaurantSettingsSelectScalar = {
+    id?: boolean
+    siteName?: boolean
+    contactEmail?: boolean
+    phoneNumber?: boolean
+    address?: boolean
+    timezone?: boolean
+    currency?: boolean
+    taxRate?: boolean
+    operatingHours?: boolean
+    deliveryEnabled?: boolean
+    deliveryFee?: boolean
+    minimumOrder?: boolean
+    deliveryRadius?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RestaurantSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "siteName" | "contactEmail" | "phoneNumber" | "address" | "timezone" | "currency" | "taxRate" | "operatingHours" | "deliveryEnabled" | "deliveryFee" | "minimumOrder" | "deliveryRadius" | "createdAt" | "updatedAt", ExtArgs["result"]["restaurantSettings"]>
+
+  export type $RestaurantSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RestaurantSettings"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      siteName: string
+      contactEmail: string
+      phoneNumber: string
+      address: string
+      timezone: string
+      currency: string
+      taxRate: number
+      operatingHours: Prisma.JsonValue
+      deliveryEnabled: boolean
+      deliveryFee: number
+      minimumOrder: number
+      deliveryRadius: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["restaurantSettings"]>
+    composites: {}
+  }
+
+  type RestaurantSettingsGetPayload<S extends boolean | null | undefined | RestaurantSettingsDefaultArgs> = $Result.GetResult<Prisma.$RestaurantSettingsPayload, S>
+
+  type RestaurantSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RestaurantSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RestaurantSettingsCountAggregateInputType | true
+    }
+
+  export interface RestaurantSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RestaurantSettings'], meta: { name: 'RestaurantSettings' } }
+    /**
+     * Find zero or one RestaurantSettings that matches the filter.
+     * @param {RestaurantSettingsFindUniqueArgs} args - Arguments to find a RestaurantSettings
+     * @example
+     * // Get one RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RestaurantSettingsFindUniqueArgs>(args: SelectSubset<T, RestaurantSettingsFindUniqueArgs<ExtArgs>>): Prisma__RestaurantSettingsClient<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RestaurantSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RestaurantSettingsFindUniqueOrThrowArgs} args - Arguments to find a RestaurantSettings
+     * @example
+     * // Get one RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RestaurantSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, RestaurantSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RestaurantSettingsClient<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RestaurantSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RestaurantSettingsFindFirstArgs} args - Arguments to find a RestaurantSettings
+     * @example
+     * // Get one RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RestaurantSettingsFindFirstArgs>(args?: SelectSubset<T, RestaurantSettingsFindFirstArgs<ExtArgs>>): Prisma__RestaurantSettingsClient<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RestaurantSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RestaurantSettingsFindFirstOrThrowArgs} args - Arguments to find a RestaurantSettings
+     * @example
+     * // Get one RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RestaurantSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, RestaurantSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__RestaurantSettingsClient<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RestaurantSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RestaurantSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.findMany()
+     * 
+     * // Get first 10 RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const restaurantSettingsWithIdOnly = await prisma.restaurantSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RestaurantSettingsFindManyArgs>(args?: SelectSubset<T, RestaurantSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RestaurantSettings.
+     * @param {RestaurantSettingsCreateArgs} args - Arguments to create a RestaurantSettings.
+     * @example
+     * // Create one RestaurantSettings
+     * const RestaurantSettings = await prisma.restaurantSettings.create({
+     *   data: {
+     *     // ... data to create a RestaurantSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends RestaurantSettingsCreateArgs>(args: SelectSubset<T, RestaurantSettingsCreateArgs<ExtArgs>>): Prisma__RestaurantSettingsClient<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RestaurantSettings.
+     * @param {RestaurantSettingsCreateManyArgs} args - Arguments to create many RestaurantSettings.
+     * @example
+     * // Create many RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RestaurantSettingsCreateManyArgs>(args?: SelectSubset<T, RestaurantSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RestaurantSettings and returns the data saved in the database.
+     * @param {RestaurantSettingsCreateManyAndReturnArgs} args - Arguments to create many RestaurantSettings.
+     * @example
+     * // Create many RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RestaurantSettings and only return the `id`
+     * const restaurantSettingsWithIdOnly = await prisma.restaurantSettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RestaurantSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, RestaurantSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RestaurantSettings.
+     * @param {RestaurantSettingsDeleteArgs} args - Arguments to delete one RestaurantSettings.
+     * @example
+     * // Delete one RestaurantSettings
+     * const RestaurantSettings = await prisma.restaurantSettings.delete({
+     *   where: {
+     *     // ... filter to delete one RestaurantSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RestaurantSettingsDeleteArgs>(args: SelectSubset<T, RestaurantSettingsDeleteArgs<ExtArgs>>): Prisma__RestaurantSettingsClient<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RestaurantSettings.
+     * @param {RestaurantSettingsUpdateArgs} args - Arguments to update one RestaurantSettings.
+     * @example
+     * // Update one RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RestaurantSettingsUpdateArgs>(args: SelectSubset<T, RestaurantSettingsUpdateArgs<ExtArgs>>): Prisma__RestaurantSettingsClient<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RestaurantSettings.
+     * @param {RestaurantSettingsDeleteManyArgs} args - Arguments to filter RestaurantSettings to delete.
+     * @example
+     * // Delete a few RestaurantSettings
+     * const { count } = await prisma.restaurantSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RestaurantSettingsDeleteManyArgs>(args?: SelectSubset<T, RestaurantSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RestaurantSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RestaurantSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RestaurantSettingsUpdateManyArgs>(args: SelectSubset<T, RestaurantSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RestaurantSettings and returns the data updated in the database.
+     * @param {RestaurantSettingsUpdateManyAndReturnArgs} args - Arguments to update many RestaurantSettings.
+     * @example
+     * // Update many RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RestaurantSettings and only return the `id`
+     * const restaurantSettingsWithIdOnly = await prisma.restaurantSettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RestaurantSettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, RestaurantSettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RestaurantSettings.
+     * @param {RestaurantSettingsUpsertArgs} args - Arguments to update or create a RestaurantSettings.
+     * @example
+     * // Update or create a RestaurantSettings
+     * const restaurantSettings = await prisma.restaurantSettings.upsert({
+     *   create: {
+     *     // ... data to create a RestaurantSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RestaurantSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RestaurantSettingsUpsertArgs>(args: SelectSubset<T, RestaurantSettingsUpsertArgs<ExtArgs>>): Prisma__RestaurantSettingsClient<$Result.GetResult<Prisma.$RestaurantSettingsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RestaurantSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RestaurantSettingsCountArgs} args - Arguments to filter RestaurantSettings to count.
+     * @example
+     * // Count the number of RestaurantSettings
+     * const count = await prisma.restaurantSettings.count({
+     *   where: {
+     *     // ... the filter for the RestaurantSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends RestaurantSettingsCountArgs>(
+      args?: Subset<T, RestaurantSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RestaurantSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RestaurantSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RestaurantSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RestaurantSettingsAggregateArgs>(args: Subset<T, RestaurantSettingsAggregateArgs>): Prisma.PrismaPromise<GetRestaurantSettingsAggregateType<T>>
+
+    /**
+     * Group by RestaurantSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RestaurantSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RestaurantSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RestaurantSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: RestaurantSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RestaurantSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRestaurantSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RestaurantSettings model
+   */
+  readonly fields: RestaurantSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RestaurantSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RestaurantSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RestaurantSettings model
+   */
+  interface RestaurantSettingsFieldRefs {
+    readonly id: FieldRef<"RestaurantSettings", 'String'>
+    readonly siteName: FieldRef<"RestaurantSettings", 'String'>
+    readonly contactEmail: FieldRef<"RestaurantSettings", 'String'>
+    readonly phoneNumber: FieldRef<"RestaurantSettings", 'String'>
+    readonly address: FieldRef<"RestaurantSettings", 'String'>
+    readonly timezone: FieldRef<"RestaurantSettings", 'String'>
+    readonly currency: FieldRef<"RestaurantSettings", 'String'>
+    readonly taxRate: FieldRef<"RestaurantSettings", 'Float'>
+    readonly operatingHours: FieldRef<"RestaurantSettings", 'Json'>
+    readonly deliveryEnabled: FieldRef<"RestaurantSettings", 'Boolean'>
+    readonly deliveryFee: FieldRef<"RestaurantSettings", 'Float'>
+    readonly minimumOrder: FieldRef<"RestaurantSettings", 'Float'>
+    readonly deliveryRadius: FieldRef<"RestaurantSettings", 'Float'>
+    readonly createdAt: FieldRef<"RestaurantSettings", 'DateTime'>
+    readonly updatedAt: FieldRef<"RestaurantSettings", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RestaurantSettings findUnique
+   */
+  export type RestaurantSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which RestaurantSettings to fetch.
+     */
+    where: RestaurantSettingsWhereUniqueInput
+  }
+
+  /**
+   * RestaurantSettings findUniqueOrThrow
+   */
+  export type RestaurantSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which RestaurantSettings to fetch.
+     */
+    where: RestaurantSettingsWhereUniqueInput
+  }
+
+  /**
+   * RestaurantSettings findFirst
+   */
+  export type RestaurantSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which RestaurantSettings to fetch.
+     */
+    where?: RestaurantSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RestaurantSettings to fetch.
+     */
+    orderBy?: RestaurantSettingsOrderByWithRelationInput | RestaurantSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RestaurantSettings.
+     */
+    cursor?: RestaurantSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RestaurantSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RestaurantSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RestaurantSettings.
+     */
+    distinct?: RestaurantSettingsScalarFieldEnum | RestaurantSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * RestaurantSettings findFirstOrThrow
+   */
+  export type RestaurantSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which RestaurantSettings to fetch.
+     */
+    where?: RestaurantSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RestaurantSettings to fetch.
+     */
+    orderBy?: RestaurantSettingsOrderByWithRelationInput | RestaurantSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RestaurantSettings.
+     */
+    cursor?: RestaurantSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RestaurantSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RestaurantSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RestaurantSettings.
+     */
+    distinct?: RestaurantSettingsScalarFieldEnum | RestaurantSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * RestaurantSettings findMany
+   */
+  export type RestaurantSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which RestaurantSettings to fetch.
+     */
+    where?: RestaurantSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RestaurantSettings to fetch.
+     */
+    orderBy?: RestaurantSettingsOrderByWithRelationInput | RestaurantSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RestaurantSettings.
+     */
+    cursor?: RestaurantSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RestaurantSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RestaurantSettings.
+     */
+    skip?: number
+    distinct?: RestaurantSettingsScalarFieldEnum | RestaurantSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * RestaurantSettings create
+   */
+  export type RestaurantSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a RestaurantSettings.
+     */
+    data: XOR<RestaurantSettingsCreateInput, RestaurantSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * RestaurantSettings createMany
+   */
+  export type RestaurantSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RestaurantSettings.
+     */
+    data: RestaurantSettingsCreateManyInput | RestaurantSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RestaurantSettings createManyAndReturn
+   */
+  export type RestaurantSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many RestaurantSettings.
+     */
+    data: RestaurantSettingsCreateManyInput | RestaurantSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RestaurantSettings update
+   */
+  export type RestaurantSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a RestaurantSettings.
+     */
+    data: XOR<RestaurantSettingsUpdateInput, RestaurantSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which RestaurantSettings to update.
+     */
+    where: RestaurantSettingsWhereUniqueInput
+  }
+
+  /**
+   * RestaurantSettings updateMany
+   */
+  export type RestaurantSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RestaurantSettings.
+     */
+    data: XOR<RestaurantSettingsUpdateManyMutationInput, RestaurantSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which RestaurantSettings to update
+     */
+    where?: RestaurantSettingsWhereInput
+    /**
+     * Limit how many RestaurantSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RestaurantSettings updateManyAndReturn
+   */
+  export type RestaurantSettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update RestaurantSettings.
+     */
+    data: XOR<RestaurantSettingsUpdateManyMutationInput, RestaurantSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which RestaurantSettings to update
+     */
+    where?: RestaurantSettingsWhereInput
+    /**
+     * Limit how many RestaurantSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RestaurantSettings upsert
+   */
+  export type RestaurantSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the RestaurantSettings to update in case it exists.
+     */
+    where: RestaurantSettingsWhereUniqueInput
+    /**
+     * In case the RestaurantSettings found by the `where` argument doesn't exist, create a new RestaurantSettings with this data.
+     */
+    create: XOR<RestaurantSettingsCreateInput, RestaurantSettingsUncheckedCreateInput>
+    /**
+     * In case the RestaurantSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RestaurantSettingsUpdateInput, RestaurantSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * RestaurantSettings delete
+   */
+  export type RestaurantSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+    /**
+     * Filter which RestaurantSettings to delete.
+     */
+    where: RestaurantSettingsWhereUniqueInput
+  }
+
+  /**
+   * RestaurantSettings deleteMany
+   */
+  export type RestaurantSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RestaurantSettings to delete
+     */
+    where?: RestaurantSettingsWhereInput
+    /**
+     * Limit how many RestaurantSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RestaurantSettings without action
+   */
+  export type RestaurantSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RestaurantSettings
+     */
+    select?: RestaurantSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RestaurantSettings
+     */
+    omit?: RestaurantSettingsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NotificationSettings
+   */
+
+  export type AggregateNotificationSettings = {
+    _count: NotificationSettingsCountAggregateOutputType | null
+    _min: NotificationSettingsMinAggregateOutputType | null
+    _max: NotificationSettingsMaxAggregateOutputType | null
+  }
+
+  export type NotificationSettingsMinAggregateOutputType = {
+    id: string | null
+    emailNotifications: boolean | null
+    newUserNotifications: boolean | null
+    newOrderNotifications: boolean | null
+    systemUpdates: boolean | null
+    marketingEmails: boolean | null
+    smsNotifications: boolean | null
+    smsOrderUpdates: boolean | null
+    pushNotifications: boolean | null
+    pushOrderAlerts: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationSettingsMaxAggregateOutputType = {
+    id: string | null
+    emailNotifications: boolean | null
+    newUserNotifications: boolean | null
+    newOrderNotifications: boolean | null
+    systemUpdates: boolean | null
+    marketingEmails: boolean | null
+    smsNotifications: boolean | null
+    smsOrderUpdates: boolean | null
+    pushNotifications: boolean | null
+    pushOrderAlerts: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationSettingsCountAggregateOutputType = {
+    id: number
+    emailNotifications: number
+    newUserNotifications: number
+    newOrderNotifications: number
+    systemUpdates: number
+    marketingEmails: number
+    smsNotifications: number
+    smsOrderUpdates: number
+    pushNotifications: number
+    pushOrderAlerts: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NotificationSettingsMinAggregateInputType = {
+    id?: true
+    emailNotifications?: true
+    newUserNotifications?: true
+    newOrderNotifications?: true
+    systemUpdates?: true
+    marketingEmails?: true
+    smsNotifications?: true
+    smsOrderUpdates?: true
+    pushNotifications?: true
+    pushOrderAlerts?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationSettingsMaxAggregateInputType = {
+    id?: true
+    emailNotifications?: true
+    newUserNotifications?: true
+    newOrderNotifications?: true
+    systemUpdates?: true
+    marketingEmails?: true
+    smsNotifications?: true
+    smsOrderUpdates?: true
+    pushNotifications?: true
+    pushOrderAlerts?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationSettingsCountAggregateInputType = {
+    id?: true
+    emailNotifications?: true
+    newUserNotifications?: true
+    newOrderNotifications?: true
+    systemUpdates?: true
+    marketingEmails?: true
+    smsNotifications?: true
+    smsOrderUpdates?: true
+    pushNotifications?: true
+    pushOrderAlerts?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NotificationSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NotificationSettings to aggregate.
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationSettings to fetch.
+     */
+    orderBy?: NotificationSettingsOrderByWithRelationInput | NotificationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NotificationSettings
+    **/
+    _count?: true | NotificationSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationSettingsMaxAggregateInputType
+  }
+
+  export type GetNotificationSettingsAggregateType<T extends NotificationSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotificationSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotificationSettings[P]>
+      : GetScalarType<T[P], AggregateNotificationSettings[P]>
+  }
+
+
+
+
+  export type NotificationSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationSettingsWhereInput
+    orderBy?: NotificationSettingsOrderByWithAggregationInput | NotificationSettingsOrderByWithAggregationInput[]
+    by: NotificationSettingsScalarFieldEnum[] | NotificationSettingsScalarFieldEnum
+    having?: NotificationSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationSettingsCountAggregateInputType | true
+    _min?: NotificationSettingsMinAggregateInputType
+    _max?: NotificationSettingsMaxAggregateInputType
+  }
+
+  export type NotificationSettingsGroupByOutputType = {
+    id: string
+    emailNotifications: boolean
+    newUserNotifications: boolean
+    newOrderNotifications: boolean
+    systemUpdates: boolean
+    marketingEmails: boolean
+    smsNotifications: boolean
+    smsOrderUpdates: boolean
+    pushNotifications: boolean
+    pushOrderAlerts: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: NotificationSettingsCountAggregateOutputType | null
+    _min: NotificationSettingsMinAggregateOutputType | null
+    _max: NotificationSettingsMaxAggregateOutputType | null
+  }
+
+  type GetNotificationSettingsGroupByPayload<T extends NotificationSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    emailNotifications?: boolean
+    newUserNotifications?: boolean
+    newOrderNotifications?: boolean
+    systemUpdates?: boolean
+    marketingEmails?: boolean
+    smsNotifications?: boolean
+    smsOrderUpdates?: boolean
+    pushNotifications?: boolean
+    pushOrderAlerts?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["notificationSettings"]>
+
+  export type NotificationSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    emailNotifications?: boolean
+    newUserNotifications?: boolean
+    newOrderNotifications?: boolean
+    systemUpdates?: boolean
+    marketingEmails?: boolean
+    smsNotifications?: boolean
+    smsOrderUpdates?: boolean
+    pushNotifications?: boolean
+    pushOrderAlerts?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["notificationSettings"]>
+
+  export type NotificationSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    emailNotifications?: boolean
+    newUserNotifications?: boolean
+    newOrderNotifications?: boolean
+    systemUpdates?: boolean
+    marketingEmails?: boolean
+    smsNotifications?: boolean
+    smsOrderUpdates?: boolean
+    pushNotifications?: boolean
+    pushOrderAlerts?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["notificationSettings"]>
+
+  export type NotificationSettingsSelectScalar = {
+    id?: boolean
+    emailNotifications?: boolean
+    newUserNotifications?: boolean
+    newOrderNotifications?: boolean
+    systemUpdates?: boolean
+    marketingEmails?: boolean
+    smsNotifications?: boolean
+    smsOrderUpdates?: boolean
+    pushNotifications?: boolean
+    pushOrderAlerts?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NotificationSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "emailNotifications" | "newUserNotifications" | "newOrderNotifications" | "systemUpdates" | "marketingEmails" | "smsNotifications" | "smsOrderUpdates" | "pushNotifications" | "pushOrderAlerts" | "createdAt" | "updatedAt", ExtArgs["result"]["notificationSettings"]>
+
+  export type $NotificationSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NotificationSettings"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      emailNotifications: boolean
+      newUserNotifications: boolean
+      newOrderNotifications: boolean
+      systemUpdates: boolean
+      marketingEmails: boolean
+      smsNotifications: boolean
+      smsOrderUpdates: boolean
+      pushNotifications: boolean
+      pushOrderAlerts: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["notificationSettings"]>
+    composites: {}
+  }
+
+  type NotificationSettingsGetPayload<S extends boolean | null | undefined | NotificationSettingsDefaultArgs> = $Result.GetResult<Prisma.$NotificationSettingsPayload, S>
+
+  type NotificationSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationSettingsCountAggregateInputType | true
+    }
+
+  export interface NotificationSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NotificationSettings'], meta: { name: 'NotificationSettings' } }
+    /**
+     * Find zero or one NotificationSettings that matches the filter.
+     * @param {NotificationSettingsFindUniqueArgs} args - Arguments to find a NotificationSettings
+     * @example
+     * // Get one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationSettingsFindUniqueArgs>(args: SelectSubset<T, NotificationSettingsFindUniqueArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one NotificationSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationSettingsFindUniqueOrThrowArgs} args - Arguments to find a NotificationSettings
+     * @example
+     * // Get one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NotificationSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsFindFirstArgs} args - Arguments to find a NotificationSettings
+     * @example
+     * // Get one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationSettingsFindFirstArgs>(args?: SelectSubset<T, NotificationSettingsFindFirstArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NotificationSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsFindFirstOrThrowArgs} args - Arguments to find a NotificationSettings
+     * @example
+     * // Get one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more NotificationSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findMany()
+     * 
+     * // Get first 10 NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationSettingsWithIdOnly = await prisma.notificationSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationSettingsFindManyArgs>(args?: SelectSubset<T, NotificationSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a NotificationSettings.
+     * @param {NotificationSettingsCreateArgs} args - Arguments to create a NotificationSettings.
+     * @example
+     * // Create one NotificationSettings
+     * const NotificationSettings = await prisma.notificationSettings.create({
+     *   data: {
+     *     // ... data to create a NotificationSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationSettingsCreateArgs>(args: SelectSubset<T, NotificationSettingsCreateArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many NotificationSettings.
+     * @param {NotificationSettingsCreateManyArgs} args - Arguments to create many NotificationSettings.
+     * @example
+     * // Create many NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationSettingsCreateManyArgs>(args?: SelectSubset<T, NotificationSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NotificationSettings and returns the data saved in the database.
+     * @param {NotificationSettingsCreateManyAndReturnArgs} args - Arguments to create many NotificationSettings.
+     * @example
+     * // Create many NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NotificationSettings and only return the `id`
+     * const notificationSettingsWithIdOnly = await prisma.notificationSettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a NotificationSettings.
+     * @param {NotificationSettingsDeleteArgs} args - Arguments to delete one NotificationSettings.
+     * @example
+     * // Delete one NotificationSettings
+     * const NotificationSettings = await prisma.notificationSettings.delete({
+     *   where: {
+     *     // ... filter to delete one NotificationSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationSettingsDeleteArgs>(args: SelectSubset<T, NotificationSettingsDeleteArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one NotificationSettings.
+     * @param {NotificationSettingsUpdateArgs} args - Arguments to update one NotificationSettings.
+     * @example
+     * // Update one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationSettingsUpdateArgs>(args: SelectSubset<T, NotificationSettingsUpdateArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more NotificationSettings.
+     * @param {NotificationSettingsDeleteManyArgs} args - Arguments to filter NotificationSettings to delete.
+     * @example
+     * // Delete a few NotificationSettings
+     * const { count } = await prisma.notificationSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationSettingsDeleteManyArgs>(args?: SelectSubset<T, NotificationSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotificationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationSettingsUpdateManyArgs>(args: SelectSubset<T, NotificationSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotificationSettings and returns the data updated in the database.
+     * @param {NotificationSettingsUpdateManyAndReturnArgs} args - Arguments to update many NotificationSettings.
+     * @example
+     * // Update many NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more NotificationSettings and only return the `id`
+     * const notificationSettingsWithIdOnly = await prisma.notificationSettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationSettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationSettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one NotificationSettings.
+     * @param {NotificationSettingsUpsertArgs} args - Arguments to update or create a NotificationSettings.
+     * @example
+     * // Update or create a NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.upsert({
+     *   create: {
+     *     // ... data to create a NotificationSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NotificationSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationSettingsUpsertArgs>(args: SelectSubset<T, NotificationSettingsUpsertArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of NotificationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsCountArgs} args - Arguments to filter NotificationSettings to count.
+     * @example
+     * // Count the number of NotificationSettings
+     * const count = await prisma.notificationSettings.count({
+     *   where: {
+     *     // ... the filter for the NotificationSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationSettingsCountArgs>(
+      args?: Subset<T, NotificationSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NotificationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationSettingsAggregateArgs>(args: Subset<T, NotificationSettingsAggregateArgs>): Prisma.PrismaPromise<GetNotificationSettingsAggregateType<T>>
+
+    /**
+     * Group by NotificationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NotificationSettings model
+   */
+  readonly fields: NotificationSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NotificationSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NotificationSettings model
+   */
+  interface NotificationSettingsFieldRefs {
+    readonly id: FieldRef<"NotificationSettings", 'String'>
+    readonly emailNotifications: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly newUserNotifications: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly newOrderNotifications: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly systemUpdates: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly marketingEmails: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly smsNotifications: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly smsOrderUpdates: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly pushNotifications: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly pushOrderAlerts: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly createdAt: FieldRef<"NotificationSettings", 'DateTime'>
+    readonly updatedAt: FieldRef<"NotificationSettings", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NotificationSettings findUnique
+   */
+  export type NotificationSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where: NotificationSettingsWhereUniqueInput
+  }
+
+  /**
+   * NotificationSettings findUniqueOrThrow
+   */
+  export type NotificationSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where: NotificationSettingsWhereUniqueInput
+  }
+
+  /**
+   * NotificationSettings findFirst
+   */
+  export type NotificationSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationSettings to fetch.
+     */
+    orderBy?: NotificationSettingsOrderByWithRelationInput | NotificationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NotificationSettings.
+     */
+    cursor?: NotificationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NotificationSettings.
+     */
+    distinct?: NotificationSettingsScalarFieldEnum | NotificationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationSettings findFirstOrThrow
+   */
+  export type NotificationSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationSettings to fetch.
+     */
+    orderBy?: NotificationSettingsOrderByWithRelationInput | NotificationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NotificationSettings.
+     */
+    cursor?: NotificationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NotificationSettings.
+     */
+    distinct?: NotificationSettingsScalarFieldEnum | NotificationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationSettings findMany
+   */
+  export type NotificationSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationSettings to fetch.
+     */
+    orderBy?: NotificationSettingsOrderByWithRelationInput | NotificationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NotificationSettings.
+     */
+    cursor?: NotificationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationSettings.
+     */
+    skip?: number
+    distinct?: NotificationSettingsScalarFieldEnum | NotificationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationSettings create
+   */
+  export type NotificationSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a NotificationSettings.
+     */
+    data: XOR<NotificationSettingsCreateInput, NotificationSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * NotificationSettings createMany
+   */
+  export type NotificationSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NotificationSettings.
+     */
+    data: NotificationSettingsCreateManyInput | NotificationSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NotificationSettings createManyAndReturn
+   */
+  export type NotificationSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many NotificationSettings.
+     */
+    data: NotificationSettingsCreateManyInput | NotificationSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NotificationSettings update
+   */
+  export type NotificationSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a NotificationSettings.
+     */
+    data: XOR<NotificationSettingsUpdateInput, NotificationSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which NotificationSettings to update.
+     */
+    where: NotificationSettingsWhereUniqueInput
+  }
+
+  /**
+   * NotificationSettings updateMany
+   */
+  export type NotificationSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NotificationSettings.
+     */
+    data: XOR<NotificationSettingsUpdateManyMutationInput, NotificationSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which NotificationSettings to update
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * Limit how many NotificationSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NotificationSettings updateManyAndReturn
+   */
+  export type NotificationSettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update NotificationSettings.
+     */
+    data: XOR<NotificationSettingsUpdateManyMutationInput, NotificationSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which NotificationSettings to update
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * Limit how many NotificationSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NotificationSettings upsert
+   */
+  export type NotificationSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the NotificationSettings to update in case it exists.
+     */
+    where: NotificationSettingsWhereUniqueInput
+    /**
+     * In case the NotificationSettings found by the `where` argument doesn't exist, create a new NotificationSettings with this data.
+     */
+    create: XOR<NotificationSettingsCreateInput, NotificationSettingsUncheckedCreateInput>
+    /**
+     * In case the NotificationSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationSettingsUpdateInput, NotificationSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * NotificationSettings delete
+   */
+  export type NotificationSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter which NotificationSettings to delete.
+     */
+    where: NotificationSettingsWhereUniqueInput
+  }
+
+  /**
+   * NotificationSettings deleteMany
+   */
+  export type NotificationSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NotificationSettings to delete
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * Limit how many NotificationSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * NotificationSettings without action
+   */
+  export type NotificationSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AppearanceSettings
+   */
+
+  export type AggregateAppearanceSettings = {
+    _count: AppearanceSettingsCountAggregateOutputType | null
+    _min: AppearanceSettingsMinAggregateOutputType | null
+    _max: AppearanceSettingsMaxAggregateOutputType | null
+  }
+
+  export type AppearanceSettingsMinAggregateOutputType = {
+    id: string | null
+    theme: string | null
+    accentColor: string | null
+    menuLayout: string | null
+    animationsEnabled: boolean | null
+    logoUrl: string | null
+    faviconUrl: string | null
+    brandColor: string | null
+    showPrices: boolean | null
+    showDescription: boolean | null
+    showImages: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AppearanceSettingsMaxAggregateOutputType = {
+    id: string | null
+    theme: string | null
+    accentColor: string | null
+    menuLayout: string | null
+    animationsEnabled: boolean | null
+    logoUrl: string | null
+    faviconUrl: string | null
+    brandColor: string | null
+    showPrices: boolean | null
+    showDescription: boolean | null
+    showImages: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AppearanceSettingsCountAggregateOutputType = {
+    id: number
+    theme: number
+    accentColor: number
+    menuLayout: number
+    animationsEnabled: number
+    logoUrl: number
+    faviconUrl: number
+    brandColor: number
+    showPrices: number
+    showDescription: number
+    showImages: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AppearanceSettingsMinAggregateInputType = {
+    id?: true
+    theme?: true
+    accentColor?: true
+    menuLayout?: true
+    animationsEnabled?: true
+    logoUrl?: true
+    faviconUrl?: true
+    brandColor?: true
+    showPrices?: true
+    showDescription?: true
+    showImages?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AppearanceSettingsMaxAggregateInputType = {
+    id?: true
+    theme?: true
+    accentColor?: true
+    menuLayout?: true
+    animationsEnabled?: true
+    logoUrl?: true
+    faviconUrl?: true
+    brandColor?: true
+    showPrices?: true
+    showDescription?: true
+    showImages?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AppearanceSettingsCountAggregateInputType = {
+    id?: true
+    theme?: true
+    accentColor?: true
+    menuLayout?: true
+    animationsEnabled?: true
+    logoUrl?: true
+    faviconUrl?: true
+    brandColor?: true
+    showPrices?: true
+    showDescription?: true
+    showImages?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AppearanceSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AppearanceSettings to aggregate.
+     */
+    where?: AppearanceSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppearanceSettings to fetch.
+     */
+    orderBy?: AppearanceSettingsOrderByWithRelationInput | AppearanceSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AppearanceSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppearanceSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppearanceSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AppearanceSettings
+    **/
+    _count?: true | AppearanceSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AppearanceSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AppearanceSettingsMaxAggregateInputType
+  }
+
+  export type GetAppearanceSettingsAggregateType<T extends AppearanceSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateAppearanceSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAppearanceSettings[P]>
+      : GetScalarType<T[P], AggregateAppearanceSettings[P]>
+  }
+
+
+
+
+  export type AppearanceSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppearanceSettingsWhereInput
+    orderBy?: AppearanceSettingsOrderByWithAggregationInput | AppearanceSettingsOrderByWithAggregationInput[]
+    by: AppearanceSettingsScalarFieldEnum[] | AppearanceSettingsScalarFieldEnum
+    having?: AppearanceSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AppearanceSettingsCountAggregateInputType | true
+    _min?: AppearanceSettingsMinAggregateInputType
+    _max?: AppearanceSettingsMaxAggregateInputType
+  }
+
+  export type AppearanceSettingsGroupByOutputType = {
+    id: string
+    theme: string
+    accentColor: string
+    menuLayout: string
+    animationsEnabled: boolean
+    logoUrl: string | null
+    faviconUrl: string | null
+    brandColor: string
+    showPrices: boolean
+    showDescription: boolean
+    showImages: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AppearanceSettingsCountAggregateOutputType | null
+    _min: AppearanceSettingsMinAggregateOutputType | null
+    _max: AppearanceSettingsMaxAggregateOutputType | null
+  }
+
+  type GetAppearanceSettingsGroupByPayload<T extends AppearanceSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AppearanceSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AppearanceSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AppearanceSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], AppearanceSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AppearanceSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    theme?: boolean
+    accentColor?: boolean
+    menuLayout?: boolean
+    animationsEnabled?: boolean
+    logoUrl?: boolean
+    faviconUrl?: boolean
+    brandColor?: boolean
+    showPrices?: boolean
+    showDescription?: boolean
+    showImages?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["appearanceSettings"]>
+
+  export type AppearanceSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    theme?: boolean
+    accentColor?: boolean
+    menuLayout?: boolean
+    animationsEnabled?: boolean
+    logoUrl?: boolean
+    faviconUrl?: boolean
+    brandColor?: boolean
+    showPrices?: boolean
+    showDescription?: boolean
+    showImages?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["appearanceSettings"]>
+
+  export type AppearanceSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    theme?: boolean
+    accentColor?: boolean
+    menuLayout?: boolean
+    animationsEnabled?: boolean
+    logoUrl?: boolean
+    faviconUrl?: boolean
+    brandColor?: boolean
+    showPrices?: boolean
+    showDescription?: boolean
+    showImages?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["appearanceSettings"]>
+
+  export type AppearanceSettingsSelectScalar = {
+    id?: boolean
+    theme?: boolean
+    accentColor?: boolean
+    menuLayout?: boolean
+    animationsEnabled?: boolean
+    logoUrl?: boolean
+    faviconUrl?: boolean
+    brandColor?: boolean
+    showPrices?: boolean
+    showDescription?: boolean
+    showImages?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AppearanceSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "theme" | "accentColor" | "menuLayout" | "animationsEnabled" | "logoUrl" | "faviconUrl" | "brandColor" | "showPrices" | "showDescription" | "showImages" | "createdAt" | "updatedAt", ExtArgs["result"]["appearanceSettings"]>
+
+  export type $AppearanceSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AppearanceSettings"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      theme: string
+      accentColor: string
+      menuLayout: string
+      animationsEnabled: boolean
+      logoUrl: string | null
+      faviconUrl: string | null
+      brandColor: string
+      showPrices: boolean
+      showDescription: boolean
+      showImages: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["appearanceSettings"]>
+    composites: {}
+  }
+
+  type AppearanceSettingsGetPayload<S extends boolean | null | undefined | AppearanceSettingsDefaultArgs> = $Result.GetResult<Prisma.$AppearanceSettingsPayload, S>
+
+  type AppearanceSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AppearanceSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AppearanceSettingsCountAggregateInputType | true
+    }
+
+  export interface AppearanceSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AppearanceSettings'], meta: { name: 'AppearanceSettings' } }
+    /**
+     * Find zero or one AppearanceSettings that matches the filter.
+     * @param {AppearanceSettingsFindUniqueArgs} args - Arguments to find a AppearanceSettings
+     * @example
+     * // Get one AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AppearanceSettingsFindUniqueArgs>(args: SelectSubset<T, AppearanceSettingsFindUniqueArgs<ExtArgs>>): Prisma__AppearanceSettingsClient<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AppearanceSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AppearanceSettingsFindUniqueOrThrowArgs} args - Arguments to find a AppearanceSettings
+     * @example
+     * // Get one AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AppearanceSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, AppearanceSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AppearanceSettingsClient<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AppearanceSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppearanceSettingsFindFirstArgs} args - Arguments to find a AppearanceSettings
+     * @example
+     * // Get one AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AppearanceSettingsFindFirstArgs>(args?: SelectSubset<T, AppearanceSettingsFindFirstArgs<ExtArgs>>): Prisma__AppearanceSettingsClient<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AppearanceSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppearanceSettingsFindFirstOrThrowArgs} args - Arguments to find a AppearanceSettings
+     * @example
+     * // Get one AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AppearanceSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, AppearanceSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__AppearanceSettingsClient<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AppearanceSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppearanceSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.findMany()
+     * 
+     * // Get first 10 AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const appearanceSettingsWithIdOnly = await prisma.appearanceSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AppearanceSettingsFindManyArgs>(args?: SelectSubset<T, AppearanceSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AppearanceSettings.
+     * @param {AppearanceSettingsCreateArgs} args - Arguments to create a AppearanceSettings.
+     * @example
+     * // Create one AppearanceSettings
+     * const AppearanceSettings = await prisma.appearanceSettings.create({
+     *   data: {
+     *     // ... data to create a AppearanceSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends AppearanceSettingsCreateArgs>(args: SelectSubset<T, AppearanceSettingsCreateArgs<ExtArgs>>): Prisma__AppearanceSettingsClient<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AppearanceSettings.
+     * @param {AppearanceSettingsCreateManyArgs} args - Arguments to create many AppearanceSettings.
+     * @example
+     * // Create many AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AppearanceSettingsCreateManyArgs>(args?: SelectSubset<T, AppearanceSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AppearanceSettings and returns the data saved in the database.
+     * @param {AppearanceSettingsCreateManyAndReturnArgs} args - Arguments to create many AppearanceSettings.
+     * @example
+     * // Create many AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AppearanceSettings and only return the `id`
+     * const appearanceSettingsWithIdOnly = await prisma.appearanceSettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AppearanceSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, AppearanceSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AppearanceSettings.
+     * @param {AppearanceSettingsDeleteArgs} args - Arguments to delete one AppearanceSettings.
+     * @example
+     * // Delete one AppearanceSettings
+     * const AppearanceSettings = await prisma.appearanceSettings.delete({
+     *   where: {
+     *     // ... filter to delete one AppearanceSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AppearanceSettingsDeleteArgs>(args: SelectSubset<T, AppearanceSettingsDeleteArgs<ExtArgs>>): Prisma__AppearanceSettingsClient<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AppearanceSettings.
+     * @param {AppearanceSettingsUpdateArgs} args - Arguments to update one AppearanceSettings.
+     * @example
+     * // Update one AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AppearanceSettingsUpdateArgs>(args: SelectSubset<T, AppearanceSettingsUpdateArgs<ExtArgs>>): Prisma__AppearanceSettingsClient<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AppearanceSettings.
+     * @param {AppearanceSettingsDeleteManyArgs} args - Arguments to filter AppearanceSettings to delete.
+     * @example
+     * // Delete a few AppearanceSettings
+     * const { count } = await prisma.appearanceSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AppearanceSettingsDeleteManyArgs>(args?: SelectSubset<T, AppearanceSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AppearanceSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppearanceSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AppearanceSettingsUpdateManyArgs>(args: SelectSubset<T, AppearanceSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AppearanceSettings and returns the data updated in the database.
+     * @param {AppearanceSettingsUpdateManyAndReturnArgs} args - Arguments to update many AppearanceSettings.
+     * @example
+     * // Update many AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AppearanceSettings and only return the `id`
+     * const appearanceSettingsWithIdOnly = await prisma.appearanceSettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AppearanceSettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, AppearanceSettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AppearanceSettings.
+     * @param {AppearanceSettingsUpsertArgs} args - Arguments to update or create a AppearanceSettings.
+     * @example
+     * // Update or create a AppearanceSettings
+     * const appearanceSettings = await prisma.appearanceSettings.upsert({
+     *   create: {
+     *     // ... data to create a AppearanceSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AppearanceSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AppearanceSettingsUpsertArgs>(args: SelectSubset<T, AppearanceSettingsUpsertArgs<ExtArgs>>): Prisma__AppearanceSettingsClient<$Result.GetResult<Prisma.$AppearanceSettingsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AppearanceSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppearanceSettingsCountArgs} args - Arguments to filter AppearanceSettings to count.
+     * @example
+     * // Count the number of AppearanceSettings
+     * const count = await prisma.appearanceSettings.count({
+     *   where: {
+     *     // ... the filter for the AppearanceSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends AppearanceSettingsCountArgs>(
+      args?: Subset<T, AppearanceSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AppearanceSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AppearanceSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppearanceSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AppearanceSettingsAggregateArgs>(args: Subset<T, AppearanceSettingsAggregateArgs>): Prisma.PrismaPromise<GetAppearanceSettingsAggregateType<T>>
+
+    /**
+     * Group by AppearanceSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppearanceSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AppearanceSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AppearanceSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: AppearanceSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AppearanceSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAppearanceSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AppearanceSettings model
+   */
+  readonly fields: AppearanceSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AppearanceSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AppearanceSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AppearanceSettings model
+   */
+  interface AppearanceSettingsFieldRefs {
+    readonly id: FieldRef<"AppearanceSettings", 'String'>
+    readonly theme: FieldRef<"AppearanceSettings", 'String'>
+    readonly accentColor: FieldRef<"AppearanceSettings", 'String'>
+    readonly menuLayout: FieldRef<"AppearanceSettings", 'String'>
+    readonly animationsEnabled: FieldRef<"AppearanceSettings", 'Boolean'>
+    readonly logoUrl: FieldRef<"AppearanceSettings", 'String'>
+    readonly faviconUrl: FieldRef<"AppearanceSettings", 'String'>
+    readonly brandColor: FieldRef<"AppearanceSettings", 'String'>
+    readonly showPrices: FieldRef<"AppearanceSettings", 'Boolean'>
+    readonly showDescription: FieldRef<"AppearanceSettings", 'Boolean'>
+    readonly showImages: FieldRef<"AppearanceSettings", 'Boolean'>
+    readonly createdAt: FieldRef<"AppearanceSettings", 'DateTime'>
+    readonly updatedAt: FieldRef<"AppearanceSettings", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AppearanceSettings findUnique
+   */
+  export type AppearanceSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which AppearanceSettings to fetch.
+     */
+    where: AppearanceSettingsWhereUniqueInput
+  }
+
+  /**
+   * AppearanceSettings findUniqueOrThrow
+   */
+  export type AppearanceSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which AppearanceSettings to fetch.
+     */
+    where: AppearanceSettingsWhereUniqueInput
+  }
+
+  /**
+   * AppearanceSettings findFirst
+   */
+  export type AppearanceSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which AppearanceSettings to fetch.
+     */
+    where?: AppearanceSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppearanceSettings to fetch.
+     */
+    orderBy?: AppearanceSettingsOrderByWithRelationInput | AppearanceSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AppearanceSettings.
+     */
+    cursor?: AppearanceSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppearanceSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppearanceSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppearanceSettings.
+     */
+    distinct?: AppearanceSettingsScalarFieldEnum | AppearanceSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * AppearanceSettings findFirstOrThrow
+   */
+  export type AppearanceSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which AppearanceSettings to fetch.
+     */
+    where?: AppearanceSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppearanceSettings to fetch.
+     */
+    orderBy?: AppearanceSettingsOrderByWithRelationInput | AppearanceSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AppearanceSettings.
+     */
+    cursor?: AppearanceSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppearanceSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppearanceSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppearanceSettings.
+     */
+    distinct?: AppearanceSettingsScalarFieldEnum | AppearanceSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * AppearanceSettings findMany
+   */
+  export type AppearanceSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which AppearanceSettings to fetch.
+     */
+    where?: AppearanceSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppearanceSettings to fetch.
+     */
+    orderBy?: AppearanceSettingsOrderByWithRelationInput | AppearanceSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AppearanceSettings.
+     */
+    cursor?: AppearanceSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppearanceSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppearanceSettings.
+     */
+    skip?: number
+    distinct?: AppearanceSettingsScalarFieldEnum | AppearanceSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * AppearanceSettings create
+   */
+  export type AppearanceSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AppearanceSettings.
+     */
+    data: XOR<AppearanceSettingsCreateInput, AppearanceSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * AppearanceSettings createMany
+   */
+  export type AppearanceSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AppearanceSettings.
+     */
+    data: AppearanceSettingsCreateManyInput | AppearanceSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AppearanceSettings createManyAndReturn
+   */
+  export type AppearanceSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many AppearanceSettings.
+     */
+    data: AppearanceSettingsCreateManyInput | AppearanceSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AppearanceSettings update
+   */
+  export type AppearanceSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AppearanceSettings.
+     */
+    data: XOR<AppearanceSettingsUpdateInput, AppearanceSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which AppearanceSettings to update.
+     */
+    where: AppearanceSettingsWhereUniqueInput
+  }
+
+  /**
+   * AppearanceSettings updateMany
+   */
+  export type AppearanceSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AppearanceSettings.
+     */
+    data: XOR<AppearanceSettingsUpdateManyMutationInput, AppearanceSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which AppearanceSettings to update
+     */
+    where?: AppearanceSettingsWhereInput
+    /**
+     * Limit how many AppearanceSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppearanceSettings updateManyAndReturn
+   */
+  export type AppearanceSettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update AppearanceSettings.
+     */
+    data: XOR<AppearanceSettingsUpdateManyMutationInput, AppearanceSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which AppearanceSettings to update
+     */
+    where?: AppearanceSettingsWhereInput
+    /**
+     * Limit how many AppearanceSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppearanceSettings upsert
+   */
+  export type AppearanceSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AppearanceSettings to update in case it exists.
+     */
+    where: AppearanceSettingsWhereUniqueInput
+    /**
+     * In case the AppearanceSettings found by the `where` argument doesn't exist, create a new AppearanceSettings with this data.
+     */
+    create: XOR<AppearanceSettingsCreateInput, AppearanceSettingsUncheckedCreateInput>
+    /**
+     * In case the AppearanceSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AppearanceSettingsUpdateInput, AppearanceSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * AppearanceSettings delete
+   */
+  export type AppearanceSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+    /**
+     * Filter which AppearanceSettings to delete.
+     */
+    where: AppearanceSettingsWhereUniqueInput
+  }
+
+  /**
+   * AppearanceSettings deleteMany
+   */
+  export type AppearanceSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AppearanceSettings to delete
+     */
+    where?: AppearanceSettingsWhereInput
+    /**
+     * Limit how many AppearanceSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppearanceSettings without action
+   */
+  export type AppearanceSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppearanceSettings
+     */
+    select?: AppearanceSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppearanceSettings
+     */
+    omit?: AppearanceSettingsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model IntegrationSettings
+   */
+
+  export type AggregateIntegrationSettings = {
+    _count: IntegrationSettingsCountAggregateOutputType | null
+    _min: IntegrationSettingsMinAggregateOutputType | null
+    _max: IntegrationSettingsMaxAggregateOutputType | null
+  }
+
+  export type IntegrationSettingsMinAggregateOutputType = {
+    id: string | null
+    googleAnalyticsId: string | null
+    facebookPixelId: string | null
+    mailchimpApiKey: string | null
+    mailchimpListId: string | null
+    stripePublicKey: string | null
+    stripeSecretKey: string | null
+    paypalClientId: string | null
+    facebookPageId: string | null
+    instagramUsername: string | null
+    twitterHandle: string | null
+    posSystemType: string | null
+    posApiKey: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IntegrationSettingsMaxAggregateOutputType = {
+    id: string | null
+    googleAnalyticsId: string | null
+    facebookPixelId: string | null
+    mailchimpApiKey: string | null
+    mailchimpListId: string | null
+    stripePublicKey: string | null
+    stripeSecretKey: string | null
+    paypalClientId: string | null
+    facebookPageId: string | null
+    instagramUsername: string | null
+    twitterHandle: string | null
+    posSystemType: string | null
+    posApiKey: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IntegrationSettingsCountAggregateOutputType = {
+    id: number
+    googleAnalyticsId: number
+    facebookPixelId: number
+    mailchimpApiKey: number
+    mailchimpListId: number
+    stripePublicKey: number
+    stripeSecretKey: number
+    paypalClientId: number
+    facebookPageId: number
+    instagramUsername: number
+    twitterHandle: number
+    posSystemType: number
+    posApiKey: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type IntegrationSettingsMinAggregateInputType = {
+    id?: true
+    googleAnalyticsId?: true
+    facebookPixelId?: true
+    mailchimpApiKey?: true
+    mailchimpListId?: true
+    stripePublicKey?: true
+    stripeSecretKey?: true
+    paypalClientId?: true
+    facebookPageId?: true
+    instagramUsername?: true
+    twitterHandle?: true
+    posSystemType?: true
+    posApiKey?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IntegrationSettingsMaxAggregateInputType = {
+    id?: true
+    googleAnalyticsId?: true
+    facebookPixelId?: true
+    mailchimpApiKey?: true
+    mailchimpListId?: true
+    stripePublicKey?: true
+    stripeSecretKey?: true
+    paypalClientId?: true
+    facebookPageId?: true
+    instagramUsername?: true
+    twitterHandle?: true
+    posSystemType?: true
+    posApiKey?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IntegrationSettingsCountAggregateInputType = {
+    id?: true
+    googleAnalyticsId?: true
+    facebookPixelId?: true
+    mailchimpApiKey?: true
+    mailchimpListId?: true
+    stripePublicKey?: true
+    stripeSecretKey?: true
+    paypalClientId?: true
+    facebookPageId?: true
+    instagramUsername?: true
+    twitterHandle?: true
+    posSystemType?: true
+    posApiKey?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type IntegrationSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IntegrationSettings to aggregate.
+     */
+    where?: IntegrationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IntegrationSettings to fetch.
+     */
+    orderBy?: IntegrationSettingsOrderByWithRelationInput | IntegrationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: IntegrationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IntegrationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IntegrationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned IntegrationSettings
+    **/
+    _count?: true | IntegrationSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IntegrationSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IntegrationSettingsMaxAggregateInputType
+  }
+
+  export type GetIntegrationSettingsAggregateType<T extends IntegrationSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateIntegrationSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIntegrationSettings[P]>
+      : GetScalarType<T[P], AggregateIntegrationSettings[P]>
+  }
+
+
+
+
+  export type IntegrationSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IntegrationSettingsWhereInput
+    orderBy?: IntegrationSettingsOrderByWithAggregationInput | IntegrationSettingsOrderByWithAggregationInput[]
+    by: IntegrationSettingsScalarFieldEnum[] | IntegrationSettingsScalarFieldEnum
+    having?: IntegrationSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IntegrationSettingsCountAggregateInputType | true
+    _min?: IntegrationSettingsMinAggregateInputType
+    _max?: IntegrationSettingsMaxAggregateInputType
+  }
+
+  export type IntegrationSettingsGroupByOutputType = {
+    id: string
+    googleAnalyticsId: string | null
+    facebookPixelId: string | null
+    mailchimpApiKey: string | null
+    mailchimpListId: string | null
+    stripePublicKey: string | null
+    stripeSecretKey: string | null
+    paypalClientId: string | null
+    facebookPageId: string | null
+    instagramUsername: string | null
+    twitterHandle: string | null
+    posSystemType: string | null
+    posApiKey: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: IntegrationSettingsCountAggregateOutputType | null
+    _min: IntegrationSettingsMinAggregateOutputType | null
+    _max: IntegrationSettingsMaxAggregateOutputType | null
+  }
+
+  type GetIntegrationSettingsGroupByPayload<T extends IntegrationSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IntegrationSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IntegrationSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IntegrationSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], IntegrationSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IntegrationSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    googleAnalyticsId?: boolean
+    facebookPixelId?: boolean
+    mailchimpApiKey?: boolean
+    mailchimpListId?: boolean
+    stripePublicKey?: boolean
+    stripeSecretKey?: boolean
+    paypalClientId?: boolean
+    facebookPageId?: boolean
+    instagramUsername?: boolean
+    twitterHandle?: boolean
+    posSystemType?: boolean
+    posApiKey?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["integrationSettings"]>
+
+  export type IntegrationSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    googleAnalyticsId?: boolean
+    facebookPixelId?: boolean
+    mailchimpApiKey?: boolean
+    mailchimpListId?: boolean
+    stripePublicKey?: boolean
+    stripeSecretKey?: boolean
+    paypalClientId?: boolean
+    facebookPageId?: boolean
+    instagramUsername?: boolean
+    twitterHandle?: boolean
+    posSystemType?: boolean
+    posApiKey?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["integrationSettings"]>
+
+  export type IntegrationSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    googleAnalyticsId?: boolean
+    facebookPixelId?: boolean
+    mailchimpApiKey?: boolean
+    mailchimpListId?: boolean
+    stripePublicKey?: boolean
+    stripeSecretKey?: boolean
+    paypalClientId?: boolean
+    facebookPageId?: boolean
+    instagramUsername?: boolean
+    twitterHandle?: boolean
+    posSystemType?: boolean
+    posApiKey?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["integrationSettings"]>
+
+  export type IntegrationSettingsSelectScalar = {
+    id?: boolean
+    googleAnalyticsId?: boolean
+    facebookPixelId?: boolean
+    mailchimpApiKey?: boolean
+    mailchimpListId?: boolean
+    stripePublicKey?: boolean
+    stripeSecretKey?: boolean
+    paypalClientId?: boolean
+    facebookPageId?: boolean
+    instagramUsername?: boolean
+    twitterHandle?: boolean
+    posSystemType?: boolean
+    posApiKey?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type IntegrationSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "googleAnalyticsId" | "facebookPixelId" | "mailchimpApiKey" | "mailchimpListId" | "stripePublicKey" | "stripeSecretKey" | "paypalClientId" | "facebookPageId" | "instagramUsername" | "twitterHandle" | "posSystemType" | "posApiKey" | "createdAt" | "updatedAt", ExtArgs["result"]["integrationSettings"]>
+
+  export type $IntegrationSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "IntegrationSettings"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      googleAnalyticsId: string | null
+      facebookPixelId: string | null
+      mailchimpApiKey: string | null
+      mailchimpListId: string | null
+      stripePublicKey: string | null
+      stripeSecretKey: string | null
+      paypalClientId: string | null
+      facebookPageId: string | null
+      instagramUsername: string | null
+      twitterHandle: string | null
+      posSystemType: string | null
+      posApiKey: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["integrationSettings"]>
+    composites: {}
+  }
+
+  type IntegrationSettingsGetPayload<S extends boolean | null | undefined | IntegrationSettingsDefaultArgs> = $Result.GetResult<Prisma.$IntegrationSettingsPayload, S>
+
+  type IntegrationSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IntegrationSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IntegrationSettingsCountAggregateInputType | true
+    }
+
+  export interface IntegrationSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IntegrationSettings'], meta: { name: 'IntegrationSettings' } }
+    /**
+     * Find zero or one IntegrationSettings that matches the filter.
+     * @param {IntegrationSettingsFindUniqueArgs} args - Arguments to find a IntegrationSettings
+     * @example
+     * // Get one IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IntegrationSettingsFindUniqueArgs>(args: SelectSubset<T, IntegrationSettingsFindUniqueArgs<ExtArgs>>): Prisma__IntegrationSettingsClient<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one IntegrationSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {IntegrationSettingsFindUniqueOrThrowArgs} args - Arguments to find a IntegrationSettings
+     * @example
+     * // Get one IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IntegrationSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, IntegrationSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IntegrationSettingsClient<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IntegrationSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationSettingsFindFirstArgs} args - Arguments to find a IntegrationSettings
+     * @example
+     * // Get one IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IntegrationSettingsFindFirstArgs>(args?: SelectSubset<T, IntegrationSettingsFindFirstArgs<ExtArgs>>): Prisma__IntegrationSettingsClient<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IntegrationSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationSettingsFindFirstOrThrowArgs} args - Arguments to find a IntegrationSettings
+     * @example
+     * // Get one IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IntegrationSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, IntegrationSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__IntegrationSettingsClient<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more IntegrationSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.findMany()
+     * 
+     * // Get first 10 IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const integrationSettingsWithIdOnly = await prisma.integrationSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends IntegrationSettingsFindManyArgs>(args?: SelectSubset<T, IntegrationSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a IntegrationSettings.
+     * @param {IntegrationSettingsCreateArgs} args - Arguments to create a IntegrationSettings.
+     * @example
+     * // Create one IntegrationSettings
+     * const IntegrationSettings = await prisma.integrationSettings.create({
+     *   data: {
+     *     // ... data to create a IntegrationSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends IntegrationSettingsCreateArgs>(args: SelectSubset<T, IntegrationSettingsCreateArgs<ExtArgs>>): Prisma__IntegrationSettingsClient<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many IntegrationSettings.
+     * @param {IntegrationSettingsCreateManyArgs} args - Arguments to create many IntegrationSettings.
+     * @example
+     * // Create many IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends IntegrationSettingsCreateManyArgs>(args?: SelectSubset<T, IntegrationSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many IntegrationSettings and returns the data saved in the database.
+     * @param {IntegrationSettingsCreateManyAndReturnArgs} args - Arguments to create many IntegrationSettings.
+     * @example
+     * // Create many IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many IntegrationSettings and only return the `id`
+     * const integrationSettingsWithIdOnly = await prisma.integrationSettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends IntegrationSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, IntegrationSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a IntegrationSettings.
+     * @param {IntegrationSettingsDeleteArgs} args - Arguments to delete one IntegrationSettings.
+     * @example
+     * // Delete one IntegrationSettings
+     * const IntegrationSettings = await prisma.integrationSettings.delete({
+     *   where: {
+     *     // ... filter to delete one IntegrationSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends IntegrationSettingsDeleteArgs>(args: SelectSubset<T, IntegrationSettingsDeleteArgs<ExtArgs>>): Prisma__IntegrationSettingsClient<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one IntegrationSettings.
+     * @param {IntegrationSettingsUpdateArgs} args - Arguments to update one IntegrationSettings.
+     * @example
+     * // Update one IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends IntegrationSettingsUpdateArgs>(args: SelectSubset<T, IntegrationSettingsUpdateArgs<ExtArgs>>): Prisma__IntegrationSettingsClient<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more IntegrationSettings.
+     * @param {IntegrationSettingsDeleteManyArgs} args - Arguments to filter IntegrationSettings to delete.
+     * @example
+     * // Delete a few IntegrationSettings
+     * const { count } = await prisma.integrationSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends IntegrationSettingsDeleteManyArgs>(args?: SelectSubset<T, IntegrationSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IntegrationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends IntegrationSettingsUpdateManyArgs>(args: SelectSubset<T, IntegrationSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IntegrationSettings and returns the data updated in the database.
+     * @param {IntegrationSettingsUpdateManyAndReturnArgs} args - Arguments to update many IntegrationSettings.
+     * @example
+     * // Update many IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more IntegrationSettings and only return the `id`
+     * const integrationSettingsWithIdOnly = await prisma.integrationSettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends IntegrationSettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, IntegrationSettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one IntegrationSettings.
+     * @param {IntegrationSettingsUpsertArgs} args - Arguments to update or create a IntegrationSettings.
+     * @example
+     * // Update or create a IntegrationSettings
+     * const integrationSettings = await prisma.integrationSettings.upsert({
+     *   create: {
+     *     // ... data to create a IntegrationSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the IntegrationSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IntegrationSettingsUpsertArgs>(args: SelectSubset<T, IntegrationSettingsUpsertArgs<ExtArgs>>): Prisma__IntegrationSettingsClient<$Result.GetResult<Prisma.$IntegrationSettingsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of IntegrationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationSettingsCountArgs} args - Arguments to filter IntegrationSettings to count.
+     * @example
+     * // Count the number of IntegrationSettings
+     * const count = await prisma.integrationSettings.count({
+     *   where: {
+     *     // ... the filter for the IntegrationSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends IntegrationSettingsCountArgs>(
+      args?: Subset<T, IntegrationSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IntegrationSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a IntegrationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IntegrationSettingsAggregateArgs>(args: Subset<T, IntegrationSettingsAggregateArgs>): Prisma.PrismaPromise<GetIntegrationSettingsAggregateType<T>>
+
+    /**
+     * Group by IntegrationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IntegrationSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends IntegrationSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IntegrationSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: IntegrationSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IntegrationSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIntegrationSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the IntegrationSettings model
+   */
+  readonly fields: IntegrationSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for IntegrationSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IntegrationSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the IntegrationSettings model
+   */
+  interface IntegrationSettingsFieldRefs {
+    readonly id: FieldRef<"IntegrationSettings", 'String'>
+    readonly googleAnalyticsId: FieldRef<"IntegrationSettings", 'String'>
+    readonly facebookPixelId: FieldRef<"IntegrationSettings", 'String'>
+    readonly mailchimpApiKey: FieldRef<"IntegrationSettings", 'String'>
+    readonly mailchimpListId: FieldRef<"IntegrationSettings", 'String'>
+    readonly stripePublicKey: FieldRef<"IntegrationSettings", 'String'>
+    readonly stripeSecretKey: FieldRef<"IntegrationSettings", 'String'>
+    readonly paypalClientId: FieldRef<"IntegrationSettings", 'String'>
+    readonly facebookPageId: FieldRef<"IntegrationSettings", 'String'>
+    readonly instagramUsername: FieldRef<"IntegrationSettings", 'String'>
+    readonly twitterHandle: FieldRef<"IntegrationSettings", 'String'>
+    readonly posSystemType: FieldRef<"IntegrationSettings", 'String'>
+    readonly posApiKey: FieldRef<"IntegrationSettings", 'String'>
+    readonly createdAt: FieldRef<"IntegrationSettings", 'DateTime'>
+    readonly updatedAt: FieldRef<"IntegrationSettings", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * IntegrationSettings findUnique
+   */
+  export type IntegrationSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which IntegrationSettings to fetch.
+     */
+    where: IntegrationSettingsWhereUniqueInput
+  }
+
+  /**
+   * IntegrationSettings findUniqueOrThrow
+   */
+  export type IntegrationSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which IntegrationSettings to fetch.
+     */
+    where: IntegrationSettingsWhereUniqueInput
+  }
+
+  /**
+   * IntegrationSettings findFirst
+   */
+  export type IntegrationSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which IntegrationSettings to fetch.
+     */
+    where?: IntegrationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IntegrationSettings to fetch.
+     */
+    orderBy?: IntegrationSettingsOrderByWithRelationInput | IntegrationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IntegrationSettings.
+     */
+    cursor?: IntegrationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IntegrationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IntegrationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IntegrationSettings.
+     */
+    distinct?: IntegrationSettingsScalarFieldEnum | IntegrationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * IntegrationSettings findFirstOrThrow
+   */
+  export type IntegrationSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which IntegrationSettings to fetch.
+     */
+    where?: IntegrationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IntegrationSettings to fetch.
+     */
+    orderBy?: IntegrationSettingsOrderByWithRelationInput | IntegrationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IntegrationSettings.
+     */
+    cursor?: IntegrationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IntegrationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IntegrationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IntegrationSettings.
+     */
+    distinct?: IntegrationSettingsScalarFieldEnum | IntegrationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * IntegrationSettings findMany
+   */
+  export type IntegrationSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which IntegrationSettings to fetch.
+     */
+    where?: IntegrationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IntegrationSettings to fetch.
+     */
+    orderBy?: IntegrationSettingsOrderByWithRelationInput | IntegrationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing IntegrationSettings.
+     */
+    cursor?: IntegrationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IntegrationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IntegrationSettings.
+     */
+    skip?: number
+    distinct?: IntegrationSettingsScalarFieldEnum | IntegrationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * IntegrationSettings create
+   */
+  export type IntegrationSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a IntegrationSettings.
+     */
+    data: XOR<IntegrationSettingsCreateInput, IntegrationSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * IntegrationSettings createMany
+   */
+  export type IntegrationSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many IntegrationSettings.
+     */
+    data: IntegrationSettingsCreateManyInput | IntegrationSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IntegrationSettings createManyAndReturn
+   */
+  export type IntegrationSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many IntegrationSettings.
+     */
+    data: IntegrationSettingsCreateManyInput | IntegrationSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IntegrationSettings update
+   */
+  export type IntegrationSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a IntegrationSettings.
+     */
+    data: XOR<IntegrationSettingsUpdateInput, IntegrationSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which IntegrationSettings to update.
+     */
+    where: IntegrationSettingsWhereUniqueInput
+  }
+
+  /**
+   * IntegrationSettings updateMany
+   */
+  export type IntegrationSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update IntegrationSettings.
+     */
+    data: XOR<IntegrationSettingsUpdateManyMutationInput, IntegrationSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which IntegrationSettings to update
+     */
+    where?: IntegrationSettingsWhereInput
+    /**
+     * Limit how many IntegrationSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * IntegrationSettings updateManyAndReturn
+   */
+  export type IntegrationSettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update IntegrationSettings.
+     */
+    data: XOR<IntegrationSettingsUpdateManyMutationInput, IntegrationSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which IntegrationSettings to update
+     */
+    where?: IntegrationSettingsWhereInput
+    /**
+     * Limit how many IntegrationSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * IntegrationSettings upsert
+   */
+  export type IntegrationSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the IntegrationSettings to update in case it exists.
+     */
+    where: IntegrationSettingsWhereUniqueInput
+    /**
+     * In case the IntegrationSettings found by the `where` argument doesn't exist, create a new IntegrationSettings with this data.
+     */
+    create: XOR<IntegrationSettingsCreateInput, IntegrationSettingsUncheckedCreateInput>
+    /**
+     * In case the IntegrationSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IntegrationSettingsUpdateInput, IntegrationSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * IntegrationSettings delete
+   */
+  export type IntegrationSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+    /**
+     * Filter which IntegrationSettings to delete.
+     */
+    where: IntegrationSettingsWhereUniqueInput
+  }
+
+  /**
+   * IntegrationSettings deleteMany
+   */
+  export type IntegrationSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IntegrationSettings to delete
+     */
+    where?: IntegrationSettingsWhereInput
+    /**
+     * Limit how many IntegrationSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * IntegrationSettings without action
+   */
+  export type IntegrationSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IntegrationSettings
+     */
+    select?: IntegrationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IntegrationSettings
+     */
+    omit?: IntegrationSettingsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SecuritySettings
+   */
+
+  export type AggregateSecuritySettings = {
+    _count: SecuritySettingsCountAggregateOutputType | null
+    _avg: SecuritySettingsAvgAggregateOutputType | null
+    _sum: SecuritySettingsSumAggregateOutputType | null
+    _min: SecuritySettingsMinAggregateOutputType | null
+    _max: SecuritySettingsMaxAggregateOutputType | null
+  }
+
+  export type SecuritySettingsAvgAggregateOutputType = {
+    loginAttempts: number | null
+    lockoutDuration: number | null
+    minPasswordLength: number | null
+  }
+
+  export type SecuritySettingsSumAggregateOutputType = {
+    loginAttempts: number | null
+    lockoutDuration: number | null
+    minPasswordLength: number | null
+  }
+
+  export type SecuritySettingsMinAggregateOutputType = {
+    id: string | null
+    twoFactorAuth: boolean | null
+    passwordExpiry: string | null
+    sessionTimeout: string | null
+    ipRestriction: boolean | null
+    loginAttempts: number | null
+    lockoutDuration: number | null
+    minPasswordLength: number | null
+    requireSpecialChars: boolean | null
+    requireNumbers: boolean | null
+    requireUppercase: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SecuritySettingsMaxAggregateOutputType = {
+    id: string | null
+    twoFactorAuth: boolean | null
+    passwordExpiry: string | null
+    sessionTimeout: string | null
+    ipRestriction: boolean | null
+    loginAttempts: number | null
+    lockoutDuration: number | null
+    minPasswordLength: number | null
+    requireSpecialChars: boolean | null
+    requireNumbers: boolean | null
+    requireUppercase: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SecuritySettingsCountAggregateOutputType = {
+    id: number
+    twoFactorAuth: number
+    passwordExpiry: number
+    sessionTimeout: number
+    ipRestriction: number
+    loginAttempts: number
+    lockoutDuration: number
+    allowedIPs: number
+    minPasswordLength: number
+    requireSpecialChars: number
+    requireNumbers: number
+    requireUppercase: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SecuritySettingsAvgAggregateInputType = {
+    loginAttempts?: true
+    lockoutDuration?: true
+    minPasswordLength?: true
+  }
+
+  export type SecuritySettingsSumAggregateInputType = {
+    loginAttempts?: true
+    lockoutDuration?: true
+    minPasswordLength?: true
+  }
+
+  export type SecuritySettingsMinAggregateInputType = {
+    id?: true
+    twoFactorAuth?: true
+    passwordExpiry?: true
+    sessionTimeout?: true
+    ipRestriction?: true
+    loginAttempts?: true
+    lockoutDuration?: true
+    minPasswordLength?: true
+    requireSpecialChars?: true
+    requireNumbers?: true
+    requireUppercase?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SecuritySettingsMaxAggregateInputType = {
+    id?: true
+    twoFactorAuth?: true
+    passwordExpiry?: true
+    sessionTimeout?: true
+    ipRestriction?: true
+    loginAttempts?: true
+    lockoutDuration?: true
+    minPasswordLength?: true
+    requireSpecialChars?: true
+    requireNumbers?: true
+    requireUppercase?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SecuritySettingsCountAggregateInputType = {
+    id?: true
+    twoFactorAuth?: true
+    passwordExpiry?: true
+    sessionTimeout?: true
+    ipRestriction?: true
+    loginAttempts?: true
+    lockoutDuration?: true
+    allowedIPs?: true
+    minPasswordLength?: true
+    requireSpecialChars?: true
+    requireNumbers?: true
+    requireUppercase?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SecuritySettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SecuritySettings to aggregate.
+     */
+    where?: SecuritySettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SecuritySettings to fetch.
+     */
+    orderBy?: SecuritySettingsOrderByWithRelationInput | SecuritySettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SecuritySettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SecuritySettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SecuritySettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SecuritySettings
+    **/
+    _count?: true | SecuritySettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SecuritySettingsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SecuritySettingsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SecuritySettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SecuritySettingsMaxAggregateInputType
+  }
+
+  export type GetSecuritySettingsAggregateType<T extends SecuritySettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateSecuritySettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSecuritySettings[P]>
+      : GetScalarType<T[P], AggregateSecuritySettings[P]>
+  }
+
+
+
+
+  export type SecuritySettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SecuritySettingsWhereInput
+    orderBy?: SecuritySettingsOrderByWithAggregationInput | SecuritySettingsOrderByWithAggregationInput[]
+    by: SecuritySettingsScalarFieldEnum[] | SecuritySettingsScalarFieldEnum
+    having?: SecuritySettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SecuritySettingsCountAggregateInputType | true
+    _avg?: SecuritySettingsAvgAggregateInputType
+    _sum?: SecuritySettingsSumAggregateInputType
+    _min?: SecuritySettingsMinAggregateInputType
+    _max?: SecuritySettingsMaxAggregateInputType
+  }
+
+  export type SecuritySettingsGroupByOutputType = {
+    id: string
+    twoFactorAuth: boolean
+    passwordExpiry: string
+    sessionTimeout: string
+    ipRestriction: boolean
+    loginAttempts: number
+    lockoutDuration: number
+    allowedIPs: JsonValue
+    minPasswordLength: number
+    requireSpecialChars: boolean
+    requireNumbers: boolean
+    requireUppercase: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: SecuritySettingsCountAggregateOutputType | null
+    _avg: SecuritySettingsAvgAggregateOutputType | null
+    _sum: SecuritySettingsSumAggregateOutputType | null
+    _min: SecuritySettingsMinAggregateOutputType | null
+    _max: SecuritySettingsMaxAggregateOutputType | null
+  }
+
+  type GetSecuritySettingsGroupByPayload<T extends SecuritySettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SecuritySettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SecuritySettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SecuritySettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], SecuritySettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SecuritySettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    twoFactorAuth?: boolean
+    passwordExpiry?: boolean
+    sessionTimeout?: boolean
+    ipRestriction?: boolean
+    loginAttempts?: boolean
+    lockoutDuration?: boolean
+    allowedIPs?: boolean
+    minPasswordLength?: boolean
+    requireSpecialChars?: boolean
+    requireNumbers?: boolean
+    requireUppercase?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["securitySettings"]>
+
+  export type SecuritySettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    twoFactorAuth?: boolean
+    passwordExpiry?: boolean
+    sessionTimeout?: boolean
+    ipRestriction?: boolean
+    loginAttempts?: boolean
+    lockoutDuration?: boolean
+    allowedIPs?: boolean
+    minPasswordLength?: boolean
+    requireSpecialChars?: boolean
+    requireNumbers?: boolean
+    requireUppercase?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["securitySettings"]>
+
+  export type SecuritySettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    twoFactorAuth?: boolean
+    passwordExpiry?: boolean
+    sessionTimeout?: boolean
+    ipRestriction?: boolean
+    loginAttempts?: boolean
+    lockoutDuration?: boolean
+    allowedIPs?: boolean
+    minPasswordLength?: boolean
+    requireSpecialChars?: boolean
+    requireNumbers?: boolean
+    requireUppercase?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["securitySettings"]>
+
+  export type SecuritySettingsSelectScalar = {
+    id?: boolean
+    twoFactorAuth?: boolean
+    passwordExpiry?: boolean
+    sessionTimeout?: boolean
+    ipRestriction?: boolean
+    loginAttempts?: boolean
+    lockoutDuration?: boolean
+    allowedIPs?: boolean
+    minPasswordLength?: boolean
+    requireSpecialChars?: boolean
+    requireNumbers?: boolean
+    requireUppercase?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SecuritySettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "twoFactorAuth" | "passwordExpiry" | "sessionTimeout" | "ipRestriction" | "loginAttempts" | "lockoutDuration" | "allowedIPs" | "minPasswordLength" | "requireSpecialChars" | "requireNumbers" | "requireUppercase" | "createdAt" | "updatedAt", ExtArgs["result"]["securitySettings"]>
+
+  export type $SecuritySettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SecuritySettings"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      twoFactorAuth: boolean
+      passwordExpiry: string
+      sessionTimeout: string
+      ipRestriction: boolean
+      loginAttempts: number
+      lockoutDuration: number
+      allowedIPs: Prisma.JsonValue
+      minPasswordLength: number
+      requireSpecialChars: boolean
+      requireNumbers: boolean
+      requireUppercase: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["securitySettings"]>
+    composites: {}
+  }
+
+  type SecuritySettingsGetPayload<S extends boolean | null | undefined | SecuritySettingsDefaultArgs> = $Result.GetResult<Prisma.$SecuritySettingsPayload, S>
+
+  type SecuritySettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SecuritySettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SecuritySettingsCountAggregateInputType | true
+    }
+
+  export interface SecuritySettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SecuritySettings'], meta: { name: 'SecuritySettings' } }
+    /**
+     * Find zero or one SecuritySettings that matches the filter.
+     * @param {SecuritySettingsFindUniqueArgs} args - Arguments to find a SecuritySettings
+     * @example
+     * // Get one SecuritySettings
+     * const securitySettings = await prisma.securitySettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SecuritySettingsFindUniqueArgs>(args: SelectSubset<T, SecuritySettingsFindUniqueArgs<ExtArgs>>): Prisma__SecuritySettingsClient<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SecuritySettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SecuritySettingsFindUniqueOrThrowArgs} args - Arguments to find a SecuritySettings
+     * @example
+     * // Get one SecuritySettings
+     * const securitySettings = await prisma.securitySettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SecuritySettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, SecuritySettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SecuritySettingsClient<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SecuritySettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecuritySettingsFindFirstArgs} args - Arguments to find a SecuritySettings
+     * @example
+     * // Get one SecuritySettings
+     * const securitySettings = await prisma.securitySettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SecuritySettingsFindFirstArgs>(args?: SelectSubset<T, SecuritySettingsFindFirstArgs<ExtArgs>>): Prisma__SecuritySettingsClient<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SecuritySettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecuritySettingsFindFirstOrThrowArgs} args - Arguments to find a SecuritySettings
+     * @example
+     * // Get one SecuritySettings
+     * const securitySettings = await prisma.securitySettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SecuritySettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, SecuritySettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__SecuritySettingsClient<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SecuritySettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecuritySettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SecuritySettings
+     * const securitySettings = await prisma.securitySettings.findMany()
+     * 
+     * // Get first 10 SecuritySettings
+     * const securitySettings = await prisma.securitySettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const securitySettingsWithIdOnly = await prisma.securitySettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SecuritySettingsFindManyArgs>(args?: SelectSubset<T, SecuritySettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SecuritySettings.
+     * @param {SecuritySettingsCreateArgs} args - Arguments to create a SecuritySettings.
+     * @example
+     * // Create one SecuritySettings
+     * const SecuritySettings = await prisma.securitySettings.create({
+     *   data: {
+     *     // ... data to create a SecuritySettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends SecuritySettingsCreateArgs>(args: SelectSubset<T, SecuritySettingsCreateArgs<ExtArgs>>): Prisma__SecuritySettingsClient<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SecuritySettings.
+     * @param {SecuritySettingsCreateManyArgs} args - Arguments to create many SecuritySettings.
+     * @example
+     * // Create many SecuritySettings
+     * const securitySettings = await prisma.securitySettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SecuritySettingsCreateManyArgs>(args?: SelectSubset<T, SecuritySettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SecuritySettings and returns the data saved in the database.
+     * @param {SecuritySettingsCreateManyAndReturnArgs} args - Arguments to create many SecuritySettings.
+     * @example
+     * // Create many SecuritySettings
+     * const securitySettings = await prisma.securitySettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SecuritySettings and only return the `id`
+     * const securitySettingsWithIdOnly = await prisma.securitySettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SecuritySettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, SecuritySettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SecuritySettings.
+     * @param {SecuritySettingsDeleteArgs} args - Arguments to delete one SecuritySettings.
+     * @example
+     * // Delete one SecuritySettings
+     * const SecuritySettings = await prisma.securitySettings.delete({
+     *   where: {
+     *     // ... filter to delete one SecuritySettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SecuritySettingsDeleteArgs>(args: SelectSubset<T, SecuritySettingsDeleteArgs<ExtArgs>>): Prisma__SecuritySettingsClient<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SecuritySettings.
+     * @param {SecuritySettingsUpdateArgs} args - Arguments to update one SecuritySettings.
+     * @example
+     * // Update one SecuritySettings
+     * const securitySettings = await prisma.securitySettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SecuritySettingsUpdateArgs>(args: SelectSubset<T, SecuritySettingsUpdateArgs<ExtArgs>>): Prisma__SecuritySettingsClient<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SecuritySettings.
+     * @param {SecuritySettingsDeleteManyArgs} args - Arguments to filter SecuritySettings to delete.
+     * @example
+     * // Delete a few SecuritySettings
+     * const { count } = await prisma.securitySettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SecuritySettingsDeleteManyArgs>(args?: SelectSubset<T, SecuritySettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SecuritySettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecuritySettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SecuritySettings
+     * const securitySettings = await prisma.securitySettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SecuritySettingsUpdateManyArgs>(args: SelectSubset<T, SecuritySettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SecuritySettings and returns the data updated in the database.
+     * @param {SecuritySettingsUpdateManyAndReturnArgs} args - Arguments to update many SecuritySettings.
+     * @example
+     * // Update many SecuritySettings
+     * const securitySettings = await prisma.securitySettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SecuritySettings and only return the `id`
+     * const securitySettingsWithIdOnly = await prisma.securitySettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SecuritySettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, SecuritySettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SecuritySettings.
+     * @param {SecuritySettingsUpsertArgs} args - Arguments to update or create a SecuritySettings.
+     * @example
+     * // Update or create a SecuritySettings
+     * const securitySettings = await prisma.securitySettings.upsert({
+     *   create: {
+     *     // ... data to create a SecuritySettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SecuritySettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SecuritySettingsUpsertArgs>(args: SelectSubset<T, SecuritySettingsUpsertArgs<ExtArgs>>): Prisma__SecuritySettingsClient<$Result.GetResult<Prisma.$SecuritySettingsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SecuritySettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecuritySettingsCountArgs} args - Arguments to filter SecuritySettings to count.
+     * @example
+     * // Count the number of SecuritySettings
+     * const count = await prisma.securitySettings.count({
+     *   where: {
+     *     // ... the filter for the SecuritySettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends SecuritySettingsCountArgs>(
+      args?: Subset<T, SecuritySettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SecuritySettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SecuritySettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecuritySettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SecuritySettingsAggregateArgs>(args: Subset<T, SecuritySettingsAggregateArgs>): Prisma.PrismaPromise<GetSecuritySettingsAggregateType<T>>
+
+    /**
+     * Group by SecuritySettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SecuritySettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SecuritySettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SecuritySettingsGroupByArgs['orderBy'] }
+        : { orderBy?: SecuritySettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SecuritySettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSecuritySettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SecuritySettings model
+   */
+  readonly fields: SecuritySettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SecuritySettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SecuritySettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SecuritySettings model
+   */
+  interface SecuritySettingsFieldRefs {
+    readonly id: FieldRef<"SecuritySettings", 'String'>
+    readonly twoFactorAuth: FieldRef<"SecuritySettings", 'Boolean'>
+    readonly passwordExpiry: FieldRef<"SecuritySettings", 'String'>
+    readonly sessionTimeout: FieldRef<"SecuritySettings", 'String'>
+    readonly ipRestriction: FieldRef<"SecuritySettings", 'Boolean'>
+    readonly loginAttempts: FieldRef<"SecuritySettings", 'Int'>
+    readonly lockoutDuration: FieldRef<"SecuritySettings", 'Int'>
+    readonly allowedIPs: FieldRef<"SecuritySettings", 'Json'>
+    readonly minPasswordLength: FieldRef<"SecuritySettings", 'Int'>
+    readonly requireSpecialChars: FieldRef<"SecuritySettings", 'Boolean'>
+    readonly requireNumbers: FieldRef<"SecuritySettings", 'Boolean'>
+    readonly requireUppercase: FieldRef<"SecuritySettings", 'Boolean'>
+    readonly createdAt: FieldRef<"SecuritySettings", 'DateTime'>
+    readonly updatedAt: FieldRef<"SecuritySettings", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SecuritySettings findUnique
+   */
+  export type SecuritySettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SecuritySettings to fetch.
+     */
+    where: SecuritySettingsWhereUniqueInput
+  }
+
+  /**
+   * SecuritySettings findUniqueOrThrow
+   */
+  export type SecuritySettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SecuritySettings to fetch.
+     */
+    where: SecuritySettingsWhereUniqueInput
+  }
+
+  /**
+   * SecuritySettings findFirst
+   */
+  export type SecuritySettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SecuritySettings to fetch.
+     */
+    where?: SecuritySettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SecuritySettings to fetch.
+     */
+    orderBy?: SecuritySettingsOrderByWithRelationInput | SecuritySettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SecuritySettings.
+     */
+    cursor?: SecuritySettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SecuritySettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SecuritySettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SecuritySettings.
+     */
+    distinct?: SecuritySettingsScalarFieldEnum | SecuritySettingsScalarFieldEnum[]
+  }
+
+  /**
+   * SecuritySettings findFirstOrThrow
+   */
+  export type SecuritySettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SecuritySettings to fetch.
+     */
+    where?: SecuritySettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SecuritySettings to fetch.
+     */
+    orderBy?: SecuritySettingsOrderByWithRelationInput | SecuritySettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SecuritySettings.
+     */
+    cursor?: SecuritySettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SecuritySettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SecuritySettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SecuritySettings.
+     */
+    distinct?: SecuritySettingsScalarFieldEnum | SecuritySettingsScalarFieldEnum[]
+  }
+
+  /**
+   * SecuritySettings findMany
+   */
+  export type SecuritySettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * Filter, which SecuritySettings to fetch.
+     */
+    where?: SecuritySettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SecuritySettings to fetch.
+     */
+    orderBy?: SecuritySettingsOrderByWithRelationInput | SecuritySettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SecuritySettings.
+     */
+    cursor?: SecuritySettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SecuritySettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SecuritySettings.
+     */
+    skip?: number
+    distinct?: SecuritySettingsScalarFieldEnum | SecuritySettingsScalarFieldEnum[]
+  }
+
+  /**
+   * SecuritySettings create
+   */
+  export type SecuritySettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to create a SecuritySettings.
+     */
+    data: XOR<SecuritySettingsCreateInput, SecuritySettingsUncheckedCreateInput>
+  }
+
+  /**
+   * SecuritySettings createMany
+   */
+  export type SecuritySettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SecuritySettings.
+     */
+    data: SecuritySettingsCreateManyInput | SecuritySettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SecuritySettings createManyAndReturn
+   */
+  export type SecuritySettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many SecuritySettings.
+     */
+    data: SecuritySettingsCreateManyInput | SecuritySettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SecuritySettings update
+   */
+  export type SecuritySettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * The data needed to update a SecuritySettings.
+     */
+    data: XOR<SecuritySettingsUpdateInput, SecuritySettingsUncheckedUpdateInput>
+    /**
+     * Choose, which SecuritySettings to update.
+     */
+    where: SecuritySettingsWhereUniqueInput
+  }
+
+  /**
+   * SecuritySettings updateMany
+   */
+  export type SecuritySettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SecuritySettings.
+     */
+    data: XOR<SecuritySettingsUpdateManyMutationInput, SecuritySettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which SecuritySettings to update
+     */
+    where?: SecuritySettingsWhereInput
+    /**
+     * Limit how many SecuritySettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SecuritySettings updateManyAndReturn
+   */
+  export type SecuritySettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update SecuritySettings.
+     */
+    data: XOR<SecuritySettingsUpdateManyMutationInput, SecuritySettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which SecuritySettings to update
+     */
+    where?: SecuritySettingsWhereInput
+    /**
+     * Limit how many SecuritySettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SecuritySettings upsert
+   */
+  export type SecuritySettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * The filter to search for the SecuritySettings to update in case it exists.
+     */
+    where: SecuritySettingsWhereUniqueInput
+    /**
+     * In case the SecuritySettings found by the `where` argument doesn't exist, create a new SecuritySettings with this data.
+     */
+    create: XOR<SecuritySettingsCreateInput, SecuritySettingsUncheckedCreateInput>
+    /**
+     * In case the SecuritySettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SecuritySettingsUpdateInput, SecuritySettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * SecuritySettings delete
+   */
+  export type SecuritySettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+    /**
+     * Filter which SecuritySettings to delete.
+     */
+    where: SecuritySettingsWhereUniqueInput
+  }
+
+  /**
+   * SecuritySettings deleteMany
+   */
+  export type SecuritySettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SecuritySettings to delete
+     */
+    where?: SecuritySettingsWhereInput
+    /**
+     * Limit how many SecuritySettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SecuritySettings without action
+   */
+  export type SecuritySettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SecuritySettings
+     */
+    select?: SecuritySettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SecuritySettings
+     */
+    omit?: SecuritySettingsOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ActivityLog
+   */
+
+  export type AggregateActivityLog = {
+    _count: ActivityLogCountAggregateOutputType | null
+    _min: ActivityLogMinAggregateOutputType | null
+    _max: ActivityLogMaxAggregateOutputType | null
+  }
+
+  export type ActivityLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    action: string | null
+    resource: string | null
+    resourceId: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date | null
+  }
+
+  export type ActivityLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    action: string | null
+    resource: string | null
+    resourceId: string | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date | null
+  }
+
+  export type ActivityLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    action: number
+    resource: number
+    resourceId: number
+    details: number
+    ipAddress: number
+    userAgent: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ActivityLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    action?: true
+    resource?: true
+    resourceId?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+  }
+
+  export type ActivityLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    action?: true
+    resource?: true
+    resourceId?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+  }
+
+  export type ActivityLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    action?: true
+    resource?: true
+    resourceId?: true
+    details?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ActivityLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ActivityLog to aggregate.
+     */
+    where?: ActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivityLogs to fetch.
+     */
+    orderBy?: ActivityLogOrderByWithRelationInput | ActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ActivityLogs
+    **/
+    _count?: true | ActivityLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ActivityLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ActivityLogMaxAggregateInputType
+  }
+
+  export type GetActivityLogAggregateType<T extends ActivityLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateActivityLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateActivityLog[P]>
+      : GetScalarType<T[P], AggregateActivityLog[P]>
+  }
+
+
+
+
+  export type ActivityLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ActivityLogWhereInput
+    orderBy?: ActivityLogOrderByWithAggregationInput | ActivityLogOrderByWithAggregationInput[]
+    by: ActivityLogScalarFieldEnum[] | ActivityLogScalarFieldEnum
+    having?: ActivityLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ActivityLogCountAggregateInputType | true
+    _min?: ActivityLogMinAggregateInputType
+    _max?: ActivityLogMaxAggregateInputType
+  }
+
+  export type ActivityLogGroupByOutputType = {
+    id: string
+    userId: string | null
+    action: string
+    resource: string
+    resourceId: string | null
+    details: JsonValue | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date
+    _count: ActivityLogCountAggregateOutputType | null
+    _min: ActivityLogMinAggregateOutputType | null
+    _max: ActivityLogMaxAggregateOutputType | null
+  }
+
+  type GetActivityLogGroupByPayload<T extends ActivityLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ActivityLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ActivityLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ActivityLogGroupByOutputType[P]>
+            : GetScalarType<T[P], ActivityLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ActivityLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    action?: boolean
+    resource?: boolean
+    resourceId?: boolean
+    details?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["activityLog"]>
+
+  export type ActivityLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    action?: boolean
+    resource?: boolean
+    resourceId?: boolean
+    details?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["activityLog"]>
+
+  export type ActivityLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    action?: boolean
+    resource?: boolean
+    resourceId?: boolean
+    details?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["activityLog"]>
+
+  export type ActivityLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    action?: boolean
+    resource?: boolean
+    resourceId?: boolean
+    details?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+  }
+
+  export type ActivityLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "action" | "resource" | "resourceId" | "details" | "ipAddress" | "userAgent" | "createdAt", ExtArgs["result"]["activityLog"]>
+
+  export type $ActivityLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ActivityLog"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string | null
+      action: string
+      resource: string
+      resourceId: string | null
+      details: Prisma.JsonValue | null
+      ipAddress: string | null
+      userAgent: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["activityLog"]>
+    composites: {}
+  }
+
+  type ActivityLogGetPayload<S extends boolean | null | undefined | ActivityLogDefaultArgs> = $Result.GetResult<Prisma.$ActivityLogPayload, S>
+
+  type ActivityLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ActivityLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ActivityLogCountAggregateInputType | true
+    }
+
+  export interface ActivityLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ActivityLog'], meta: { name: 'ActivityLog' } }
+    /**
+     * Find zero or one ActivityLog that matches the filter.
+     * @param {ActivityLogFindUniqueArgs} args - Arguments to find a ActivityLog
+     * @example
+     * // Get one ActivityLog
+     * const activityLog = await prisma.activityLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ActivityLogFindUniqueArgs>(args: SelectSubset<T, ActivityLogFindUniqueArgs<ExtArgs>>): Prisma__ActivityLogClient<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ActivityLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ActivityLogFindUniqueOrThrowArgs} args - Arguments to find a ActivityLog
+     * @example
+     * // Get one ActivityLog
+     * const activityLog = await prisma.activityLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ActivityLogFindUniqueOrThrowArgs>(args: SelectSubset<T, ActivityLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ActivityLogClient<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ActivityLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityLogFindFirstArgs} args - Arguments to find a ActivityLog
+     * @example
+     * // Get one ActivityLog
+     * const activityLog = await prisma.activityLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ActivityLogFindFirstArgs>(args?: SelectSubset<T, ActivityLogFindFirstArgs<ExtArgs>>): Prisma__ActivityLogClient<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ActivityLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityLogFindFirstOrThrowArgs} args - Arguments to find a ActivityLog
+     * @example
+     * // Get one ActivityLog
+     * const activityLog = await prisma.activityLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ActivityLogFindFirstOrThrowArgs>(args?: SelectSubset<T, ActivityLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__ActivityLogClient<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ActivityLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ActivityLogs
+     * const activityLogs = await prisma.activityLog.findMany()
+     * 
+     * // Get first 10 ActivityLogs
+     * const activityLogs = await prisma.activityLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const activityLogWithIdOnly = await prisma.activityLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ActivityLogFindManyArgs>(args?: SelectSubset<T, ActivityLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ActivityLog.
+     * @param {ActivityLogCreateArgs} args - Arguments to create a ActivityLog.
+     * @example
+     * // Create one ActivityLog
+     * const ActivityLog = await prisma.activityLog.create({
+     *   data: {
+     *     // ... data to create a ActivityLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends ActivityLogCreateArgs>(args: SelectSubset<T, ActivityLogCreateArgs<ExtArgs>>): Prisma__ActivityLogClient<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ActivityLogs.
+     * @param {ActivityLogCreateManyArgs} args - Arguments to create many ActivityLogs.
+     * @example
+     * // Create many ActivityLogs
+     * const activityLog = await prisma.activityLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ActivityLogCreateManyArgs>(args?: SelectSubset<T, ActivityLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ActivityLogs and returns the data saved in the database.
+     * @param {ActivityLogCreateManyAndReturnArgs} args - Arguments to create many ActivityLogs.
+     * @example
+     * // Create many ActivityLogs
+     * const activityLog = await prisma.activityLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ActivityLogs and only return the `id`
+     * const activityLogWithIdOnly = await prisma.activityLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ActivityLogCreateManyAndReturnArgs>(args?: SelectSubset<T, ActivityLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ActivityLog.
+     * @param {ActivityLogDeleteArgs} args - Arguments to delete one ActivityLog.
+     * @example
+     * // Delete one ActivityLog
+     * const ActivityLog = await prisma.activityLog.delete({
+     *   where: {
+     *     // ... filter to delete one ActivityLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ActivityLogDeleteArgs>(args: SelectSubset<T, ActivityLogDeleteArgs<ExtArgs>>): Prisma__ActivityLogClient<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ActivityLog.
+     * @param {ActivityLogUpdateArgs} args - Arguments to update one ActivityLog.
+     * @example
+     * // Update one ActivityLog
+     * const activityLog = await prisma.activityLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ActivityLogUpdateArgs>(args: SelectSubset<T, ActivityLogUpdateArgs<ExtArgs>>): Prisma__ActivityLogClient<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ActivityLogs.
+     * @param {ActivityLogDeleteManyArgs} args - Arguments to filter ActivityLogs to delete.
+     * @example
+     * // Delete a few ActivityLogs
+     * const { count } = await prisma.activityLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ActivityLogDeleteManyArgs>(args?: SelectSubset<T, ActivityLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ActivityLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ActivityLogs
+     * const activityLog = await prisma.activityLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ActivityLogUpdateManyArgs>(args: SelectSubset<T, ActivityLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ActivityLogs and returns the data updated in the database.
+     * @param {ActivityLogUpdateManyAndReturnArgs} args - Arguments to update many ActivityLogs.
+     * @example
+     * // Update many ActivityLogs
+     * const activityLog = await prisma.activityLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ActivityLogs and only return the `id`
+     * const activityLogWithIdOnly = await prisma.activityLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ActivityLogUpdateManyAndReturnArgs>(args: SelectSubset<T, ActivityLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ActivityLog.
+     * @param {ActivityLogUpsertArgs} args - Arguments to update or create a ActivityLog.
+     * @example
+     * // Update or create a ActivityLog
+     * const activityLog = await prisma.activityLog.upsert({
+     *   create: {
+     *     // ... data to create a ActivityLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ActivityLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ActivityLogUpsertArgs>(args: SelectSubset<T, ActivityLogUpsertArgs<ExtArgs>>): Prisma__ActivityLogClient<$Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ActivityLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityLogCountArgs} args - Arguments to filter ActivityLogs to count.
+     * @example
+     * // Count the number of ActivityLogs
+     * const count = await prisma.activityLog.count({
+     *   where: {
+     *     // ... the filter for the ActivityLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ActivityLogCountArgs>(
+      args?: Subset<T, ActivityLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ActivityLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ActivityLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ActivityLogAggregateArgs>(args: Subset<T, ActivityLogAggregateArgs>): Prisma.PrismaPromise<GetActivityLogAggregateType<T>>
+
+    /**
+     * Group by ActivityLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivityLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ActivityLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ActivityLogGroupByArgs['orderBy'] }
+        : { orderBy?: ActivityLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ActivityLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetActivityLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ActivityLog model
+   */
+  readonly fields: ActivityLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ActivityLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ActivityLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ActivityLog model
+   */
+  interface ActivityLogFieldRefs {
+    readonly id: FieldRef<"ActivityLog", 'String'>
+    readonly userId: FieldRef<"ActivityLog", 'String'>
+    readonly action: FieldRef<"ActivityLog", 'String'>
+    readonly resource: FieldRef<"ActivityLog", 'String'>
+    readonly resourceId: FieldRef<"ActivityLog", 'String'>
+    readonly details: FieldRef<"ActivityLog", 'Json'>
+    readonly ipAddress: FieldRef<"ActivityLog", 'String'>
+    readonly userAgent: FieldRef<"ActivityLog", 'String'>
+    readonly createdAt: FieldRef<"ActivityLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ActivityLog findUnique
+   */
+  export type ActivityLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which ActivityLog to fetch.
+     */
+    where: ActivityLogWhereUniqueInput
+  }
+
+  /**
+   * ActivityLog findUniqueOrThrow
+   */
+  export type ActivityLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which ActivityLog to fetch.
+     */
+    where: ActivityLogWhereUniqueInput
+  }
+
+  /**
+   * ActivityLog findFirst
+   */
+  export type ActivityLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which ActivityLog to fetch.
+     */
+    where?: ActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivityLogs to fetch.
+     */
+    orderBy?: ActivityLogOrderByWithRelationInput | ActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ActivityLogs.
+     */
+    cursor?: ActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ActivityLogs.
+     */
+    distinct?: ActivityLogScalarFieldEnum | ActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * ActivityLog findFirstOrThrow
+   */
+  export type ActivityLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which ActivityLog to fetch.
+     */
+    where?: ActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivityLogs to fetch.
+     */
+    orderBy?: ActivityLogOrderByWithRelationInput | ActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ActivityLogs.
+     */
+    cursor?: ActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivityLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ActivityLogs.
+     */
+    distinct?: ActivityLogScalarFieldEnum | ActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * ActivityLog findMany
+   */
+  export type ActivityLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter, which ActivityLogs to fetch.
+     */
+    where?: ActivityLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivityLogs to fetch.
+     */
+    orderBy?: ActivityLogOrderByWithRelationInput | ActivityLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ActivityLogs.
+     */
+    cursor?: ActivityLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivityLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivityLogs.
+     */
+    skip?: number
+    distinct?: ActivityLogScalarFieldEnum | ActivityLogScalarFieldEnum[]
+  }
+
+  /**
+   * ActivityLog create
+   */
+  export type ActivityLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ActivityLog.
+     */
+    data: XOR<ActivityLogCreateInput, ActivityLogUncheckedCreateInput>
+  }
+
+  /**
+   * ActivityLog createMany
+   */
+  export type ActivityLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ActivityLogs.
+     */
+    data: ActivityLogCreateManyInput | ActivityLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ActivityLog createManyAndReturn
+   */
+  export type ActivityLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many ActivityLogs.
+     */
+    data: ActivityLogCreateManyInput | ActivityLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ActivityLog update
+   */
+  export type ActivityLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ActivityLog.
+     */
+    data: XOR<ActivityLogUpdateInput, ActivityLogUncheckedUpdateInput>
+    /**
+     * Choose, which ActivityLog to update.
+     */
+    where: ActivityLogWhereUniqueInput
+  }
+
+  /**
+   * ActivityLog updateMany
+   */
+  export type ActivityLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ActivityLogs.
+     */
+    data: XOR<ActivityLogUpdateManyMutationInput, ActivityLogUncheckedUpdateManyInput>
+    /**
+     * Filter which ActivityLogs to update
+     */
+    where?: ActivityLogWhereInput
+    /**
+     * Limit how many ActivityLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ActivityLog updateManyAndReturn
+   */
+  export type ActivityLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * The data used to update ActivityLogs.
+     */
+    data: XOR<ActivityLogUpdateManyMutationInput, ActivityLogUncheckedUpdateManyInput>
+    /**
+     * Filter which ActivityLogs to update
+     */
+    where?: ActivityLogWhereInput
+    /**
+     * Limit how many ActivityLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ActivityLog upsert
+   */
+  export type ActivityLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ActivityLog to update in case it exists.
+     */
+    where: ActivityLogWhereUniqueInput
+    /**
+     * In case the ActivityLog found by the `where` argument doesn't exist, create a new ActivityLog with this data.
+     */
+    create: XOR<ActivityLogCreateInput, ActivityLogUncheckedCreateInput>
+    /**
+     * In case the ActivityLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ActivityLogUpdateInput, ActivityLogUncheckedUpdateInput>
+  }
+
+  /**
+   * ActivityLog delete
+   */
+  export type ActivityLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+    /**
+     * Filter which ActivityLog to delete.
+     */
+    where: ActivityLogWhereUniqueInput
+  }
+
+  /**
+   * ActivityLog deleteMany
+   */
+  export type ActivityLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ActivityLogs to delete
+     */
+    where?: ActivityLogWhereInput
+    /**
+     * Limit how many ActivityLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ActivityLog without action
+   */
+  export type ActivityLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivityLog
+     */
+    select?: ActivityLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivityLog
+     */
+    omit?: ActivityLogOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18114,12 +25330,141 @@ export namespace Prisma {
   export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
 
 
+  export const RestaurantSettingsScalarFieldEnum: {
+    id: 'id',
+    siteName: 'siteName',
+    contactEmail: 'contactEmail',
+    phoneNumber: 'phoneNumber',
+    address: 'address',
+    timezone: 'timezone',
+    currency: 'currency',
+    taxRate: 'taxRate',
+    operatingHours: 'operatingHours',
+    deliveryEnabled: 'deliveryEnabled',
+    deliveryFee: 'deliveryFee',
+    minimumOrder: 'minimumOrder',
+    deliveryRadius: 'deliveryRadius',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RestaurantSettingsScalarFieldEnum = (typeof RestaurantSettingsScalarFieldEnum)[keyof typeof RestaurantSettingsScalarFieldEnum]
+
+
+  export const NotificationSettingsScalarFieldEnum: {
+    id: 'id',
+    emailNotifications: 'emailNotifications',
+    newUserNotifications: 'newUserNotifications',
+    newOrderNotifications: 'newOrderNotifications',
+    systemUpdates: 'systemUpdates',
+    marketingEmails: 'marketingEmails',
+    smsNotifications: 'smsNotifications',
+    smsOrderUpdates: 'smsOrderUpdates',
+    pushNotifications: 'pushNotifications',
+    pushOrderAlerts: 'pushOrderAlerts',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NotificationSettingsScalarFieldEnum = (typeof NotificationSettingsScalarFieldEnum)[keyof typeof NotificationSettingsScalarFieldEnum]
+
+
+  export const AppearanceSettingsScalarFieldEnum: {
+    id: 'id',
+    theme: 'theme',
+    accentColor: 'accentColor',
+    menuLayout: 'menuLayout',
+    animationsEnabled: 'animationsEnabled',
+    logoUrl: 'logoUrl',
+    faviconUrl: 'faviconUrl',
+    brandColor: 'brandColor',
+    showPrices: 'showPrices',
+    showDescription: 'showDescription',
+    showImages: 'showImages',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AppearanceSettingsScalarFieldEnum = (typeof AppearanceSettingsScalarFieldEnum)[keyof typeof AppearanceSettingsScalarFieldEnum]
+
+
+  export const IntegrationSettingsScalarFieldEnum: {
+    id: 'id',
+    googleAnalyticsId: 'googleAnalyticsId',
+    facebookPixelId: 'facebookPixelId',
+    mailchimpApiKey: 'mailchimpApiKey',
+    mailchimpListId: 'mailchimpListId',
+    stripePublicKey: 'stripePublicKey',
+    stripeSecretKey: 'stripeSecretKey',
+    paypalClientId: 'paypalClientId',
+    facebookPageId: 'facebookPageId',
+    instagramUsername: 'instagramUsername',
+    twitterHandle: 'twitterHandle',
+    posSystemType: 'posSystemType',
+    posApiKey: 'posApiKey',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type IntegrationSettingsScalarFieldEnum = (typeof IntegrationSettingsScalarFieldEnum)[keyof typeof IntegrationSettingsScalarFieldEnum]
+
+
+  export const SecuritySettingsScalarFieldEnum: {
+    id: 'id',
+    twoFactorAuth: 'twoFactorAuth',
+    passwordExpiry: 'passwordExpiry',
+    sessionTimeout: 'sessionTimeout',
+    ipRestriction: 'ipRestriction',
+    loginAttempts: 'loginAttempts',
+    lockoutDuration: 'lockoutDuration',
+    allowedIPs: 'allowedIPs',
+    minPasswordLength: 'minPasswordLength',
+    requireSpecialChars: 'requireSpecialChars',
+    requireNumbers: 'requireNumbers',
+    requireUppercase: 'requireUppercase',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SecuritySettingsScalarFieldEnum = (typeof SecuritySettingsScalarFieldEnum)[keyof typeof SecuritySettingsScalarFieldEnum]
+
+
+  export const ActivityLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    action: 'action',
+    resource: 'resource',
+    resourceId: 'resourceId',
+    details: 'details',
+    ipAddress: 'ipAddress',
+    userAgent: 'userAgent',
+    createdAt: 'createdAt'
+  };
+
+  export type ActivityLogScalarFieldEnum = (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -18136,6 +25481,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -18217,6 +25571,20 @@ export namespace Prisma {
    * Reference to a field of type 'ApplicationStatus[]'
    */
   export type ListEnumApplicationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApplicationStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
   /**
    * Deep Input Types
@@ -19282,6 +26650,562 @@ export namespace Prisma {
     positionId?: StringWithAggregatesFilter<"JobApplication"> | string
     createdAt?: DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
+  }
+
+  export type RestaurantSettingsWhereInput = {
+    AND?: RestaurantSettingsWhereInput | RestaurantSettingsWhereInput[]
+    OR?: RestaurantSettingsWhereInput[]
+    NOT?: RestaurantSettingsWhereInput | RestaurantSettingsWhereInput[]
+    id?: StringFilter<"RestaurantSettings"> | string
+    siteName?: StringFilter<"RestaurantSettings"> | string
+    contactEmail?: StringFilter<"RestaurantSettings"> | string
+    phoneNumber?: StringFilter<"RestaurantSettings"> | string
+    address?: StringFilter<"RestaurantSettings"> | string
+    timezone?: StringFilter<"RestaurantSettings"> | string
+    currency?: StringFilter<"RestaurantSettings"> | string
+    taxRate?: FloatFilter<"RestaurantSettings"> | number
+    operatingHours?: JsonFilter<"RestaurantSettings">
+    deliveryEnabled?: BoolFilter<"RestaurantSettings"> | boolean
+    deliveryFee?: FloatFilter<"RestaurantSettings"> | number
+    minimumOrder?: FloatFilter<"RestaurantSettings"> | number
+    deliveryRadius?: FloatFilter<"RestaurantSettings"> | number
+    createdAt?: DateTimeFilter<"RestaurantSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"RestaurantSettings"> | Date | string
+  }
+
+  export type RestaurantSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    siteName?: SortOrder
+    contactEmail?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+    timezone?: SortOrder
+    currency?: SortOrder
+    taxRate?: SortOrder
+    operatingHours?: SortOrder
+    deliveryEnabled?: SortOrder
+    deliveryFee?: SortOrder
+    minimumOrder?: SortOrder
+    deliveryRadius?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RestaurantSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RestaurantSettingsWhereInput | RestaurantSettingsWhereInput[]
+    OR?: RestaurantSettingsWhereInput[]
+    NOT?: RestaurantSettingsWhereInput | RestaurantSettingsWhereInput[]
+    siteName?: StringFilter<"RestaurantSettings"> | string
+    contactEmail?: StringFilter<"RestaurantSettings"> | string
+    phoneNumber?: StringFilter<"RestaurantSettings"> | string
+    address?: StringFilter<"RestaurantSettings"> | string
+    timezone?: StringFilter<"RestaurantSettings"> | string
+    currency?: StringFilter<"RestaurantSettings"> | string
+    taxRate?: FloatFilter<"RestaurantSettings"> | number
+    operatingHours?: JsonFilter<"RestaurantSettings">
+    deliveryEnabled?: BoolFilter<"RestaurantSettings"> | boolean
+    deliveryFee?: FloatFilter<"RestaurantSettings"> | number
+    minimumOrder?: FloatFilter<"RestaurantSettings"> | number
+    deliveryRadius?: FloatFilter<"RestaurantSettings"> | number
+    createdAt?: DateTimeFilter<"RestaurantSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"RestaurantSettings"> | Date | string
+  }, "id">
+
+  export type RestaurantSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    siteName?: SortOrder
+    contactEmail?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+    timezone?: SortOrder
+    currency?: SortOrder
+    taxRate?: SortOrder
+    operatingHours?: SortOrder
+    deliveryEnabled?: SortOrder
+    deliveryFee?: SortOrder
+    minimumOrder?: SortOrder
+    deliveryRadius?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RestaurantSettingsCountOrderByAggregateInput
+    _avg?: RestaurantSettingsAvgOrderByAggregateInput
+    _max?: RestaurantSettingsMaxOrderByAggregateInput
+    _min?: RestaurantSettingsMinOrderByAggregateInput
+    _sum?: RestaurantSettingsSumOrderByAggregateInput
+  }
+
+  export type RestaurantSettingsScalarWhereWithAggregatesInput = {
+    AND?: RestaurantSettingsScalarWhereWithAggregatesInput | RestaurantSettingsScalarWhereWithAggregatesInput[]
+    OR?: RestaurantSettingsScalarWhereWithAggregatesInput[]
+    NOT?: RestaurantSettingsScalarWhereWithAggregatesInput | RestaurantSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RestaurantSettings"> | string
+    siteName?: StringWithAggregatesFilter<"RestaurantSettings"> | string
+    contactEmail?: StringWithAggregatesFilter<"RestaurantSettings"> | string
+    phoneNumber?: StringWithAggregatesFilter<"RestaurantSettings"> | string
+    address?: StringWithAggregatesFilter<"RestaurantSettings"> | string
+    timezone?: StringWithAggregatesFilter<"RestaurantSettings"> | string
+    currency?: StringWithAggregatesFilter<"RestaurantSettings"> | string
+    taxRate?: FloatWithAggregatesFilter<"RestaurantSettings"> | number
+    operatingHours?: JsonWithAggregatesFilter<"RestaurantSettings">
+    deliveryEnabled?: BoolWithAggregatesFilter<"RestaurantSettings"> | boolean
+    deliveryFee?: FloatWithAggregatesFilter<"RestaurantSettings"> | number
+    minimumOrder?: FloatWithAggregatesFilter<"RestaurantSettings"> | number
+    deliveryRadius?: FloatWithAggregatesFilter<"RestaurantSettings"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"RestaurantSettings"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RestaurantSettings"> | Date | string
+  }
+
+  export type NotificationSettingsWhereInput = {
+    AND?: NotificationSettingsWhereInput | NotificationSettingsWhereInput[]
+    OR?: NotificationSettingsWhereInput[]
+    NOT?: NotificationSettingsWhereInput | NotificationSettingsWhereInput[]
+    id?: StringFilter<"NotificationSettings"> | string
+    emailNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    newUserNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    newOrderNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    systemUpdates?: BoolFilter<"NotificationSettings"> | boolean
+    marketingEmails?: BoolFilter<"NotificationSettings"> | boolean
+    smsNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    smsOrderUpdates?: BoolFilter<"NotificationSettings"> | boolean
+    pushNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    pushOrderAlerts?: BoolFilter<"NotificationSettings"> | boolean
+    createdAt?: DateTimeFilter<"NotificationSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"NotificationSettings"> | Date | string
+  }
+
+  export type NotificationSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    emailNotifications?: SortOrder
+    newUserNotifications?: SortOrder
+    newOrderNotifications?: SortOrder
+    systemUpdates?: SortOrder
+    marketingEmails?: SortOrder
+    smsNotifications?: SortOrder
+    smsOrderUpdates?: SortOrder
+    pushNotifications?: SortOrder
+    pushOrderAlerts?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: NotificationSettingsWhereInput | NotificationSettingsWhereInput[]
+    OR?: NotificationSettingsWhereInput[]
+    NOT?: NotificationSettingsWhereInput | NotificationSettingsWhereInput[]
+    emailNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    newUserNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    newOrderNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    systemUpdates?: BoolFilter<"NotificationSettings"> | boolean
+    marketingEmails?: BoolFilter<"NotificationSettings"> | boolean
+    smsNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    smsOrderUpdates?: BoolFilter<"NotificationSettings"> | boolean
+    pushNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    pushOrderAlerts?: BoolFilter<"NotificationSettings"> | boolean
+    createdAt?: DateTimeFilter<"NotificationSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"NotificationSettings"> | Date | string
+  }, "id">
+
+  export type NotificationSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    emailNotifications?: SortOrder
+    newUserNotifications?: SortOrder
+    newOrderNotifications?: SortOrder
+    systemUpdates?: SortOrder
+    marketingEmails?: SortOrder
+    smsNotifications?: SortOrder
+    smsOrderUpdates?: SortOrder
+    pushNotifications?: SortOrder
+    pushOrderAlerts?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NotificationSettingsCountOrderByAggregateInput
+    _max?: NotificationSettingsMaxOrderByAggregateInput
+    _min?: NotificationSettingsMinOrderByAggregateInput
+  }
+
+  export type NotificationSettingsScalarWhereWithAggregatesInput = {
+    AND?: NotificationSettingsScalarWhereWithAggregatesInput | NotificationSettingsScalarWhereWithAggregatesInput[]
+    OR?: NotificationSettingsScalarWhereWithAggregatesInput[]
+    NOT?: NotificationSettingsScalarWhereWithAggregatesInput | NotificationSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"NotificationSettings"> | string
+    emailNotifications?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    newUserNotifications?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    newOrderNotifications?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    systemUpdates?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    marketingEmails?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    smsNotifications?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    smsOrderUpdates?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    pushNotifications?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    pushOrderAlerts?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"NotificationSettings"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"NotificationSettings"> | Date | string
+  }
+
+  export type AppearanceSettingsWhereInput = {
+    AND?: AppearanceSettingsWhereInput | AppearanceSettingsWhereInput[]
+    OR?: AppearanceSettingsWhereInput[]
+    NOT?: AppearanceSettingsWhereInput | AppearanceSettingsWhereInput[]
+    id?: StringFilter<"AppearanceSettings"> | string
+    theme?: StringFilter<"AppearanceSettings"> | string
+    accentColor?: StringFilter<"AppearanceSettings"> | string
+    menuLayout?: StringFilter<"AppearanceSettings"> | string
+    animationsEnabled?: BoolFilter<"AppearanceSettings"> | boolean
+    logoUrl?: StringNullableFilter<"AppearanceSettings"> | string | null
+    faviconUrl?: StringNullableFilter<"AppearanceSettings"> | string | null
+    brandColor?: StringFilter<"AppearanceSettings"> | string
+    showPrices?: BoolFilter<"AppearanceSettings"> | boolean
+    showDescription?: BoolFilter<"AppearanceSettings"> | boolean
+    showImages?: BoolFilter<"AppearanceSettings"> | boolean
+    createdAt?: DateTimeFilter<"AppearanceSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"AppearanceSettings"> | Date | string
+  }
+
+  export type AppearanceSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    theme?: SortOrder
+    accentColor?: SortOrder
+    menuLayout?: SortOrder
+    animationsEnabled?: SortOrder
+    logoUrl?: SortOrderInput | SortOrder
+    faviconUrl?: SortOrderInput | SortOrder
+    brandColor?: SortOrder
+    showPrices?: SortOrder
+    showDescription?: SortOrder
+    showImages?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AppearanceSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AppearanceSettingsWhereInput | AppearanceSettingsWhereInput[]
+    OR?: AppearanceSettingsWhereInput[]
+    NOT?: AppearanceSettingsWhereInput | AppearanceSettingsWhereInput[]
+    theme?: StringFilter<"AppearanceSettings"> | string
+    accentColor?: StringFilter<"AppearanceSettings"> | string
+    menuLayout?: StringFilter<"AppearanceSettings"> | string
+    animationsEnabled?: BoolFilter<"AppearanceSettings"> | boolean
+    logoUrl?: StringNullableFilter<"AppearanceSettings"> | string | null
+    faviconUrl?: StringNullableFilter<"AppearanceSettings"> | string | null
+    brandColor?: StringFilter<"AppearanceSettings"> | string
+    showPrices?: BoolFilter<"AppearanceSettings"> | boolean
+    showDescription?: BoolFilter<"AppearanceSettings"> | boolean
+    showImages?: BoolFilter<"AppearanceSettings"> | boolean
+    createdAt?: DateTimeFilter<"AppearanceSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"AppearanceSettings"> | Date | string
+  }, "id">
+
+  export type AppearanceSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    theme?: SortOrder
+    accentColor?: SortOrder
+    menuLayout?: SortOrder
+    animationsEnabled?: SortOrder
+    logoUrl?: SortOrderInput | SortOrder
+    faviconUrl?: SortOrderInput | SortOrder
+    brandColor?: SortOrder
+    showPrices?: SortOrder
+    showDescription?: SortOrder
+    showImages?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AppearanceSettingsCountOrderByAggregateInput
+    _max?: AppearanceSettingsMaxOrderByAggregateInput
+    _min?: AppearanceSettingsMinOrderByAggregateInput
+  }
+
+  export type AppearanceSettingsScalarWhereWithAggregatesInput = {
+    AND?: AppearanceSettingsScalarWhereWithAggregatesInput | AppearanceSettingsScalarWhereWithAggregatesInput[]
+    OR?: AppearanceSettingsScalarWhereWithAggregatesInput[]
+    NOT?: AppearanceSettingsScalarWhereWithAggregatesInput | AppearanceSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AppearanceSettings"> | string
+    theme?: StringWithAggregatesFilter<"AppearanceSettings"> | string
+    accentColor?: StringWithAggregatesFilter<"AppearanceSettings"> | string
+    menuLayout?: StringWithAggregatesFilter<"AppearanceSettings"> | string
+    animationsEnabled?: BoolWithAggregatesFilter<"AppearanceSettings"> | boolean
+    logoUrl?: StringNullableWithAggregatesFilter<"AppearanceSettings"> | string | null
+    faviconUrl?: StringNullableWithAggregatesFilter<"AppearanceSettings"> | string | null
+    brandColor?: StringWithAggregatesFilter<"AppearanceSettings"> | string
+    showPrices?: BoolWithAggregatesFilter<"AppearanceSettings"> | boolean
+    showDescription?: BoolWithAggregatesFilter<"AppearanceSettings"> | boolean
+    showImages?: BoolWithAggregatesFilter<"AppearanceSettings"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"AppearanceSettings"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AppearanceSettings"> | Date | string
+  }
+
+  export type IntegrationSettingsWhereInput = {
+    AND?: IntegrationSettingsWhereInput | IntegrationSettingsWhereInput[]
+    OR?: IntegrationSettingsWhereInput[]
+    NOT?: IntegrationSettingsWhereInput | IntegrationSettingsWhereInput[]
+    id?: StringFilter<"IntegrationSettings"> | string
+    googleAnalyticsId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    facebookPixelId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    mailchimpApiKey?: StringNullableFilter<"IntegrationSettings"> | string | null
+    mailchimpListId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    stripePublicKey?: StringNullableFilter<"IntegrationSettings"> | string | null
+    stripeSecretKey?: StringNullableFilter<"IntegrationSettings"> | string | null
+    paypalClientId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    facebookPageId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    instagramUsername?: StringNullableFilter<"IntegrationSettings"> | string | null
+    twitterHandle?: StringNullableFilter<"IntegrationSettings"> | string | null
+    posSystemType?: StringNullableFilter<"IntegrationSettings"> | string | null
+    posApiKey?: StringNullableFilter<"IntegrationSettings"> | string | null
+    createdAt?: DateTimeFilter<"IntegrationSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"IntegrationSettings"> | Date | string
+  }
+
+  export type IntegrationSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    googleAnalyticsId?: SortOrderInput | SortOrder
+    facebookPixelId?: SortOrderInput | SortOrder
+    mailchimpApiKey?: SortOrderInput | SortOrder
+    mailchimpListId?: SortOrderInput | SortOrder
+    stripePublicKey?: SortOrderInput | SortOrder
+    stripeSecretKey?: SortOrderInput | SortOrder
+    paypalClientId?: SortOrderInput | SortOrder
+    facebookPageId?: SortOrderInput | SortOrder
+    instagramUsername?: SortOrderInput | SortOrder
+    twitterHandle?: SortOrderInput | SortOrder
+    posSystemType?: SortOrderInput | SortOrder
+    posApiKey?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntegrationSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: IntegrationSettingsWhereInput | IntegrationSettingsWhereInput[]
+    OR?: IntegrationSettingsWhereInput[]
+    NOT?: IntegrationSettingsWhereInput | IntegrationSettingsWhereInput[]
+    googleAnalyticsId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    facebookPixelId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    mailchimpApiKey?: StringNullableFilter<"IntegrationSettings"> | string | null
+    mailchimpListId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    stripePublicKey?: StringNullableFilter<"IntegrationSettings"> | string | null
+    stripeSecretKey?: StringNullableFilter<"IntegrationSettings"> | string | null
+    paypalClientId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    facebookPageId?: StringNullableFilter<"IntegrationSettings"> | string | null
+    instagramUsername?: StringNullableFilter<"IntegrationSettings"> | string | null
+    twitterHandle?: StringNullableFilter<"IntegrationSettings"> | string | null
+    posSystemType?: StringNullableFilter<"IntegrationSettings"> | string | null
+    posApiKey?: StringNullableFilter<"IntegrationSettings"> | string | null
+    createdAt?: DateTimeFilter<"IntegrationSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"IntegrationSettings"> | Date | string
+  }, "id">
+
+  export type IntegrationSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    googleAnalyticsId?: SortOrderInput | SortOrder
+    facebookPixelId?: SortOrderInput | SortOrder
+    mailchimpApiKey?: SortOrderInput | SortOrder
+    mailchimpListId?: SortOrderInput | SortOrder
+    stripePublicKey?: SortOrderInput | SortOrder
+    stripeSecretKey?: SortOrderInput | SortOrder
+    paypalClientId?: SortOrderInput | SortOrder
+    facebookPageId?: SortOrderInput | SortOrder
+    instagramUsername?: SortOrderInput | SortOrder
+    twitterHandle?: SortOrderInput | SortOrder
+    posSystemType?: SortOrderInput | SortOrder
+    posApiKey?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: IntegrationSettingsCountOrderByAggregateInput
+    _max?: IntegrationSettingsMaxOrderByAggregateInput
+    _min?: IntegrationSettingsMinOrderByAggregateInput
+  }
+
+  export type IntegrationSettingsScalarWhereWithAggregatesInput = {
+    AND?: IntegrationSettingsScalarWhereWithAggregatesInput | IntegrationSettingsScalarWhereWithAggregatesInput[]
+    OR?: IntegrationSettingsScalarWhereWithAggregatesInput[]
+    NOT?: IntegrationSettingsScalarWhereWithAggregatesInput | IntegrationSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"IntegrationSettings"> | string
+    googleAnalyticsId?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    facebookPixelId?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    mailchimpApiKey?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    mailchimpListId?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    stripePublicKey?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    stripeSecretKey?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    paypalClientId?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    facebookPageId?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    instagramUsername?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    twitterHandle?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    posSystemType?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    posApiKey?: StringNullableWithAggregatesFilter<"IntegrationSettings"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"IntegrationSettings"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"IntegrationSettings"> | Date | string
+  }
+
+  export type SecuritySettingsWhereInput = {
+    AND?: SecuritySettingsWhereInput | SecuritySettingsWhereInput[]
+    OR?: SecuritySettingsWhereInput[]
+    NOT?: SecuritySettingsWhereInput | SecuritySettingsWhereInput[]
+    id?: StringFilter<"SecuritySettings"> | string
+    twoFactorAuth?: BoolFilter<"SecuritySettings"> | boolean
+    passwordExpiry?: StringFilter<"SecuritySettings"> | string
+    sessionTimeout?: StringFilter<"SecuritySettings"> | string
+    ipRestriction?: BoolFilter<"SecuritySettings"> | boolean
+    loginAttempts?: IntFilter<"SecuritySettings"> | number
+    lockoutDuration?: IntFilter<"SecuritySettings"> | number
+    allowedIPs?: JsonFilter<"SecuritySettings">
+    minPasswordLength?: IntFilter<"SecuritySettings"> | number
+    requireSpecialChars?: BoolFilter<"SecuritySettings"> | boolean
+    requireNumbers?: BoolFilter<"SecuritySettings"> | boolean
+    requireUppercase?: BoolFilter<"SecuritySettings"> | boolean
+    createdAt?: DateTimeFilter<"SecuritySettings"> | Date | string
+    updatedAt?: DateTimeFilter<"SecuritySettings"> | Date | string
+  }
+
+  export type SecuritySettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    twoFactorAuth?: SortOrder
+    passwordExpiry?: SortOrder
+    sessionTimeout?: SortOrder
+    ipRestriction?: SortOrder
+    loginAttempts?: SortOrder
+    lockoutDuration?: SortOrder
+    allowedIPs?: SortOrder
+    minPasswordLength?: SortOrder
+    requireSpecialChars?: SortOrder
+    requireNumbers?: SortOrder
+    requireUppercase?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SecuritySettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SecuritySettingsWhereInput | SecuritySettingsWhereInput[]
+    OR?: SecuritySettingsWhereInput[]
+    NOT?: SecuritySettingsWhereInput | SecuritySettingsWhereInput[]
+    twoFactorAuth?: BoolFilter<"SecuritySettings"> | boolean
+    passwordExpiry?: StringFilter<"SecuritySettings"> | string
+    sessionTimeout?: StringFilter<"SecuritySettings"> | string
+    ipRestriction?: BoolFilter<"SecuritySettings"> | boolean
+    loginAttempts?: IntFilter<"SecuritySettings"> | number
+    lockoutDuration?: IntFilter<"SecuritySettings"> | number
+    allowedIPs?: JsonFilter<"SecuritySettings">
+    minPasswordLength?: IntFilter<"SecuritySettings"> | number
+    requireSpecialChars?: BoolFilter<"SecuritySettings"> | boolean
+    requireNumbers?: BoolFilter<"SecuritySettings"> | boolean
+    requireUppercase?: BoolFilter<"SecuritySettings"> | boolean
+    createdAt?: DateTimeFilter<"SecuritySettings"> | Date | string
+    updatedAt?: DateTimeFilter<"SecuritySettings"> | Date | string
+  }, "id">
+
+  export type SecuritySettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    twoFactorAuth?: SortOrder
+    passwordExpiry?: SortOrder
+    sessionTimeout?: SortOrder
+    ipRestriction?: SortOrder
+    loginAttempts?: SortOrder
+    lockoutDuration?: SortOrder
+    allowedIPs?: SortOrder
+    minPasswordLength?: SortOrder
+    requireSpecialChars?: SortOrder
+    requireNumbers?: SortOrder
+    requireUppercase?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SecuritySettingsCountOrderByAggregateInput
+    _avg?: SecuritySettingsAvgOrderByAggregateInput
+    _max?: SecuritySettingsMaxOrderByAggregateInput
+    _min?: SecuritySettingsMinOrderByAggregateInput
+    _sum?: SecuritySettingsSumOrderByAggregateInput
+  }
+
+  export type SecuritySettingsScalarWhereWithAggregatesInput = {
+    AND?: SecuritySettingsScalarWhereWithAggregatesInput | SecuritySettingsScalarWhereWithAggregatesInput[]
+    OR?: SecuritySettingsScalarWhereWithAggregatesInput[]
+    NOT?: SecuritySettingsScalarWhereWithAggregatesInput | SecuritySettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SecuritySettings"> | string
+    twoFactorAuth?: BoolWithAggregatesFilter<"SecuritySettings"> | boolean
+    passwordExpiry?: StringWithAggregatesFilter<"SecuritySettings"> | string
+    sessionTimeout?: StringWithAggregatesFilter<"SecuritySettings"> | string
+    ipRestriction?: BoolWithAggregatesFilter<"SecuritySettings"> | boolean
+    loginAttempts?: IntWithAggregatesFilter<"SecuritySettings"> | number
+    lockoutDuration?: IntWithAggregatesFilter<"SecuritySettings"> | number
+    allowedIPs?: JsonWithAggregatesFilter<"SecuritySettings">
+    minPasswordLength?: IntWithAggregatesFilter<"SecuritySettings"> | number
+    requireSpecialChars?: BoolWithAggregatesFilter<"SecuritySettings"> | boolean
+    requireNumbers?: BoolWithAggregatesFilter<"SecuritySettings"> | boolean
+    requireUppercase?: BoolWithAggregatesFilter<"SecuritySettings"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"SecuritySettings"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SecuritySettings"> | Date | string
+  }
+
+  export type ActivityLogWhereInput = {
+    AND?: ActivityLogWhereInput | ActivityLogWhereInput[]
+    OR?: ActivityLogWhereInput[]
+    NOT?: ActivityLogWhereInput | ActivityLogWhereInput[]
+    id?: StringFilter<"ActivityLog"> | string
+    userId?: StringNullableFilter<"ActivityLog"> | string | null
+    action?: StringFilter<"ActivityLog"> | string
+    resource?: StringFilter<"ActivityLog"> | string
+    resourceId?: StringNullableFilter<"ActivityLog"> | string | null
+    details?: JsonNullableFilter<"ActivityLog">
+    ipAddress?: StringNullableFilter<"ActivityLog"> | string | null
+    userAgent?: StringNullableFilter<"ActivityLog"> | string | null
+    createdAt?: DateTimeFilter<"ActivityLog"> | Date | string
+  }
+
+  export type ActivityLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    action?: SortOrder
+    resource?: SortOrder
+    resourceId?: SortOrderInput | SortOrder
+    details?: SortOrderInput | SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ActivityLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ActivityLogWhereInput | ActivityLogWhereInput[]
+    OR?: ActivityLogWhereInput[]
+    NOT?: ActivityLogWhereInput | ActivityLogWhereInput[]
+    userId?: StringNullableFilter<"ActivityLog"> | string | null
+    action?: StringFilter<"ActivityLog"> | string
+    resource?: StringFilter<"ActivityLog"> | string
+    resourceId?: StringNullableFilter<"ActivityLog"> | string | null
+    details?: JsonNullableFilter<"ActivityLog">
+    ipAddress?: StringNullableFilter<"ActivityLog"> | string | null
+    userAgent?: StringNullableFilter<"ActivityLog"> | string | null
+    createdAt?: DateTimeFilter<"ActivityLog"> | Date | string
+  }, "id">
+
+  export type ActivityLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    action?: SortOrder
+    resource?: SortOrder
+    resourceId?: SortOrderInput | SortOrder
+    details?: SortOrderInput | SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ActivityLogCountOrderByAggregateInput
+    _max?: ActivityLogMaxOrderByAggregateInput
+    _min?: ActivityLogMinOrderByAggregateInput
+  }
+
+  export type ActivityLogScalarWhereWithAggregatesInput = {
+    AND?: ActivityLogScalarWhereWithAggregatesInput | ActivityLogScalarWhereWithAggregatesInput[]
+    OR?: ActivityLogScalarWhereWithAggregatesInput[]
+    NOT?: ActivityLogScalarWhereWithAggregatesInput | ActivityLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ActivityLog"> | string
+    userId?: StringNullableWithAggregatesFilter<"ActivityLog"> | string | null
+    action?: StringWithAggregatesFilter<"ActivityLog"> | string
+    resource?: StringWithAggregatesFilter<"ActivityLog"> | string
+    resourceId?: StringNullableWithAggregatesFilter<"ActivityLog"> | string | null
+    details?: JsonNullableWithAggregatesFilter<"ActivityLog">
+    ipAddress?: StringNullableWithAggregatesFilter<"ActivityLog"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"ActivityLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ActivityLog"> | Date | string
   }
 
   export type GalleryItemCreateInput = {
@@ -20482,6 +28406,678 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RestaurantSettingsCreateInput = {
+    id?: string
+    siteName?: string
+    contactEmail?: string
+    phoneNumber?: string
+    address?: string
+    timezone?: string
+    currency?: string
+    taxRate?: number
+    operatingHours?: JsonNullValueInput | InputJsonValue
+    deliveryEnabled?: boolean
+    deliveryFee?: number
+    minimumOrder?: number
+    deliveryRadius?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RestaurantSettingsUncheckedCreateInput = {
+    id?: string
+    siteName?: string
+    contactEmail?: string
+    phoneNumber?: string
+    address?: string
+    timezone?: string
+    currency?: string
+    taxRate?: number
+    operatingHours?: JsonNullValueInput | InputJsonValue
+    deliveryEnabled?: boolean
+    deliveryFee?: number
+    minimumOrder?: number
+    deliveryRadius?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RestaurantSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteName?: StringFieldUpdateOperationsInput | string
+    contactEmail?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    operatingHours?: JsonNullValueInput | InputJsonValue
+    deliveryEnabled?: BoolFieldUpdateOperationsInput | boolean
+    deliveryFee?: FloatFieldUpdateOperationsInput | number
+    minimumOrder?: FloatFieldUpdateOperationsInput | number
+    deliveryRadius?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RestaurantSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteName?: StringFieldUpdateOperationsInput | string
+    contactEmail?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    operatingHours?: JsonNullValueInput | InputJsonValue
+    deliveryEnabled?: BoolFieldUpdateOperationsInput | boolean
+    deliveryFee?: FloatFieldUpdateOperationsInput | number
+    minimumOrder?: FloatFieldUpdateOperationsInput | number
+    deliveryRadius?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RestaurantSettingsCreateManyInput = {
+    id?: string
+    siteName?: string
+    contactEmail?: string
+    phoneNumber?: string
+    address?: string
+    timezone?: string
+    currency?: string
+    taxRate?: number
+    operatingHours?: JsonNullValueInput | InputJsonValue
+    deliveryEnabled?: boolean
+    deliveryFee?: number
+    minimumOrder?: number
+    deliveryRadius?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RestaurantSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteName?: StringFieldUpdateOperationsInput | string
+    contactEmail?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    operatingHours?: JsonNullValueInput | InputJsonValue
+    deliveryEnabled?: BoolFieldUpdateOperationsInput | boolean
+    deliveryFee?: FloatFieldUpdateOperationsInput | number
+    minimumOrder?: FloatFieldUpdateOperationsInput | number
+    deliveryRadius?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RestaurantSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteName?: StringFieldUpdateOperationsInput | string
+    contactEmail?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    taxRate?: FloatFieldUpdateOperationsInput | number
+    operatingHours?: JsonNullValueInput | InputJsonValue
+    deliveryEnabled?: BoolFieldUpdateOperationsInput | boolean
+    deliveryFee?: FloatFieldUpdateOperationsInput | number
+    minimumOrder?: FloatFieldUpdateOperationsInput | number
+    deliveryRadius?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationSettingsCreateInput = {
+    id?: string
+    emailNotifications?: boolean
+    newUserNotifications?: boolean
+    newOrderNotifications?: boolean
+    systemUpdates?: boolean
+    marketingEmails?: boolean
+    smsNotifications?: boolean
+    smsOrderUpdates?: boolean
+    pushNotifications?: boolean
+    pushOrderAlerts?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationSettingsUncheckedCreateInput = {
+    id?: string
+    emailNotifications?: boolean
+    newUserNotifications?: boolean
+    newOrderNotifications?: boolean
+    systemUpdates?: boolean
+    marketingEmails?: boolean
+    smsNotifications?: boolean
+    smsOrderUpdates?: boolean
+    pushNotifications?: boolean
+    pushOrderAlerts?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emailNotifications?: BoolFieldUpdateOperationsInput | boolean
+    newUserNotifications?: BoolFieldUpdateOperationsInput | boolean
+    newOrderNotifications?: BoolFieldUpdateOperationsInput | boolean
+    systemUpdates?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    smsNotifications?: BoolFieldUpdateOperationsInput | boolean
+    smsOrderUpdates?: BoolFieldUpdateOperationsInput | boolean
+    pushNotifications?: BoolFieldUpdateOperationsInput | boolean
+    pushOrderAlerts?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emailNotifications?: BoolFieldUpdateOperationsInput | boolean
+    newUserNotifications?: BoolFieldUpdateOperationsInput | boolean
+    newOrderNotifications?: BoolFieldUpdateOperationsInput | boolean
+    systemUpdates?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    smsNotifications?: BoolFieldUpdateOperationsInput | boolean
+    smsOrderUpdates?: BoolFieldUpdateOperationsInput | boolean
+    pushNotifications?: BoolFieldUpdateOperationsInput | boolean
+    pushOrderAlerts?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationSettingsCreateManyInput = {
+    id?: string
+    emailNotifications?: boolean
+    newUserNotifications?: boolean
+    newOrderNotifications?: boolean
+    systemUpdates?: boolean
+    marketingEmails?: boolean
+    smsNotifications?: boolean
+    smsOrderUpdates?: boolean
+    pushNotifications?: boolean
+    pushOrderAlerts?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emailNotifications?: BoolFieldUpdateOperationsInput | boolean
+    newUserNotifications?: BoolFieldUpdateOperationsInput | boolean
+    newOrderNotifications?: BoolFieldUpdateOperationsInput | boolean
+    systemUpdates?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    smsNotifications?: BoolFieldUpdateOperationsInput | boolean
+    smsOrderUpdates?: BoolFieldUpdateOperationsInput | boolean
+    pushNotifications?: BoolFieldUpdateOperationsInput | boolean
+    pushOrderAlerts?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emailNotifications?: BoolFieldUpdateOperationsInput | boolean
+    newUserNotifications?: BoolFieldUpdateOperationsInput | boolean
+    newOrderNotifications?: BoolFieldUpdateOperationsInput | boolean
+    systemUpdates?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    smsNotifications?: BoolFieldUpdateOperationsInput | boolean
+    smsOrderUpdates?: BoolFieldUpdateOperationsInput | boolean
+    pushNotifications?: BoolFieldUpdateOperationsInput | boolean
+    pushOrderAlerts?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppearanceSettingsCreateInput = {
+    id?: string
+    theme?: string
+    accentColor?: string
+    menuLayout?: string
+    animationsEnabled?: boolean
+    logoUrl?: string | null
+    faviconUrl?: string | null
+    brandColor?: string
+    showPrices?: boolean
+    showDescription?: boolean
+    showImages?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AppearanceSettingsUncheckedCreateInput = {
+    id?: string
+    theme?: string
+    accentColor?: string
+    menuLayout?: string
+    animationsEnabled?: boolean
+    logoUrl?: string | null
+    faviconUrl?: string | null
+    brandColor?: string
+    showPrices?: boolean
+    showDescription?: boolean
+    showImages?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AppearanceSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    theme?: StringFieldUpdateOperationsInput | string
+    accentColor?: StringFieldUpdateOperationsInput | string
+    menuLayout?: StringFieldUpdateOperationsInput | string
+    animationsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    brandColor?: StringFieldUpdateOperationsInput | string
+    showPrices?: BoolFieldUpdateOperationsInput | boolean
+    showDescription?: BoolFieldUpdateOperationsInput | boolean
+    showImages?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppearanceSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    theme?: StringFieldUpdateOperationsInput | string
+    accentColor?: StringFieldUpdateOperationsInput | string
+    menuLayout?: StringFieldUpdateOperationsInput | string
+    animationsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    brandColor?: StringFieldUpdateOperationsInput | string
+    showPrices?: BoolFieldUpdateOperationsInput | boolean
+    showDescription?: BoolFieldUpdateOperationsInput | boolean
+    showImages?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppearanceSettingsCreateManyInput = {
+    id?: string
+    theme?: string
+    accentColor?: string
+    menuLayout?: string
+    animationsEnabled?: boolean
+    logoUrl?: string | null
+    faviconUrl?: string | null
+    brandColor?: string
+    showPrices?: boolean
+    showDescription?: boolean
+    showImages?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AppearanceSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    theme?: StringFieldUpdateOperationsInput | string
+    accentColor?: StringFieldUpdateOperationsInput | string
+    menuLayout?: StringFieldUpdateOperationsInput | string
+    animationsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    brandColor?: StringFieldUpdateOperationsInput | string
+    showPrices?: BoolFieldUpdateOperationsInput | boolean
+    showDescription?: BoolFieldUpdateOperationsInput | boolean
+    showImages?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppearanceSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    theme?: StringFieldUpdateOperationsInput | string
+    accentColor?: StringFieldUpdateOperationsInput | string
+    menuLayout?: StringFieldUpdateOperationsInput | string
+    animationsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    faviconUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    brandColor?: StringFieldUpdateOperationsInput | string
+    showPrices?: BoolFieldUpdateOperationsInput | boolean
+    showDescription?: BoolFieldUpdateOperationsInput | boolean
+    showImages?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntegrationSettingsCreateInput = {
+    id?: string
+    googleAnalyticsId?: string | null
+    facebookPixelId?: string | null
+    mailchimpApiKey?: string | null
+    mailchimpListId?: string | null
+    stripePublicKey?: string | null
+    stripeSecretKey?: string | null
+    paypalClientId?: string | null
+    facebookPageId?: string | null
+    instagramUsername?: string | null
+    twitterHandle?: string | null
+    posSystemType?: string | null
+    posApiKey?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IntegrationSettingsUncheckedCreateInput = {
+    id?: string
+    googleAnalyticsId?: string | null
+    facebookPixelId?: string | null
+    mailchimpApiKey?: string | null
+    mailchimpListId?: string | null
+    stripePublicKey?: string | null
+    stripeSecretKey?: string | null
+    paypalClientId?: string | null
+    facebookPageId?: string | null
+    instagramUsername?: string | null
+    twitterHandle?: string | null
+    posSystemType?: string | null
+    posApiKey?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IntegrationSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    googleAnalyticsId?: NullableStringFieldUpdateOperationsInput | string | null
+    facebookPixelId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailchimpApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    mailchimpListId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripePublicKey?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSecretKey?: NullableStringFieldUpdateOperationsInput | string | null
+    paypalClientId?: NullableStringFieldUpdateOperationsInput | string | null
+    facebookPageId?: NullableStringFieldUpdateOperationsInput | string | null
+    instagramUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    twitterHandle?: NullableStringFieldUpdateOperationsInput | string | null
+    posSystemType?: NullableStringFieldUpdateOperationsInput | string | null
+    posApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntegrationSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    googleAnalyticsId?: NullableStringFieldUpdateOperationsInput | string | null
+    facebookPixelId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailchimpApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    mailchimpListId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripePublicKey?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSecretKey?: NullableStringFieldUpdateOperationsInput | string | null
+    paypalClientId?: NullableStringFieldUpdateOperationsInput | string | null
+    facebookPageId?: NullableStringFieldUpdateOperationsInput | string | null
+    instagramUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    twitterHandle?: NullableStringFieldUpdateOperationsInput | string | null
+    posSystemType?: NullableStringFieldUpdateOperationsInput | string | null
+    posApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntegrationSettingsCreateManyInput = {
+    id?: string
+    googleAnalyticsId?: string | null
+    facebookPixelId?: string | null
+    mailchimpApiKey?: string | null
+    mailchimpListId?: string | null
+    stripePublicKey?: string | null
+    stripeSecretKey?: string | null
+    paypalClientId?: string | null
+    facebookPageId?: string | null
+    instagramUsername?: string | null
+    twitterHandle?: string | null
+    posSystemType?: string | null
+    posApiKey?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IntegrationSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    googleAnalyticsId?: NullableStringFieldUpdateOperationsInput | string | null
+    facebookPixelId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailchimpApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    mailchimpListId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripePublicKey?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSecretKey?: NullableStringFieldUpdateOperationsInput | string | null
+    paypalClientId?: NullableStringFieldUpdateOperationsInput | string | null
+    facebookPageId?: NullableStringFieldUpdateOperationsInput | string | null
+    instagramUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    twitterHandle?: NullableStringFieldUpdateOperationsInput | string | null
+    posSystemType?: NullableStringFieldUpdateOperationsInput | string | null
+    posApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntegrationSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    googleAnalyticsId?: NullableStringFieldUpdateOperationsInput | string | null
+    facebookPixelId?: NullableStringFieldUpdateOperationsInput | string | null
+    mailchimpApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    mailchimpListId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripePublicKey?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSecretKey?: NullableStringFieldUpdateOperationsInput | string | null
+    paypalClientId?: NullableStringFieldUpdateOperationsInput | string | null
+    facebookPageId?: NullableStringFieldUpdateOperationsInput | string | null
+    instagramUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    twitterHandle?: NullableStringFieldUpdateOperationsInput | string | null
+    posSystemType?: NullableStringFieldUpdateOperationsInput | string | null
+    posApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SecuritySettingsCreateInput = {
+    id?: string
+    twoFactorAuth?: boolean
+    passwordExpiry?: string
+    sessionTimeout?: string
+    ipRestriction?: boolean
+    loginAttempts?: number
+    lockoutDuration?: number
+    allowedIPs?: JsonNullValueInput | InputJsonValue
+    minPasswordLength?: number
+    requireSpecialChars?: boolean
+    requireNumbers?: boolean
+    requireUppercase?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SecuritySettingsUncheckedCreateInput = {
+    id?: string
+    twoFactorAuth?: boolean
+    passwordExpiry?: string
+    sessionTimeout?: string
+    ipRestriction?: boolean
+    loginAttempts?: number
+    lockoutDuration?: number
+    allowedIPs?: JsonNullValueInput | InputJsonValue
+    minPasswordLength?: number
+    requireSpecialChars?: boolean
+    requireNumbers?: boolean
+    requireUppercase?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SecuritySettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    twoFactorAuth?: BoolFieldUpdateOperationsInput | boolean
+    passwordExpiry?: StringFieldUpdateOperationsInput | string
+    sessionTimeout?: StringFieldUpdateOperationsInput | string
+    ipRestriction?: BoolFieldUpdateOperationsInput | boolean
+    loginAttempts?: IntFieldUpdateOperationsInput | number
+    lockoutDuration?: IntFieldUpdateOperationsInput | number
+    allowedIPs?: JsonNullValueInput | InputJsonValue
+    minPasswordLength?: IntFieldUpdateOperationsInput | number
+    requireSpecialChars?: BoolFieldUpdateOperationsInput | boolean
+    requireNumbers?: BoolFieldUpdateOperationsInput | boolean
+    requireUppercase?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SecuritySettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    twoFactorAuth?: BoolFieldUpdateOperationsInput | boolean
+    passwordExpiry?: StringFieldUpdateOperationsInput | string
+    sessionTimeout?: StringFieldUpdateOperationsInput | string
+    ipRestriction?: BoolFieldUpdateOperationsInput | boolean
+    loginAttempts?: IntFieldUpdateOperationsInput | number
+    lockoutDuration?: IntFieldUpdateOperationsInput | number
+    allowedIPs?: JsonNullValueInput | InputJsonValue
+    minPasswordLength?: IntFieldUpdateOperationsInput | number
+    requireSpecialChars?: BoolFieldUpdateOperationsInput | boolean
+    requireNumbers?: BoolFieldUpdateOperationsInput | boolean
+    requireUppercase?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SecuritySettingsCreateManyInput = {
+    id?: string
+    twoFactorAuth?: boolean
+    passwordExpiry?: string
+    sessionTimeout?: string
+    ipRestriction?: boolean
+    loginAttempts?: number
+    lockoutDuration?: number
+    allowedIPs?: JsonNullValueInput | InputJsonValue
+    minPasswordLength?: number
+    requireSpecialChars?: boolean
+    requireNumbers?: boolean
+    requireUppercase?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SecuritySettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    twoFactorAuth?: BoolFieldUpdateOperationsInput | boolean
+    passwordExpiry?: StringFieldUpdateOperationsInput | string
+    sessionTimeout?: StringFieldUpdateOperationsInput | string
+    ipRestriction?: BoolFieldUpdateOperationsInput | boolean
+    loginAttempts?: IntFieldUpdateOperationsInput | number
+    lockoutDuration?: IntFieldUpdateOperationsInput | number
+    allowedIPs?: JsonNullValueInput | InputJsonValue
+    minPasswordLength?: IntFieldUpdateOperationsInput | number
+    requireSpecialChars?: BoolFieldUpdateOperationsInput | boolean
+    requireNumbers?: BoolFieldUpdateOperationsInput | boolean
+    requireUppercase?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SecuritySettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    twoFactorAuth?: BoolFieldUpdateOperationsInput | boolean
+    passwordExpiry?: StringFieldUpdateOperationsInput | string
+    sessionTimeout?: StringFieldUpdateOperationsInput | string
+    ipRestriction?: BoolFieldUpdateOperationsInput | boolean
+    loginAttempts?: IntFieldUpdateOperationsInput | number
+    lockoutDuration?: IntFieldUpdateOperationsInput | number
+    allowedIPs?: JsonNullValueInput | InputJsonValue
+    minPasswordLength?: IntFieldUpdateOperationsInput | number
+    requireSpecialChars?: BoolFieldUpdateOperationsInput | boolean
+    requireNumbers?: BoolFieldUpdateOperationsInput | boolean
+    requireUppercase?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivityLogCreateInput = {
+    id?: string
+    userId?: string | null
+    action: string
+    resource: string
+    resourceId?: string | null
+    details?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ActivityLogUncheckedCreateInput = {
+    id?: string
+    userId?: string | null
+    action: string
+    resource: string
+    resourceId?: string | null
+    details?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ActivityLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    action?: StringFieldUpdateOperationsInput | string
+    resource?: StringFieldUpdateOperationsInput | string
+    resourceId?: NullableStringFieldUpdateOperationsInput | string | null
+    details?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivityLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    action?: StringFieldUpdateOperationsInput | string
+    resource?: StringFieldUpdateOperationsInput | string
+    resourceId?: NullableStringFieldUpdateOperationsInput | string | null
+    details?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivityLogCreateManyInput = {
+    id?: string
+    userId?: string | null
+    action: string
+    resource: string
+    resourceId?: string | null
+    details?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ActivityLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    action?: StringFieldUpdateOperationsInput | string
+    resource?: StringFieldUpdateOperationsInput | string
+    resourceId?: NullableStringFieldUpdateOperationsInput | string | null
+    details?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivityLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    action?: StringFieldUpdateOperationsInput | string
+    resource?: StringFieldUpdateOperationsInput | string
+    resourceId?: NullableStringFieldUpdateOperationsInput | string | null
+    details?: NullableJsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -21309,6 +29905,412 @@ export namespace Prisma {
     _min?: NestedEnumApplicationStatusFilter<$PrismaModel>
     _max?: NestedEnumApplicationStatusFilter<$PrismaModel>
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type RestaurantSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    siteName?: SortOrder
+    contactEmail?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+    timezone?: SortOrder
+    currency?: SortOrder
+    taxRate?: SortOrder
+    operatingHours?: SortOrder
+    deliveryEnabled?: SortOrder
+    deliveryFee?: SortOrder
+    minimumOrder?: SortOrder
+    deliveryRadius?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RestaurantSettingsAvgOrderByAggregateInput = {
+    taxRate?: SortOrder
+    deliveryFee?: SortOrder
+    minimumOrder?: SortOrder
+    deliveryRadius?: SortOrder
+  }
+
+  export type RestaurantSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    siteName?: SortOrder
+    contactEmail?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+    timezone?: SortOrder
+    currency?: SortOrder
+    taxRate?: SortOrder
+    deliveryEnabled?: SortOrder
+    deliveryFee?: SortOrder
+    minimumOrder?: SortOrder
+    deliveryRadius?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RestaurantSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    siteName?: SortOrder
+    contactEmail?: SortOrder
+    phoneNumber?: SortOrder
+    address?: SortOrder
+    timezone?: SortOrder
+    currency?: SortOrder
+    taxRate?: SortOrder
+    deliveryEnabled?: SortOrder
+    deliveryFee?: SortOrder
+    minimumOrder?: SortOrder
+    deliveryRadius?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RestaurantSettingsSumOrderByAggregateInput = {
+    taxRate?: SortOrder
+    deliveryFee?: SortOrder
+    minimumOrder?: SortOrder
+    deliveryRadius?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type NotificationSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    emailNotifications?: SortOrder
+    newUserNotifications?: SortOrder
+    newOrderNotifications?: SortOrder
+    systemUpdates?: SortOrder
+    marketingEmails?: SortOrder
+    smsNotifications?: SortOrder
+    smsOrderUpdates?: SortOrder
+    pushNotifications?: SortOrder
+    pushOrderAlerts?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    emailNotifications?: SortOrder
+    newUserNotifications?: SortOrder
+    newOrderNotifications?: SortOrder
+    systemUpdates?: SortOrder
+    marketingEmails?: SortOrder
+    smsNotifications?: SortOrder
+    smsOrderUpdates?: SortOrder
+    pushNotifications?: SortOrder
+    pushOrderAlerts?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    emailNotifications?: SortOrder
+    newUserNotifications?: SortOrder
+    newOrderNotifications?: SortOrder
+    systemUpdates?: SortOrder
+    marketingEmails?: SortOrder
+    smsNotifications?: SortOrder
+    smsOrderUpdates?: SortOrder
+    pushNotifications?: SortOrder
+    pushOrderAlerts?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AppearanceSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    theme?: SortOrder
+    accentColor?: SortOrder
+    menuLayout?: SortOrder
+    animationsEnabled?: SortOrder
+    logoUrl?: SortOrder
+    faviconUrl?: SortOrder
+    brandColor?: SortOrder
+    showPrices?: SortOrder
+    showDescription?: SortOrder
+    showImages?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AppearanceSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    theme?: SortOrder
+    accentColor?: SortOrder
+    menuLayout?: SortOrder
+    animationsEnabled?: SortOrder
+    logoUrl?: SortOrder
+    faviconUrl?: SortOrder
+    brandColor?: SortOrder
+    showPrices?: SortOrder
+    showDescription?: SortOrder
+    showImages?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AppearanceSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    theme?: SortOrder
+    accentColor?: SortOrder
+    menuLayout?: SortOrder
+    animationsEnabled?: SortOrder
+    logoUrl?: SortOrder
+    faviconUrl?: SortOrder
+    brandColor?: SortOrder
+    showPrices?: SortOrder
+    showDescription?: SortOrder
+    showImages?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntegrationSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    googleAnalyticsId?: SortOrder
+    facebookPixelId?: SortOrder
+    mailchimpApiKey?: SortOrder
+    mailchimpListId?: SortOrder
+    stripePublicKey?: SortOrder
+    stripeSecretKey?: SortOrder
+    paypalClientId?: SortOrder
+    facebookPageId?: SortOrder
+    instagramUsername?: SortOrder
+    twitterHandle?: SortOrder
+    posSystemType?: SortOrder
+    posApiKey?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntegrationSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    googleAnalyticsId?: SortOrder
+    facebookPixelId?: SortOrder
+    mailchimpApiKey?: SortOrder
+    mailchimpListId?: SortOrder
+    stripePublicKey?: SortOrder
+    stripeSecretKey?: SortOrder
+    paypalClientId?: SortOrder
+    facebookPageId?: SortOrder
+    instagramUsername?: SortOrder
+    twitterHandle?: SortOrder
+    posSystemType?: SortOrder
+    posApiKey?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntegrationSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    googleAnalyticsId?: SortOrder
+    facebookPixelId?: SortOrder
+    mailchimpApiKey?: SortOrder
+    mailchimpListId?: SortOrder
+    stripePublicKey?: SortOrder
+    stripeSecretKey?: SortOrder
+    paypalClientId?: SortOrder
+    facebookPageId?: SortOrder
+    instagramUsername?: SortOrder
+    twitterHandle?: SortOrder
+    posSystemType?: SortOrder
+    posApiKey?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SecuritySettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    twoFactorAuth?: SortOrder
+    passwordExpiry?: SortOrder
+    sessionTimeout?: SortOrder
+    ipRestriction?: SortOrder
+    loginAttempts?: SortOrder
+    lockoutDuration?: SortOrder
+    allowedIPs?: SortOrder
+    minPasswordLength?: SortOrder
+    requireSpecialChars?: SortOrder
+    requireNumbers?: SortOrder
+    requireUppercase?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SecuritySettingsAvgOrderByAggregateInput = {
+    loginAttempts?: SortOrder
+    lockoutDuration?: SortOrder
+    minPasswordLength?: SortOrder
+  }
+
+  export type SecuritySettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    twoFactorAuth?: SortOrder
+    passwordExpiry?: SortOrder
+    sessionTimeout?: SortOrder
+    ipRestriction?: SortOrder
+    loginAttempts?: SortOrder
+    lockoutDuration?: SortOrder
+    minPasswordLength?: SortOrder
+    requireSpecialChars?: SortOrder
+    requireNumbers?: SortOrder
+    requireUppercase?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SecuritySettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    twoFactorAuth?: SortOrder
+    passwordExpiry?: SortOrder
+    sessionTimeout?: SortOrder
+    ipRestriction?: SortOrder
+    loginAttempts?: SortOrder
+    lockoutDuration?: SortOrder
+    minPasswordLength?: SortOrder
+    requireSpecialChars?: SortOrder
+    requireNumbers?: SortOrder
+    requireUppercase?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SecuritySettingsSumOrderByAggregateInput = {
+    loginAttempts?: SortOrder
+    lockoutDuration?: SortOrder
+    minPasswordLength?: SortOrder
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ActivityLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    action?: SortOrder
+    resource?: SortOrder
+    resourceId?: SortOrder
+    details?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ActivityLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    action?: SortOrder
+    resource?: SortOrder
+    resourceId?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ActivityLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    action?: SortOrder
+    resource?: SortOrder
+    resourceId?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
@@ -21885,6 +30887,52 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumApplicationStatusFilter<$PrismaModel>
     _max?: NestedEnumApplicationStatusFilter<$PrismaModel>
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type DepartmentCreateWithoutEmployeesInput = {
