@@ -5,13 +5,11 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface UserViewPageProps {
-  params: {
-    userId: string;
-  };
+  params: Promise<{ userId: string }>;
 }
 
 export default async function UserViewPage({ params }: UserViewPageProps) {
-  const { userId } = params;
+  const { userId } = await params;
 
   // Fetch user details
   const user = await prisma.user.findUnique({
