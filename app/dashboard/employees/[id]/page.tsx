@@ -9,12 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, PencilIcon } from "lucide-react";
 
-export default async function EmployeeDetailsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = params;
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default async function EmployeeDetailsPage({ params }: PageProps) {
+  const { id } = await params;
   const { success, data: employee } = await getEmployeeById(id);
 
   if (!success || !employee) {
