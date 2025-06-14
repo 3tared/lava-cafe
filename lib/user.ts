@@ -6,6 +6,7 @@ const ADMIN_EMAILS = [
   "mohamed2011305977@gmail.com",
   "Yehyamostafaofficial@gmail.com",
   "lavaacafee@gmail.com",
+  "alsqrjlalalsqr@gmail.com",
 ];
 
 /**
