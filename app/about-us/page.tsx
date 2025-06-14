@@ -1,4 +1,4 @@
-import AbouUsPage from "@/pages/AboutUs/AbouUsPage";
+import AboutUsPage from "@/pages/AboutUs/AboutUsPage";
 import React from "react";
 
 export const metadata = {
@@ -7,7 +7,7 @@ export const metadata = {
     "Learn more about Lava Cafe, our story, our team, and our passion for coffee and great service.",
 };
 const AboutUs = () => {
-  return <AbouUsPage />;
+  return <AboutUsPage />;
 };
 
 export default AboutUs;

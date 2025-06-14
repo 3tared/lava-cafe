@@ -5,7 +5,7 @@ import GradientHeading from "@/components/ui/GradientHeading";
 import { prisma } from "@/lib/prisma";
 import React from "react";
 
-const AbouUsPage = async () => {
+const AboutUsPage = async () => {
   // Fetch departments with their employees
   const departments = await prisma.department.findMany({
     include: {
@@ -35,4 +35,4 @@ const AbouUsPage = async () => {
   );
 };
 
-export default AbouUsPage;
+export default AboutUsPage;
