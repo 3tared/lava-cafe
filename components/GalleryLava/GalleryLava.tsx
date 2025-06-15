@@ -15,14 +15,24 @@ interface GalleryImage {
   updatedAt: string;
 }
 
-type Category = "All" | "indoor" | "outdoor" | "commercial" | "residential";
+type Category =
+  | "All"
+  | "indoor"
+  | "outdoor"
+  | "Events"
+  | "Food"
+  | "Decoration"
+  | "Drinks"
+  | "Hokkah";
 
 const categories: Category[] = [
-  "All",
   "indoor",
   "outdoor",
-  "commercial",
-  "residential",
+  "Events",
+  "Food",
+  "Decoration",
+  "Drinks",
+  "Hokkah",
 ];
 
 export default function GalleryLava(): JSX.Element {
