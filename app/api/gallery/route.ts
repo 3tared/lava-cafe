@@ -2,6 +2,9 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+// Force dynamic behavior to prevent caching
+export const dynamic = "force-dynamic";
+
 // GET - Fetch all gallery items
 export async function GET(request: NextRequest) {
   try {

@@ -4,6 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { CreateEventData } from "@/types";
 import { prisma } from "@/lib/prisma";
 
+// Force dynamic behavior to prevent caching
+export const dynamic = "force-dynamic";
+
 // GET - Fetch all events
 export async function GET() {
   try {

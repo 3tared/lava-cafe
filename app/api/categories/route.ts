@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+// Force dynamic behavior to prevent caching
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
