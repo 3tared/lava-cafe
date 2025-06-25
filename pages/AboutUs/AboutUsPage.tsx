@@ -3,25 +3,38 @@ import TeamSection from "@/components/TeamLava/TeamLava";
 import GradientHeading from "@/components/ui/GradientHeading";
 
 import { prisma } from "@/lib/prisma";
+import { unstable_cache } from "next/cache";
 import React from "react";
 
-const AboutUsPage = async () => {
-  // Fetch departments with their employees
-  const departments = await prisma.department.findMany({
-    include: {
-      employees: {
-        where: {
-          status: "Active", // Only include active employees
-        },
-        orderBy: {
-          startDate: "asc", // Sort by seniority (optional)
+// Cache the data fetching function with tags for revalidation
+const getDepartmentsWithEmployees = unstable_cache(
+  async () => {
+    return await prisma.department.findMany({
+      include: {
+        employees: {
+          where: {
+            status: "Active",
+          },
+          orderBy: {
+            startDate: "asc",
+          },
         },
       },
-    },
-    orderBy: {
-      title: "asc", // Order departments alphabetically
-    },
-  });
+      orderBy: {
+        title: "asc",
+      },
+    });
+  },
+  ["departments-employees"], // Cache key
+  {
+    tags: ["departments", "employees"], // Tags for revalidation
+    revalidate: 300, // Revalidate every 5 minutes as fallback
+  }
+);
+
+const AboutUsPage = async () => {
+  const departments = await getDepartmentsWithEmployees();
+
   return (
     <main className="container mx-auto flex flex-col items-center justify-center mt-7 md:mt-12 lg:mt-15 xl:mt-16 min-h-screen px-4">
       <section className="w-full text-center py-10 ">
