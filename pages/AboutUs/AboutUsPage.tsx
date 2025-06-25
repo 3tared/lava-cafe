@@ -3,37 +3,29 @@ import TeamSection from "@/components/TeamLava/TeamLava";
 import GradientHeading from "@/components/ui/GradientHeading";
 
 import { prisma } from "@/lib/prisma";
-import { unstable_cache } from "next/cache";
 import React from "react";
 
-// Cache the data fetching function with tags for revalidation
-const getDepartmentsWithEmployees = unstable_cache(
-  async () => {
-    return await prisma.department.findMany({
-      include: {
-        employees: {
-          where: {
-            status: "Active",
-          },
-          orderBy: {
-            startDate: "asc",
-          },
-        },
-      },
-      orderBy: {
-        title: "asc",
-      },
-    });
-  },
-  ["departments-employees"], // Cache key
-  {
-    tags: ["departments", "employees"], // Tags for revalidation
-    revalidate: 300, // Revalidate every 5 minutes as fallback
-  }
-);
+// Force dynamic rendering to prevent caching
+export const dynamic = "force-dynamic";
+// Alternative: export const revalidate = 0;
 
 const AboutUsPage = async () => {
-  const departments = await getDepartmentsWithEmployees();
+  // Fetch departments with their employees
+  const departments = await prisma.department.findMany({
+    include: {
+      employees: {
+        where: {
+          status: "Active", // Only include active employees
+        },
+        orderBy: {
+          startDate: "asc", // Sort by seniority (optional)
+        },
+      },
+    },
+    orderBy: {
+      title: "asc", // Order departments alphabetically
+    },
+  });
 
   return (
     <main className="container mx-auto flex flex-col items-center justify-center mt-7 md:mt-12 lg:mt-15 xl:mt-16 min-h-screen px-4">
