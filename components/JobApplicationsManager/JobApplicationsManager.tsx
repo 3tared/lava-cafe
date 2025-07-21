@@ -1,6 +1,7 @@
 "use client";
 import React, { JSX, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useJobApplications } from "@/hooks/useCareers";
 import {
   Mail,
   Phone,
@@ -11,44 +12,18 @@ import {
   Trash2,
   Filter,
   Search,
+  Eye,
   AlertTriangle,
 } from "lucide-react";
 
-// Types
-interface Position {
-  title: string;
-  description: string;
-}
-
-interface Application {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  age: number;
-  status: "PENDING" | "REVIEWED" | "INTERVIEWED" | "ACCEPTED" | "REJECTED";
-  position: Position;
-  experience?: string;
-  createdAt: string;
-}
+// Import the existing types instead of redefining them
+// Remove the local interface definitions to use the ones from your types/index file
 
 interface StatusOption {
   value: string;
   label: string;
-  count: number;
+  count?: number;
 }
-
-interface UseJobApplicationsReturn {
-  applications: Application[];
-  loading: boolean;
-  refetch: () => Promise<void>;
-}
-
-// Assuming this hook exists in your codebase
-declare function useJobApplications(): UseJobApplicationsReturn;
-
-type ApplicationStatus = Application["status"];
 
 export function JobApplicationsManager(): JSX.Element {
   const { applications, loading, refetch } = useJobApplications();
@@ -56,65 +31,41 @@ export function JobApplicationsManager(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [updating, setUpdating] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
-  const [showFilters, setShowFilters] = useState<boolean>(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(
     null
   );
 
   const statusOptions: StatusOption[] = [
-    {
-      value: "ALL",
-      label: "All Applications",
-      count: applications?.length || 0,
-    },
-    {
-      value: "PENDING",
-      label: "Pending",
-      count:
-        applications?.filter((app: Application) => app.status === "PENDING")
-          .length || 0,
-    },
-    {
-      value: "REVIEWED",
-      label: "Reviewed",
-      count:
-        applications?.filter((app: Application) => app.status === "REVIEWED")
-          .length || 0,
-    },
-    {
-      value: "INTERVIEWED",
-      label: "Interviewed",
-      count:
-        applications?.filter((app: Application) => app.status === "INTERVIEWED")
-          .length || 0,
-    },
-    {
-      value: "ACCEPTED",
-      label: "Accepted",
-      count:
-        applications?.filter((app: Application) => app.status === "ACCEPTED")
-          .length || 0,
-    },
-    {
-      value: "REJECTED",
-      label: "Rejected",
-      count:
-        applications?.filter((app: Application) => app.status === "REJECTED")
-          .length || 0,
-    },
+    { value: "ALL", label: "All Applications" },
+    { value: "PENDING", label: "Pending" },
+    { value: "REVIEWED", label: "Reviewed" },
+    { value: "INTERVIEWED", label: "Interviewed" },
+    { value: "ACCEPTED", label: "Accepted" },
+    { value: "REJECTED", label: "Rejected" },
   ];
+
+  // Add counts to status options
+  const statusOptionsWithCounts = statusOptions.map((option) => ({
+    ...option,
+    count:
+      option.value === "ALL"
+        ? applications.length
+        : applications.filter((app) => app.status === option.value).length,
+  }));
 
   const updateStatus = async (
     applicationId: string,
-    newStatus: ApplicationStatus
+    newStatus: string
   ): Promise<void> => {
     setUpdating(applicationId);
+
     try {
       const response = await fetch(`/api/job-applications/${applicationId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
       });
+
       if (!response.ok) throw new Error("Failed to update status");
       await refetch();
     } catch (error) {
@@ -126,10 +77,12 @@ export function JobApplicationsManager(): JSX.Element {
 
   const deleteApplication = async (applicationId: string): Promise<void> => {
     setDeleting(applicationId);
+
     try {
       const response = await fetch(`/api/job-applications/${applicationId}`, {
         method: "DELETE",
       });
+
       if (!response.ok) throw new Error("Failed to delete application");
       await refetch();
     } catch (error) {
@@ -140,28 +93,28 @@ export function JobApplicationsManager(): JSX.Element {
     }
   };
 
-  const filteredApplications: Application[] =
-    applications?.filter((app: Application) => {
-      const matchesStatus: boolean =
-        selectedStatus === "ALL" || app.status === selectedStatus;
-      const matchesSearch: boolean =
-        searchTerm === "" ||
-        app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        app.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        app.position.title.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesStatus && matchesSearch;
-    }) || [];
+  const filteredApplications = applications.filter((app) => {
+    const matchesStatus =
+      selectedStatus === "ALL" || app.status === selectedStatus;
+    const matchesSearch =
+      searchTerm === "" ||
+      app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      app.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      app.position.title.toLowerCase().includes(searchTerm.toLowerCase());
 
-  const getStatusColor = (status: ApplicationStatus): string => {
+    return matchesStatus && matchesSearch;
+  });
+
+  const getStatusColor = (status: string): string => {
     switch (status) {
       case "PENDING":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+        return "bg-amber-100 text-amber-800 border-amber-200";
       case "REVIEWED":
         return "bg-blue-100 text-blue-800 border-blue-200";
       case "INTERVIEWED":
         return "bg-purple-100 text-purple-800 border-purple-200";
       case "ACCEPTED":
-        return "bg-green-100 text-green-800 border-green-200";
+        return "bg-emerald-100 text-emerald-800 border-emerald-200";
       case "REJECTED":
         return "bg-red-100 text-red-800 border-red-200";
       default:
@@ -169,117 +122,38 @@ export function JobApplicationsManager(): JSX.Element {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.9,
-      x: -100,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
-
-  const statusButtonVariants = {
-    hover: { scale: 1.05, y: -2 },
-    tap: { scale: 0.95 },
-  };
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleStatusChange = (status: string): void => {
-    setSelectedStatus(status);
-  };
-
-  const handleDeleteConfirm = (applicationId: string): void => {
-    setShowDeleteConfirm(applicationId);
-  };
-
-  const handleDeleteCancel = (): void => {
-    setShowDeleteConfirm(null);
-  };
-
-  const handleDeleteConfirmed = (): void => {
-    if (showDeleteConfirm) {
-      deleteApplication(showDeleteConfirm);
-    }
-  };
-
-  const clearSearch = (): void => {
-    setSearchTerm("");
-  };
-
-  const toggleFilters = (): void => {
-    setShowFilters(!showFilters);
-  };
-
-  const handleModalClick = (e: React.MouseEvent<HTMLDivElement>): void => {
-    e.stopPropagation();
-  };
-
-  const statuses: ApplicationStatus[] = [
-    "PENDING",
-    "REVIEWED",
-    "INTERVIEWED",
-    "ACCEPTED",
-    "REJECTED",
-  ];
-
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="min-h-screen flex items-center justify-center">
+        <motion.div
+          className="flex flex-col items-center gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center py-20"
-          >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"
-            />
-            <p className="text-xl text-gray-600">Loading applications...</p>
-          </motion.div>
-        </div>
+            className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          />
+          <p className="text-gray-600 font-medium">Loading applications...</p>
+        </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <motion.div
+          className="mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          transition={{ duration: 0.6 }}
         >
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div>
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
                 Job Applications
               </h1>
               <p className="text-gray-600">
@@ -287,341 +161,281 @@ export function JobApplicationsManager(): JSX.Element {
               </p>
             </div>
 
-            {/* Controls */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              {/* Search Bar */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="relative"
-              >
-                <Search
-                  size={20}
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                />
-                <input
-                  type="text"
-                  placeholder="Search applications..."
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  className="pl-10 pr-4 py-3 w-full sm:w-80 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                />
-              </motion.div>
-
-              {/* Filter Toggle */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={toggleFilters}
-                className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
-              >
-                <Filter size={20} />
-                <span className="hidden sm:inline">Filters</span>
-              </motion.button>
+            <div className="flex items-center gap-2 text-sm text-gray-500 bg-white px-4 py-2 rounded-lg border shadow-sm">
+              <Eye size={16} />
+              <span className="font-medium">{filteredApplications.length}</span>
+              <span>of {applications.length} applications</span>
             </div>
           </div>
 
-          {/* Status Filter Pills */}
-          <AnimatePresence>
-            {showFilters && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="mt-6 overflow-hidden"
+          {/* Filters */}
+          <div className="flex flex-col lg:flex-row gap-4">
+            {/* Search */}
+            <div className="relative flex-1 max-w-md">
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={18}
+              />
+              <input
+                type="text"
+                placeholder="Search by name, email, or position..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm"
+              />
+            </div>
+
+            {/* Status Filter */}
+            <div className="relative">
+              <Filter
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={18}
+              />
+              <select
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value)}
+                className="appearance-none pl-10 pr-8 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white shadow-sm min-w-48"
               >
-                <div className="flex flex-wrap gap-3">
-                  {statusOptions.map((option: StatusOption) => (
-                    <motion.button
-                      key={option.value}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleStatusChange(option.value)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                        selectedStatus === option.value
-                          ? "bg-blue-500 text-white shadow-lg"
-                          : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
-                      }`}
-                    >
-                      {option.label}
-                      <span className="ml-2 opacity-75">({option.count})</span>
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                {statusOptionsWithCounts.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label} ({option.count})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </motion.div>
 
         {/* Applications Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredApplications.map((application: Application) => (
-              <motion.div
-                key={application.id}
-                variants={itemVariants}
-                layout
-                className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300"
-              >
-                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
-                  {/* Main Content */}
-                  <div className="flex-1 space-y-4">
-                    {/* Header */}
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <motion.div
-                          whileHover={{ rotate: 5 }}
-                          className="p-2 bg-blue-100 rounded-full"
-                        >
-                          <User size={20} className="text-blue-600" />
-                        </motion.div>
-                        <div>
-                          <h3 className="text-xl font-semibold text-gray-900">
-                            {application.name}
-                          </h3>
-                          <p className="text-gray-500 text-sm">
-                            Age: {application.age}
-                          </p>
-                        </div>
-                      </div>
-                      <motion.span
-                        whileHover={{ scale: 1.05 }}
-                        className={`px-4 py-2 rounded-full text-sm font-medium border ${getStatusColor(application.status)} self-start`}
-                      >
-                        {application.status}
-                      </motion.span>
-                    </div>
-
-                    {/* Contact Info */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                      <motion.a
-                        whileHover={{ scale: 1.02 }}
-                        href={`mailto:${application.email}`}
-                        className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-blue-50"
-                      >
-                        <Mail size={16} />
-                        <span className="truncate">{application.email}</span>
-                      </motion.a>
-                      <motion.a
-                        whileHover={{ scale: 1.02 }}
-                        href={`tel:${application.phone}`}
-                        className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-blue-50"
-                      >
-                        <Phone size={16} />
-                        {application.phone}
-                      </motion.a>
-                      <div className="flex items-center gap-2 text-gray-600 p-2">
-                        <MapPin size={16} />
-                        {application.address}
-                      </div>
-                    </div>
-
-                    {/* Position Info */}
-                    <div className="bg-gray-50 p-4 rounded-xl">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Briefcase size={16} className="text-gray-600" />
-                        <span className="font-semibold text-gray-900">
-                          {application.position.title}
-                        </span>
-                      </div>
-                      <p className="text-gray-600 text-sm">
-                        {application.position.description}
-                      </p>
-                    </div>
-
-                    {/* Experience */}
-                    {application.experience && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="bg-blue-50 p-4 rounded-xl"
-                      >
-                        <h4 className="font-semibold text-gray-900 mb-2">
-                          Experience:
-                        </h4>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                          {application.experience}
-                        </p>
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Actions Sidebar */}
-                  <div className="lg:w-80 space-y-4">
-                    {/* Applied Date */}
-                    <div className="flex items-center gap-2 text-sm text-gray-500 lg:justify-end">
-                      <Calendar size={16} />
-                      Applied:{" "}
-                      {new Date(application.createdAt).toLocaleDateString()}
-                    </div>
-
-                    {/* Status Buttons */}
-                    <div className="grid grid-cols-2 lg:grid-cols-1 gap-2">
-                      {statuses.map((status: ApplicationStatus) => (
-                        <motion.button
-                          key={status}
-                          variants={statusButtonVariants}
-                          whileHover="hover"
-                          whileTap="tap"
-                          onClick={() => updateStatus(application.id, status)}
-                          disabled={
-                            updating === application.id ||
-                            application.status === status
-                          }
-                          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                            application.status === status
-                              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                              : updating === application.id
-                                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                                : "bg-blue-500 hover:bg-blue-600 text-white shadow-sm hover:shadow-md"
-                          }`}
-                        >
-                          {updating === application.id ? (
-                            <motion.div
-                              animate={{ rotate: 360 }}
-                              transition={{
-                                duration: 1,
-                                repeat: Infinity,
-                                ease: "linear",
-                              }}
-                              className="w-4 h-4 border-2 border-white border-t-transparent rounded-full mx-auto"
-                            />
-                          ) : (
-                            status
-                          )}
-                        </motion.button>
-                      ))}
-                    </div>
-
-                    {/* Delete Button */}
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => handleDeleteConfirm(application.id)}
-                      disabled={deleting === application.id}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors border border-red-200"
-                    >
-                      {deleting === application.id ? (
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            ease: "linear",
-                          }}
-                          className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full"
-                        />
-                      ) : (
-                        <>
-                          <Trash2 size={16} />
-                          <span className="font-medium">
-                            Delete Application
-                          </span>
-                        </>
-                      )}
-                    </motion.button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Empty State */}
-        {filteredApplications.length === 0 && !loading && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center py-20"
-          >
+        <AnimatePresence mode="wait">
+          {filteredApplications.length > 0 ? (
             <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center"
-            >
-              <Briefcase size={32} className="text-gray-400" />
-            </motion.div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-              No applications found
-            </h3>
-            <p className="text-gray-500">
-              {selectedStatus === "ALL"
-                ? "No applications have been submitted yet."
-                : `No applications with status "${selectedStatus}".`}
-            </p>
-            {searchTerm && (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={clearSearch}
-                className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                Clear search
-              </motion.button>
-            )}
-          </motion.div>
-        )}
-
-        {/* Delete Confirmation Modal */}
-        <AnimatePresence>
-          {showDeleteConfirm && (
-            <motion.div
+              className="space-y-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-              onClick={handleDeleteCancel}
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                onClick={handleModalClick}
-                className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 bg-red-100 rounded-full">
-                    <AlertTriangle size={24} className="text-red-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      Delete Application
-                    </h3>
-                    <p className="text-gray-600">
-                      This action cannot be undone.
-                    </p>
-                  </div>
-                </div>
+              {filteredApplications.map((application, index: number) => (
+                <motion.div
+                  key={application.id}
+                  className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ y: -2 }}
+                >
+                  {/* Delete Confirmation Modal */}
+                  <AnimatePresence>
+                    {showDeleteConfirm === application.id && (
+                      <motion.div
+                        className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10 rounded-2xl"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      >
+                        <motion.div
+                          className="bg-white rounded-xl p-6 mx-4 max-w-sm w-full"
+                          initial={{ scale: 0.9, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.9, opacity: 0 }}
+                        >
+                          <div className="flex items-center gap-3 mb-4">
+                            <AlertTriangle className="text-red-500" size={24} />
+                            <h3 className="font-semibold text-lg">
+                              Delete Application
+                            </h3>
+                          </div>
+                          <p className="text-gray-600 mb-6">
+                            Are you sure you want to delete {application.name}
+                            &#39;s application? This action cannot be undone.
+                          </p>
+                          <div className="flex gap-3 justify-end">
+                            <button
+                              onClick={() => setShowDeleteConfirm(null)}
+                              className="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              onClick={() => deleteApplication(application.id)}
+                              disabled={deleting === application.id}
+                              className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50"
+                            >
+                              {deleting === application.id
+                                ? "Deleting..."
+                                : "Delete"}
+                            </button>
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
-                <p className="text-gray-700 mb-6">
-                  Are you sure you want to delete this job application? All
-                  related data will be permanently removed.
+                  <div className="p-6">
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                      <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                          <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                            <User size={20} className="text-blue-600" />
+                            {application.name}
+                          </h3>
+                          <span
+                            className={`px-3 py-1 rounded-full text-sm font-semibold border ${getStatusColor(application.status)} w-fit`}
+                          >
+                            {application.status}
+                          </span>
+                        </div>
+
+                        {/* Contact Info */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600 mb-4">
+                          <div className="flex items-center gap-2">
+                            <Mail size={16} className="text-blue-500" />
+                            <a
+                              href={`mailto:${application.email}`}
+                              className="hover:text-blue-600 transition-colors truncate"
+                            >
+                              {application.email}
+                            </a>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Phone size={16} className="text-green-500" />
+                            <a
+                              href={`tel:${application.phone}`}
+                              className="hover:text-blue-600 transition-colors"
+                            >
+                              {application.phone}
+                            </a>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin size={16} className="text-red-500" />
+                            <span className="truncate">
+                              {application.address}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Calendar size={16} className="text-purple-500" />
+                            <span>Age: {application.age}</span>
+                          </div>
+                        </div>
+
+                        {/* Position */}
+                        <div className="mb-4 p-4 bg-gray-50 rounded-xl">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Briefcase size={16} className="text-indigo-600" />
+                            <span className="font-semibold text-gray-900">
+                              Applied for: {application.position.title}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-700 pl-6">
+                            {application.position.description}
+                          </p>
+                        </div>
+
+                        {/* Experience */}
+                        {application.experience && (
+                          <div className="mb-4">
+                            <h4 className="font-semibold mb-2 text-gray-900">
+                              Experience:
+                            </h4>
+                            <p className="text-sm text-gray-700 bg-blue-50 p-4 rounded-xl border border-blue-100">
+                              {application.experience}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Delete Button */}
+                      <motion.button
+                        onClick={() => setShowDeleteConfirm(application.id)}
+                        className="flex items-center gap-2 px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200 self-start"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Trash2 size={16} />
+                        <span className="text-sm font-medium">Delete</span>
+                      </motion.button>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 border-t border-gray-100">
+                      <div className="text-xs text-gray-500 flex items-center gap-2">
+                        <Calendar size={14} />
+                        Applied:{" "}
+                        {new Date(application.createdAt).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
+                      </div>
+
+                      {/* Status Update Buttons */}
+                      <div className="flex flex-wrap gap-2">
+                        {[
+                          "PENDING",
+                          "REVIEWED",
+                          "INTERVIEWED",
+                          "ACCEPTED",
+                          "REJECTED",
+                        ].map((status) => (
+                          <motion.button
+                            key={status}
+                            onClick={() => updateStatus(application.id, status)}
+                            disabled={
+                              updating === application.id ||
+                              application.status === status
+                            }
+                            className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                              application.status === status
+                                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                                : "bg-blue-500 hover:bg-blue-600 text-white shadow-sm hover:shadow-md"
+                            }`}
+                            whileHover={
+                              application.status !== status
+                                ? { scale: 1.05 }
+                                : {}
+                            }
+                            whileTap={
+                              application.status !== status
+                                ? { scale: 0.95 }
+                                : {}
+                            }
+                          >
+                            {updating === application.id
+                              ? "Updating..."
+                              : status}
+                          </motion.button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              className="text-center py-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-white rounded-2xl p-12 shadow-sm border border-gray-200 max-w-md mx-auto">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Briefcase size={32} className="text-gray-400" />
+                </div>
+                <p className="text-gray-900 text-xl font-semibold mb-2">
+                  No applications found
                 </p>
-
-                <div className="flex gap-3">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={handleDeleteCancel}
-                    className="flex-1 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors font-medium"
-                  >
-                    Cancel
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={handleDeleteConfirmed}
-                    className="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium"
-                  >
-                    Delete
-                  </motion.button>
-                </div>
-              </motion.div>
+                <p className="text-gray-500">
+                  {selectedStatus === "ALL"
+                    ? "No applications have been submitted yet."
+                    : `No applications with status "${selectedStatus}".`}
+                </p>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
