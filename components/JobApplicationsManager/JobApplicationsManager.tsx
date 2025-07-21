@@ -16,9 +16,6 @@ import {
   AlertTriangle,
 } from "lucide-react";
 
-// Import the existing types instead of redefining them
-// Remove the local interface definitions to use the ones from your types/index file
-
 interface StatusOption {
   value: string;
   label: string;
