@@ -1,5 +1,6 @@
 "use client";
 import React, { JSX, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -48,84 +49,6 @@ interface UseJobApplicationsReturn {
 declare function useJobApplications(): UseJobApplicationsReturn;
 
 type ApplicationStatus = Application["status"];
-
-// CSS animations as a string
-const styles = `
-  .fade-in {
-    animation: fadeIn 0.5s ease-out;
-  }
-  
-  .slide-up {
-    animation: slideUp 0.5s ease-out;
-  }
-  
-  .spin {
-    animation: spin 2s linear infinite;
-  }
-  
-  .bounce {
-    animation: bounce 2s infinite;
-  }
-  
-  .scale-hover:hover {
-    transform: scale(1.02);
-    transition: transform 0.2s ease;
-  }
-  
-  .scale-hover-small:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
-  }
-  
-  .modal-backdrop {
-    backdrop-filter: blur(8px);
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes slideUp {
-    from { 
-      opacity: 0; 
-      transform: translateY(20px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
-  }
-  
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-  
-  .filter-enter {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-  }
-  
-  .filter-enter-active {
-    max-height: 200px;
-    opacity: 1;
-  }
-`;
 
 export function JobApplicationsManager(): JSX.Element {
   const { applications, loading, refetch } = useJobApplications();
@@ -246,6 +169,42 @@ export function JobApplicationsManager(): JSX.Element {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.9,
+      x: -100,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
+  const statusButtonVariants = {
+    hover: { scale: 1.05, y: -2 },
+    tap: { scale: 0.95 },
+  };
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(e.target.value);
   };
@@ -290,97 +249,124 @@ export function JobApplicationsManager(): JSX.Element {
 
   if (loading) {
     return (
-      <>
-        <style>{styles}</style>
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="fade-in text-center py-20">
-              <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4 spin" />
-              <p className="text-xl text-gray-600">Loading applications...</p>
-            </div>
-          </div>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-20"
+          >
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"
+            />
+            <p className="text-xl text-gray-600">Loading applications...</p>
+          </motion.div>
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      <style>{styles}</style>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="slide-up mb-8">
-            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
-              <div>
-                <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
-                  Job Applications
-                </h1>
-                <p className="text-gray-600">
-                  Manage and track all job applications
-                </p>
-              </div>
-
-              {/* Controls */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                {/* Search Bar */}
-                <div className="fade-in relative">
-                  <Search
-                    size={20}
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Search applications..."
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                    className="pl-10 pr-4 py-3 w-full sm:w-80 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  />
-                </div>
-
-                {/* Filter Toggle */}
-                <button
-                  onClick={toggleFilters}
-                  className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors scale-hover-small"
-                >
-                  <Filter size={20} />
-                  <span className="hidden sm:inline">Filters</span>
-                </button>
-              </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8"
+        >
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
+            <div>
+              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+                Job Applications
+              </h1>
+              <p className="text-gray-600">
+                Manage and track all job applications
+              </p>
             </div>
 
-            {/* Status Filter Pills */}
-            <div
-              className={`mt-6 overflow-hidden transition-all duration-300 ${
-                showFilters ? "filter-enter-active" : "filter-enter"
-              }`}
-            >
-              <div className="flex flex-wrap gap-3">
-                {statusOptions.map((option: StatusOption) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleStatusChange(option.value)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 scale-hover-small ${
-                      selectedStatus === option.value
-                        ? "bg-blue-500 text-white shadow-lg"
-                        : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
-                    }`}
-                  >
-                    {option.label}
-                    <span className="ml-2 opacity-75">({option.count})</span>
-                  </button>
-                ))}
-              </div>
+            {/* Controls */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              {/* Search Bar */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="relative"
+              >
+                <Search
+                  size={20}
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  type="text"
+                  placeholder="Search applications..."
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="pl-10 pr-4 py-3 w-full sm:w-80 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                />
+              </motion.div>
+
+              {/* Filter Toggle */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={toggleFilters}
+                className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                <Filter size={20} />
+                <span className="hidden sm:inline">Filters</span>
+              </motion.button>
             </div>
           </div>
 
-          {/* Applications Grid */}
-          <div className="space-y-6">
-            {filteredApplications.map((application: Application, index) => (
-              <div
+          {/* Status Filter Pills */}
+          <AnimatePresence>
+            {showFilters && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="mt-6 overflow-hidden"
+              >
+                <div className="flex flex-wrap gap-3">
+                  {statusOptions.map((option: StatusOption) => (
+                    <motion.button
+                      key={option.value}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => handleStatusChange(option.value)}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                        selectedStatus === option.value
+                          ? "bg-blue-500 text-white shadow-lg"
+                          : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
+                      }`}
+                    >
+                      {option.label}
+                      <span className="ml-2 opacity-75">({option.count})</span>
+                    </motion.button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Applications Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-6"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredApplications.map((application: Application) => (
+              <motion.div
                 key={application.id}
-                className="fade-in bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 scale-hover"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                variants={itemVariants}
+                layout
+                className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
                   {/* Main Content */}
@@ -388,9 +374,12 @@ export function JobApplicationsManager(): JSX.Element {
                     {/* Header */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex items-center gap-3">
-                        <div className="p-2 bg-blue-100 rounded-full">
+                        <motion.div
+                          whileHover={{ rotate: 5 }}
+                          className="p-2 bg-blue-100 rounded-full"
+                        >
                           <User size={20} className="text-blue-600" />
-                        </div>
+                        </motion.div>
                         <div>
                           <h3 className="text-xl font-semibold text-gray-900">
                             {application.name}
@@ -400,29 +389,32 @@ export function JobApplicationsManager(): JSX.Element {
                           </p>
                         </div>
                       </div>
-                      <span
-                        className={`px-4 py-2 rounded-full text-sm font-medium border ${getStatusColor(application.status)} self-start scale-hover-small`}
+                      <motion.span
+                        whileHover={{ scale: 1.05 }}
+                        className={`px-4 py-2 rounded-full text-sm font-medium border ${getStatusColor(application.status)} self-start`}
                       >
                         {application.status}
-                      </span>
+                      </motion.span>
                     </div>
 
                     {/* Contact Info */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                      <a
+                      <motion.a
+                        whileHover={{ scale: 1.02 }}
                         href={`mailto:${application.email}`}
-                        className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-blue-50 scale-hover"
+                        className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-blue-50"
                       >
                         <Mail size={16} />
                         <span className="truncate">{application.email}</span>
-                      </a>
-                      <a
+                      </motion.a>
+                      <motion.a
+                        whileHover={{ scale: 1.02 }}
                         href={`tel:${application.phone}`}
-                        className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-blue-50 scale-hover"
+                        className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-lg hover:bg-blue-50"
                       >
                         <Phone size={16} />
                         {application.phone}
-                      </a>
+                      </motion.a>
                       <div className="flex items-center gap-2 text-gray-600 p-2">
                         <MapPin size={16} />
                         {application.address}
@@ -444,14 +436,18 @@ export function JobApplicationsManager(): JSX.Element {
 
                     {/* Experience */}
                     {application.experience && (
-                      <div className="fade-in bg-blue-50 p-4 rounded-xl">
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="bg-blue-50 p-4 rounded-xl"
+                      >
                         <h4 className="font-semibold text-gray-900 mb-2">
                           Experience:
                         </h4>
                         <p className="text-gray-700 text-sm leading-relaxed">
                           {application.experience}
                         </p>
-                      </div>
+                      </motion.div>
                     )}
                   </div>
 
@@ -467,14 +463,17 @@ export function JobApplicationsManager(): JSX.Element {
                     {/* Status Buttons */}
                     <div className="grid grid-cols-2 lg:grid-cols-1 gap-2">
                       {statuses.map((status: ApplicationStatus) => (
-                        <button
+                        <motion.button
                           key={status}
+                          variants={statusButtonVariants}
+                          whileHover="hover"
+                          whileTap="tap"
                           onClick={() => updateStatus(application.id, status)}
                           disabled={
                             updating === application.id ||
                             application.status === status
                           }
-                          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 scale-hover-small ${
+                          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                             application.status === status
                               ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                               : updating === application.id
@@ -483,22 +482,40 @@ export function JobApplicationsManager(): JSX.Element {
                           }`}
                         >
                           {updating === application.id ? (
-                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full mx-auto spin" />
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{
+                                duration: 1,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
+                              className="w-4 h-4 border-2 border-white border-t-transparent rounded-full mx-auto"
+                            />
                           ) : (
                             status
                           )}
-                        </button>
+                        </motion.button>
                       ))}
                     </div>
 
                     {/* Delete Button */}
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => handleDeleteConfirm(application.id)}
                       disabled={deleting === application.id}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors border border-red-200 scale-hover"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors border border-red-200"
                     >
                       {deleting === application.id ? (
-                        <div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full spin" />
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                          className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full"
+                        />
                       ) : (
                         <>
                           <Trash2 size={16} />
@@ -507,47 +524,65 @@ export function JobApplicationsManager(): JSX.Element {
                           </span>
                         </>
                       )}
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </AnimatePresence>
+        </motion.div>
 
-          {/* Empty State */}
-          {filteredApplications.length === 0 && !loading && (
-            <div className="slide-up text-center py-20">
-              <div className="w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center bounce">
-                <Briefcase size={32} className="text-gray-400" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                No applications found
-              </h3>
-              <p className="text-gray-500">
-                {selectedStatus === "ALL"
-                  ? "No applications have been submitted yet."
-                  : `No applications with status "${selectedStatus}".`}
-              </p>
-              {searchTerm && (
-                <button
-                  onClick={clearSearch}
-                  className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors scale-hover-small"
-                >
-                  Clear search
-                </button>
-              )}
-            </div>
-          )}
+        {/* Empty State */}
+        {filteredApplications.length === 0 && !loading && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-20"
+          >
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center"
+            >
+              <Briefcase size={32} className="text-gray-400" />
+            </motion.div>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+              No applications found
+            </h3>
+            <p className="text-gray-500">
+              {selectedStatus === "ALL"
+                ? "No applications have been submitted yet."
+                : `No applications with status "${selectedStatus}".`}
+            </p>
+            {searchTerm && (
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={clearSearch}
+                className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Clear search
+              </motion.button>
+            )}
+          </motion.div>
+        )}
 
-          {/* Delete Confirmation Modal */}
+        {/* Delete Confirmation Modal */}
+        <AnimatePresence>
           {showDeleteConfirm && (
-            <div
-              className="fixed inset-0 bg-black/50 modal-backdrop z-50 flex items-center justify-center p-4 fade-in"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
               onClick={handleDeleteCancel}
             >
-              <div
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 onClick={handleModalClick}
-                className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl slide-up"
+                className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-3 bg-red-100 rounded-full">
@@ -569,24 +604,28 @@ export function JobApplicationsManager(): JSX.Element {
                 </p>
 
                 <div className="flex gap-3">
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={handleDeleteCancel}
-                    className="flex-1 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors font-medium scale-hover"
+                    className="flex-1 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors font-medium"
                   >
                     Cancel
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={handleDeleteConfirmed}
-                    className="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium scale-hover"
+                    className="flex-1 px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium"
                   >
                     Delete
-                  </button>
+                  </motion.button>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           )}
-        </div>
+        </AnimatePresence>
       </div>
-    </>
+    </div>
   );
 }
