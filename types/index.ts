@@ -256,6 +256,7 @@ export interface JobApplication {
   experience?: string | null;
   status: "PENDING" | "REVIEWED" | "INTERVIEWED" | "ACCEPTED" | "REJECTED";
   positionId: string;
+  pictureUrl: string | null;
   position: JobPosition;
   createdAt: Date;
   updatedAt: Date;
@@ -268,7 +269,8 @@ export interface JobApplicationForm {
   phone: string;
   email: string;
   experience: string;
-  positionId: string;
+  positionId: string | null;
+  pictureUrl: string;
 }
 export interface PrismaUser {
   id: string;

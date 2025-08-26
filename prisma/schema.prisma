@@ -203,6 +203,7 @@ model JobApplication {
   phone      String
   email      String
   experience String?
+  pictureUrl String
   status     ApplicationStatus @default(PENDING)
   
   // Relations

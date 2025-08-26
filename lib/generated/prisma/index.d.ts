@@ -17317,6 +17317,7 @@ export namespace Prisma {
     phone: string | null
     email: string | null
     experience: string | null
+    pictureUrl: string | null
     status: $Enums.ApplicationStatus | null
     positionId: string | null
     createdAt: Date | null
@@ -17331,6 +17332,7 @@ export namespace Prisma {
     phone: string | null
     email: string | null
     experience: string | null
+    pictureUrl: string | null
     status: $Enums.ApplicationStatus | null
     positionId: string | null
     createdAt: Date | null
@@ -17345,6 +17347,7 @@ export namespace Prisma {
     phone: number
     email: number
     experience: number
+    pictureUrl: number
     status: number
     positionId: number
     createdAt: number
@@ -17361,6 +17364,7 @@ export namespace Prisma {
     phone?: true
     email?: true
     experience?: true
+    pictureUrl?: true
     status?: true
     positionId?: true
     createdAt?: true
@@ -17375,6 +17379,7 @@ export namespace Prisma {
     phone?: true
     email?: true
     experience?: true
+    pictureUrl?: true
     status?: true
     positionId?: true
     createdAt?: true
@@ -17389,6 +17394,7 @@ export namespace Prisma {
     phone?: true
     email?: true
     experience?: true
+    pictureUrl?: true
     status?: true
     positionId?: true
     createdAt?: true
@@ -17476,6 +17482,7 @@ export namespace Prisma {
     phone: string
     email: string
     experience: string | null
+    pictureUrl: string
     status: $Enums.ApplicationStatus
     positionId: string
     createdAt: Date
@@ -17507,6 +17514,7 @@ export namespace Prisma {
     phone?: boolean
     email?: boolean
     experience?: boolean
+    pictureUrl?: boolean
     status?: boolean
     positionId?: boolean
     createdAt?: boolean
@@ -17522,6 +17530,7 @@ export namespace Prisma {
     phone?: boolean
     email?: boolean
     experience?: boolean
+    pictureUrl?: boolean
     status?: boolean
     positionId?: boolean
     createdAt?: boolean
@@ -17537,6 +17546,7 @@ export namespace Prisma {
     phone?: boolean
     email?: boolean
     experience?: boolean
+    pictureUrl?: boolean
     status?: boolean
     positionId?: boolean
     createdAt?: boolean
@@ -17552,13 +17562,14 @@ export namespace Prisma {
     phone?: boolean
     email?: boolean
     experience?: boolean
+    pictureUrl?: boolean
     status?: boolean
     positionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "age" | "address" | "phone" | "email" | "experience" | "status" | "positionId" | "createdAt" | "updatedAt", ExtArgs["result"]["jobApplication"]>
+  export type JobApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "age" | "address" | "phone" | "email" | "experience" | "pictureUrl" | "status" | "positionId" | "createdAt" | "updatedAt", ExtArgs["result"]["jobApplication"]>
   export type JobApplicationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     position?: boolean | JobPositionDefaultArgs<ExtArgs>
   }
@@ -17582,6 +17593,7 @@ export namespace Prisma {
       phone: string
       email: string
       experience: string | null
+      pictureUrl: string
       status: $Enums.ApplicationStatus
       positionId: string
       createdAt: Date
@@ -18017,6 +18029,7 @@ export namespace Prisma {
     readonly phone: FieldRef<"JobApplication", 'String'>
     readonly email: FieldRef<"JobApplication", 'String'>
     readonly experience: FieldRef<"JobApplication", 'String'>
+    readonly pictureUrl: FieldRef<"JobApplication", 'String'>
     readonly status: FieldRef<"JobApplication", 'ApplicationStatus'>
     readonly positionId: FieldRef<"JobApplication", 'String'>
     readonly createdAt: FieldRef<"JobApplication", 'DateTime'>
@@ -25321,6 +25334,7 @@ export namespace Prisma {
     phone: 'phone',
     email: 'email',
     experience: 'experience',
+    pictureUrl: 'pictureUrl',
     status: 'status',
     positionId: 'positionId',
     createdAt: 'createdAt',
@@ -26578,6 +26592,7 @@ export namespace Prisma {
     phone?: StringFilter<"JobApplication"> | string
     email?: StringFilter<"JobApplication"> | string
     experience?: StringNullableFilter<"JobApplication"> | string | null
+    pictureUrl?: StringFilter<"JobApplication"> | string
     status?: EnumApplicationStatusFilter<"JobApplication"> | $Enums.ApplicationStatus
     positionId?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
@@ -26593,6 +26608,7 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     experience?: SortOrderInput | SortOrder
+    pictureUrl?: SortOrder
     status?: SortOrder
     positionId?: SortOrder
     createdAt?: SortOrder
@@ -26611,6 +26627,7 @@ export namespace Prisma {
     phone?: StringFilter<"JobApplication"> | string
     email?: StringFilter<"JobApplication"> | string
     experience?: StringNullableFilter<"JobApplication"> | string | null
+    pictureUrl?: StringFilter<"JobApplication"> | string
     status?: EnumApplicationStatusFilter<"JobApplication"> | $Enums.ApplicationStatus
     positionId?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
@@ -26626,6 +26643,7 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     experience?: SortOrderInput | SortOrder
+    pictureUrl?: SortOrder
     status?: SortOrder
     positionId?: SortOrder
     createdAt?: SortOrder
@@ -26646,6 +26664,7 @@ export namespace Prisma {
     phone?: StringWithAggregatesFilter<"JobApplication"> | string
     email?: StringWithAggregatesFilter<"JobApplication"> | string
     experience?: StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+    pictureUrl?: StringWithAggregatesFilter<"JobApplication"> | string
     status?: EnumApplicationStatusWithAggregatesFilter<"JobApplication"> | $Enums.ApplicationStatus
     positionId?: StringWithAggregatesFilter<"JobApplication"> | string
     createdAt?: DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
@@ -28317,6 +28336,7 @@ export namespace Prisma {
     phone: string
     email: string
     experience?: string | null
+    pictureUrl: string
     status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28331,6 +28351,7 @@ export namespace Prisma {
     phone: string
     email: string
     experience?: string | null
+    pictureUrl: string
     status?: $Enums.ApplicationStatus
     positionId: string
     createdAt?: Date | string
@@ -28345,6 +28366,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     experience?: NullableStringFieldUpdateOperationsInput | string | null
+    pictureUrl?: StringFieldUpdateOperationsInput | string
     status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28359,6 +28381,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     experience?: NullableStringFieldUpdateOperationsInput | string | null
+    pictureUrl?: StringFieldUpdateOperationsInput | string
     status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     positionId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28373,6 +28396,7 @@ export namespace Prisma {
     phone: string
     email: string
     experience?: string | null
+    pictureUrl: string
     status?: $Enums.ApplicationStatus
     positionId: string
     createdAt?: Date | string
@@ -28387,6 +28411,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     experience?: NullableStringFieldUpdateOperationsInput | string | null
+    pictureUrl?: StringFieldUpdateOperationsInput | string
     status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28400,6 +28425,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     experience?: NullableStringFieldUpdateOperationsInput | string | null
+    pictureUrl?: StringFieldUpdateOperationsInput | string
     status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     positionId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29862,6 +29888,7 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     experience?: SortOrder
+    pictureUrl?: SortOrder
     status?: SortOrder
     positionId?: SortOrder
     createdAt?: SortOrder
@@ -29876,6 +29903,7 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     experience?: SortOrder
+    pictureUrl?: SortOrder
     status?: SortOrder
     positionId?: SortOrder
     createdAt?: SortOrder
@@ -29890,6 +29918,7 @@ export namespace Prisma {
     phone?: SortOrder
     email?: SortOrder
     experience?: SortOrder
+    pictureUrl?: SortOrder
     status?: SortOrder
     positionId?: SortOrder
     createdAt?: SortOrder
@@ -31632,6 +31661,7 @@ export namespace Prisma {
     phone: string
     email: string
     experience?: string | null
+    pictureUrl: string
     status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31645,6 +31675,7 @@ export namespace Prisma {
     phone: string
     email: string
     experience?: string | null
+    pictureUrl: string
     status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31687,6 +31718,7 @@ export namespace Prisma {
     phone?: StringFilter<"JobApplication"> | string
     email?: StringFilter<"JobApplication"> | string
     experience?: StringNullableFilter<"JobApplication"> | string | null
+    pictureUrl?: StringFilter<"JobApplication"> | string
     status?: EnumApplicationStatusFilter<"JobApplication"> | $Enums.ApplicationStatus
     positionId?: StringFilter<"JobApplication"> | string
     createdAt?: DateTimeFilter<"JobApplication"> | Date | string
@@ -31965,6 +31997,7 @@ export namespace Prisma {
     phone: string
     email: string
     experience?: string | null
+    pictureUrl: string
     status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31978,6 +32011,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     experience?: NullableStringFieldUpdateOperationsInput | string | null
+    pictureUrl?: StringFieldUpdateOperationsInput | string
     status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31991,6 +32025,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     experience?: NullableStringFieldUpdateOperationsInput | string | null
+    pictureUrl?: StringFieldUpdateOperationsInput | string
     status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32004,6 +32039,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     experience?: NullableStringFieldUpdateOperationsInput | string | null
+    pictureUrl?: StringFieldUpdateOperationsInput | string
     status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

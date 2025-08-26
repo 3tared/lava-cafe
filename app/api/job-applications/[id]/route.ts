@@ -40,8 +40,17 @@ export async function PUT(
   try {
     const { id } = await params;
     const body = await request.json();
-    const { name, age, address, phone, email, experience, status, positionId } =
-      body;
+    const {
+      name,
+      age,
+      address,
+      phone,
+      email,
+      experience,
+      status,
+      positionId,
+      pictureUrl,
+    } = body;
 
     const application = await prisma.jobApplication.update({
       where: { id },
@@ -53,6 +62,7 @@ export async function PUT(
         email,
         experience,
         status,
+        pictureUrl,
         positionId,
       },
       include: {

@@ -12,6 +12,7 @@ export default async function DashboardOverview() {
   const userCount = await prisma.user.count();
   const employeeCount = await prisma.employee.count();
   const menuCount = await prisma.menuItem.count();
+  const jobApplicationCount = await prisma.jobApplication.count();
 
   const cards = [
     {
@@ -37,6 +38,12 @@ export default async function DashboardOverview() {
       count: menuCount,
       link: "/dashboard/menu",
       color: "bg-purple-500",
+    },
+    {
+      title: "Job Application",
+      count: jobApplicationCount,
+      link: "/dashboard/careers",
+      color: "bg-green-500",
     },
   ];
 

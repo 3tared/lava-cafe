@@ -78,3 +78,15 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Custom border width for active tabs */
+.border-b-3 {
+  border-bottom-width: 3px;
+}

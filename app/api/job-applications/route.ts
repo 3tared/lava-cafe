@@ -25,7 +25,16 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, age, address, phone, email, experience, positionId } = body;
+    const {
+      name,
+      age,
+      address,
+      phone,
+      email,
+      experience,
+      positionId,
+      pictureUrl,
+    } = body;
 
     const application = await prisma.jobApplication.create({
       data: {
@@ -36,6 +45,7 @@ export async function POST(request: Request) {
         email,
         experience,
         positionId,
+        pictureUrl,
       },
       include: {
         position: true,
