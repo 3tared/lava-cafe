@@ -16,6 +16,7 @@ import {
   AlertTriangle,
   Check,
 } from "lucide-react";
+import Image from "next/image";
 
 interface StatusOption {
   value: string;
@@ -459,6 +460,20 @@ export function JobApplicationsManager(): JSX.Element {
                                 )}
                               </div>
                             </div>
+                            {/* Profile Picture */}
+                            {application.pictureUrl ? (
+                              <Image
+                                src={application.pictureUrl}
+                                alt={application.name}
+                                width={48}
+                                height={48}
+                                className="w-12 h-12 rounded-full object-cover border border-gray-200 shadow-sm"
+                              />
+                            ) : (
+                              <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                                <User size={20} className="text-gray-500" />
+                              </div>
+                            )}
                             <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                               <User size={20} className="text-blue-600" />
                               {application.name}

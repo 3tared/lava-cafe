@@ -444,65 +444,6 @@ export default function CareersPage(): JSX.Element {
               </div>
 
               {/* Picture Upload Section */}
-              {/* <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Profile Picture *
-                </label>
-                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-lavasecondary-400 transition-colors">
-                  <div className="space-y-1 text-center">
-                    {previewUrl ? (
-                      <div className="relative">
-                        <Image
-                          src={previewUrl}
-                          alt="Preview"
-                          className="mx-auto h-32 w-32 object-cover rounded-full"
-                          width={128}
-                          height={128}
-                        />
-                        <button
-                          type="button"
-                          onClick={removeFile}
-                          className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600 transition-colors"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    ) : (
-                      <svg
-                        className="mx-auto h-12 w-12 text-gray-400"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                      >
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth={2}
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    )}
-                    <div className="flex text-sm text-gray-600 justify-center">
-                      <label className="relative cursor-pointer bg-white rounded-md font-medium text-lavasecondary-600 hover:text-lavasecondary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-lavasecondary-500">
-                        <span>
-                          {previewUrl ? "Change picture" : "Upload a picture"}
-                        </span>
-                        <input
-                          ref={fileInputRef}
-                          type="file"
-                          className="sr-only"
-                          accept="image/*"
-                          onChange={handleFileSelect}
-                          required={!previewUrl}
-                        />
-                      </label>
-                    </div>
-                    <p className="text-xs text-gray-500">
-                      PNG, JPG, GIF up to 5MB
-                    </p>
-                  </div>
-                </div>
-              </div> */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Profile Picture *
