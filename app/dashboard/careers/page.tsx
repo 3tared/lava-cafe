@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Briefcase, Star, FileText } from "lucide-react";
 import JobPositionsManager from "@/components/JobPositionsManager/JobPositionsManager";
 import { CompanyValuesManager } from "@/components/CompanyValuesManager/CompanyValuesManager";
-import { JobApplicationsManager } from "@/components/JobApplicationsManager/JobApplicationsManager";
+import JobApplicationsManager from "@/components/JobApplicationsManager/JobApplicationsManager";
 
 export default function CareersAdminPage() {
   const [activeTab, setActiveTab] = useState("positions");

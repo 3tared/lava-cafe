@@ -36,7 +36,7 @@ const itemVariants = {
   visible: { y: 0, opacity: 1 },
 };
 
-export default function CareersPage(): JSX.Element {
+export default function JobApplicationsManager(): JSX.Element {
   const { positions, loading: positionsLoading } = useJobPositions();
   const { values, loading: valuesLoading } = useCompanyValues();
   const { submitApplication } = useJobApplications();
