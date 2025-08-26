@@ -7,20 +7,30 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function POST(request: NextRequest) {
   try {
+    console.log("Upload request received");
+
     const data = await request.formData();
     const file: File | null = data.get("file") as unknown as File;
 
     if (!file) {
+      console.log("No file in request");
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
-    // Validate file type with both MIME type and extension
-    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
-    const allowedExtensions = ["jpeg", "jpg", "png", "gif"];
+    console.log("File details:", {
+      name: file.name,
+      size: file.size,
+      type: file.type,
+    });
 
+    // Validate file type
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
     if (!allowedTypes.includes(file.type)) {
+      console.log("Invalid file type:", file.type);
       return NextResponse.json(
-        { error: "Invalid file type. Only JPEG, PNG, and GIF are allowed." },
+        {
+          error: `Invalid file type: ${file.type}. Only JPEG, PNG, and GIF are allowed.`,
+        },
         { status: 400 }
       );
     }
@@ -28,42 +38,78 @@ export async function POST(request: NextRequest) {
     // Validate file size (5MB limit)
     const maxSize = 5 * 1024 * 1024; // 5MB
     if (file.size > maxSize) {
+      console.log("File too large:", file.size);
       return NextResponse.json(
-        { error: "File too large. Maximum size is 5MB." },
+        {
+          error: `File too large: ${(file.size / 1024 / 1024).toFixed(2)}MB. Maximum size is 5MB.`,
+        },
         { status: 400 }
       );
     }
 
-    // Validate and sanitize file extension
+    // Get file extension and validate it
     const fileExtension = file.name.split(".").pop()?.toLowerCase();
+    const allowedExtensions = ["jpeg", "jpg", "png", "gif"];
+
     if (!fileExtension || !allowedExtensions.includes(fileExtension)) {
+      console.log("Invalid file extension:", fileExtension);
       return NextResponse.json(
-        { error: "Invalid file extension." },
+        {
+          error:
+            "Invalid file extension. Only JPEG, JPG, PNG, and GIF files are allowed.",
+        },
         { status: 400 }
       );
     }
 
+    console.log("File validation passed");
+
+    // Convert file to buffer
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Generate unique filename with validated extension
+    console.log("File converted to buffer, size:", buffer.length);
+
+    // Generate unique filename
     const filename = `${uuidv4()}.${fileExtension}`;
 
     // Create uploads directory path
     const uploadsDir = join(process.cwd(), "public", "uploads");
+    console.log("Uploads directory:", uploadsDir);
 
     // Ensure uploads directory exists
-    if (!existsSync(uploadsDir)) {
-      await mkdir(uploadsDir, { recursive: true });
+    try {
+      if (!existsSync(uploadsDir)) {
+        console.log("Creating uploads directory...");
+        await mkdir(uploadsDir, { recursive: true });
+        console.log("Uploads directory created successfully");
+      }
+    } catch (mkdirError) {
+      console.error("Error creating directory:", mkdirError);
+      return NextResponse.json(
+        { error: "Failed to create uploads directory" },
+        { status: 500 }
+      );
     }
 
     const filePath = join(uploadsDir, filename);
+    console.log("Full file path:", filePath);
 
     // Write file to disk
-    await writeFile(filePath, buffer);
+    try {
+      await writeFile(filePath, buffer);
+      console.log("File written successfully");
+    } catch (writeError) {
+      console.error("Error writing file:", writeError);
+      return NextResponse.json(
+        { error: "Failed to save file to disk" },
+        { status: 500 }
+      );
+    }
 
     // Return the public URL path
     const publicUrl = `/uploads/${filename}`;
+    console.log("Upload successful, public URL:", publicUrl);
 
     return NextResponse.json(
       {
@@ -76,18 +122,15 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    // Log the actual error for debugging
-    console.error("Error uploading file:", error);
+    console.error("Unexpected error in upload:", error);
 
-    // Return more specific error information in development
-    const isDevelopment = process.env.NODE_ENV === "development";
-
-    if (isDevelopment && error instanceof Error) {
+    // Return detailed error in development
+    if (process.env.NODE_ENV === "development") {
       return NextResponse.json(
         {
           error: "Failed to upload file",
-          details: error.message,
-          stack: error.stack,
+          details: error instanceof Error ? error.message : "Unknown error",
+          stack: error instanceof Error ? error.stack : undefined,
         },
         { status: 500 }
       );
@@ -95,45 +138,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { error: "Failed to upload file" },
-      { status: 500 }
-    );
-  }
-}
-
-// Optional: Add DELETE method to remove uploaded files
-export async function DELETE(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const filename = searchParams.get("filename");
-
-    if (!filename) {
-      return NextResponse.json(
-        { error: "No filename provided" },
-        { status: 400 }
-      );
-    }
-
-    // Sanitize filename to prevent path traversal
-    const sanitizedFilename = filename.replace(/[^a-zA-Z0-9.-]/g, "");
-    const filePath = join(
-      process.cwd(),
-      "public",
-      "uploads",
-      sanitizedFilename
-    );
-
-    // Check if file exists and delete it
-    if (existsSync(filePath)) {
-      await writeFile(filePath, ""); // Clear file content first
-      // Then use unlink if available, or handle via other means
-      return NextResponse.json({ success: true, message: "File deleted" });
-    } else {
-      return NextResponse.json({ error: "File not found" }, { status: 404 });
-    }
-  } catch (error) {
-    console.error("Error deleting file:", error);
-    return NextResponse.json(
-      { error: "Failed to delete file" },
       { status: 500 }
     );
   }
