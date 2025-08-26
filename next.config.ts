@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
+    ],
     domains: ["j8v6vnsfxb.ufs.sh", "lh3.googleusercontent.com"],
   },
   eslint: {

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, ChangeEvent, FormEvent, JSX } from "react";
+import React, { useState, ChangeEvent, FormEvent, JSX } from "react";
 import { motion } from "framer-motion";
 import {
   useJobPositions,
@@ -8,6 +8,7 @@ import {
 } from "@/hooks/useCareers";
 import { JobPosition } from "@/types";
 import Image from "next/image";
+import { UploadButton } from "@/lib/uploadthing";
 
 interface FormData {
   name: string;
@@ -61,9 +62,8 @@ export default function CareersPage(): JSX.Element {
 
   // Picture upload states
   const [uploadingPicture, setUploadingPicture] = useState<boolean>(false);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string>("");
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -74,42 +74,6 @@ export default function CareersPage(): JSX.Element {
     if (name === "positionId") {
       const position = positions.find((pos) => pos.id === value);
       setSelectedPosition(position || null);
-    }
-  };
-
-  const handleFileSelect = (e: ChangeEvent<HTMLInputElement>): void => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // Validate file type
-      const allowedTypes = [
-        "image/jpeg",
-        "image/jpg",
-        "image/png",
-        "image/gif",
-      ];
-      if (!allowedTypes.includes(file.type)) {
-        setError("Invalid file type. Only JPEG, PNG, and GIF are allowed.");
-        return;
-      }
-
-      // Validate file size (5MB)
-      const maxSize = 5 * 1024 * 1024;
-      if (file.size > maxSize) {
-        setError("File too large. Maximum size is 5MB.");
-        return;
-      }
-
-      setSelectedFile(file);
-      setError("");
-
-      // Create preview
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target?.result) {
-          setPreviewUrl(e.target.result as string);
-        }
-      };
-      reader.readAsDataURL(file);
     }
   };
 
@@ -139,15 +103,6 @@ export default function CareersPage(): JSX.Element {
     } finally {
       setUploadingPicture(false);
     }
-  };
-
-  const removeFile = (): void => {
-    setSelectedFile(null);
-    setPreviewUrl("");
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-    setFormData((prev) => ({ ...prev, pictureUrl: "" }));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -183,7 +138,6 @@ export default function CareersPage(): JSX.Element {
       });
       setSelectedPosition(null);
       setSelectedFile(null);
-      setPreviewUrl("");
 
       setTimeout(() => {
         setSubmitted(false);
@@ -490,7 +444,7 @@ export default function CareersPage(): JSX.Element {
               </div>
 
               {/* Picture Upload Section */}
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Profile Picture *
                 </label>
@@ -548,8 +502,75 @@ export default function CareersPage(): JSX.Element {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Profile Picture *
+                </label>
 
+                {uploadedImageUrl ? (
+                  <div className="mt-1 flex flex-col items-center space-y-4">
+                    <div className="relative">
+                      <Image
+                        src={uploadedImageUrl}
+                        alt="Uploaded profile"
+                        className="h-32 w-32 object-cover rounded-full"
+                        width={128}
+                        height={128}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setUploadedImageUrl("");
+                          setFormData((prev) => ({ ...prev, pictureUrl: "" }));
+                        }}
+                        className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600 transition-colors"
+                      >
+                        ×
+                      </button>
+                    </div>
+                    <p className="text-sm text-green-600 font-medium">
+                      ✓ Picture uploaded successfully
+                    </p>
+                  </div>
+                ) : (
+                  <div className="mt-1">
+                    <UploadButton
+                      endpoint="jobApplicationImage"
+                      onClientUploadComplete={(res) => {
+                        console.log("Files uploaded:", res);
+                        const uploadedUrl = res[0]?.url;
+                        if (uploadedUrl) {
+                          setUploadedImageUrl(uploadedUrl);
+                          setFormData((prev) => ({
+                            ...prev,
+                            pictureUrl: uploadedUrl,
+                          }));
+                          setError(""); // Clear any previous errors
+                        }
+                      }}
+                      onUploadError={(error: Error) => {
+                        console.error("Upload error:", error);
+                        setError(`Upload failed: ${error.message}`);
+                      }}
+                      onUploadBegin={(name) => {
+                        console.log("Upload has begun for", name);
+                        setError(""); // Clear errors when starting new upload
+                      }}
+                      appearance={{
+                        button:
+                          "bg-lavasecondary-500 hover:bg-lavasecondary-600 text-white font-medium py-2 px-4 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-lavasecondary-500 focus:ring-offset-2 ut-ready:bg-lavasecondary-600 ut-uploading:cursor-not-allowed ut-uploading:bg-gray-400",
+                        container:
+                          "flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg hover:border-lavasecondary-400 transition-colors",
+                        allowedContent: "text-sm text-gray-600",
+                      }}
+                    />
+                    <p className="mt-2 text-xs text-gray-500">
+                      PNG, JPG, GIF up to 4MB
+                    </p>
+                  </div>
+                )}
+              </div>
               <div className="mb-6">
                 <label
                   htmlFor="experience"
