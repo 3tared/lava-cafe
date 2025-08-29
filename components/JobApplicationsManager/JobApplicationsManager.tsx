@@ -15,6 +15,8 @@ import {
   Eye,
   AlertTriangle,
   Check,
+  X,
+  ZoomIn,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -38,6 +40,11 @@ export function JobApplicationsManager(): JSX.Element {
   );
   const [showDeleteAllConfirm, setShowDeleteAllConfirm] =
     useState<boolean>(false);
+  // New state for image modal
+  const [selectedImageModal, setSelectedImageModal] = useState<{
+    url: string;
+    name: string;
+  } | null>(null);
 
   const statusOptions: StatusOption[] = [
     { value: "ALL", label: "All Applications" },
@@ -131,6 +138,15 @@ export function JobApplicationsManager(): JSX.Element {
         new Set(filteredApplications.map((app) => app.id))
       );
     }
+  };
+
+  // New function to handle image modal
+  const openImageModal = (url: string, name: string): void => {
+    setSelectedImageModal({ url, name });
+  };
+
+  const closeImageModal = (): void => {
+    setSelectedImageModal(null);
   };
 
   const filteredApplications = applications.filter((app) => {
@@ -317,6 +333,59 @@ export function JobApplicationsManager(): JSX.Element {
           )}
         </motion.div>
 
+        {/* Profile Image Modal */}
+        <AnimatePresence>
+          {selectedImageModal && (
+            <motion.div
+              className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeImageModal}
+            >
+              <motion.div
+                className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center"
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.5, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <motion.button
+                  onClick={closeImageModal}
+                  className="absolute top-4 right-4 z-10 bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 text-white p-3 rounded-full transition-all duration-200"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X size={24} />
+                </motion.button>
+
+                {/* Image Container */}
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <Image
+                    src={selectedImageModal.url}
+                    alt={selectedImageModal.name}
+                    width={800}
+                    height={800}
+                    className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+                    priority
+                  />
+                </div>
+
+                {/* Image Info */}
+                <div className="absolute bottom-4 left-4 right-4 text-center">
+                  <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
+                    <p className="text-white font-medium text-lg">
+                      {selectedImageModal.name}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Delete All Confirmation Modal */}
         <AnimatePresence>
           {showDeleteAllConfirm && (
@@ -433,52 +502,77 @@ export function JobApplicationsManager(): JSX.Element {
                       <div className="flex-1">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                           {/* Checkbox */}
-                          <label className="flex items-center gap-3 cursor-pointer">
-                            <div className="relative">
-                              <input
-                                type="checkbox"
-                                checked={selectedApplications.has(
-                                  application.id
-                                )}
-                                onChange={() =>
-                                  toggleApplicationSelection(application.id)
-                                }
-                                className="sr-only"
-                              />
-                              <div
-                                className={`w-5 h-5 border-2 rounded transition-all duration-200 ${
-                                  selectedApplications.has(application.id)
-                                    ? "bg-blue-500 border-blue-500"
-                                    : "border-gray-300 hover:border-blue-400"
-                                }`}
-                              >
-                                {selectedApplications.has(application.id) && (
-                                  <Check
-                                    size={12}
-                                    className="text-white absolute top-0.5 left-0.5"
+                          <div className="flex items-center gap-3">
+                            <label className="flex items-center gap-3 cursor-pointer">
+                              <div className="relative">
+                                <input
+                                  type="checkbox"
+                                  checked={selectedApplications.has(
+                                    application.id
+                                  )}
+                                  onChange={() =>
+                                    toggleApplicationSelection(application.id)
+                                  }
+                                  className="sr-only"
+                                />
+                                <div
+                                  className={`w-5 h-5 border-2 rounded transition-all duration-200 ${
+                                    selectedApplications.has(application.id)
+                                      ? "bg-blue-500 border-blue-500"
+                                      : "border-gray-300 hover:border-blue-400"
+                                  }`}
+                                >
+                                  {selectedApplications.has(application.id) && (
+                                    <Check
+                                      size={12}
+                                      className="text-white absolute top-0.5 left-0.5"
+                                    />
+                                  )}
+                                </div>
+                              </div>
+                            </label>
+
+                            {/* Enhanced Profile Picture with Click Functionality */}
+                            <div className="relative group">
+                              {application.pictureUrl ? (
+                                <motion.div
+                                  className="relative cursor-pointer"
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  onClick={() =>
+                                    openImageModal(
+                                      application.pictureUrl!,
+                                      application.name
+                                    )
+                                  }
+                                >
+                                  <Image
+                                    src={application.pictureUrl}
+                                    alt={application.name}
+                                    width={48}
+                                    height={48}
+                                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-200 shadow-sm group-hover:border-blue-400 transition-all duration-200"
                                   />
-                                )}
-                              </div>
+                                  {/* Zoom Icon Overlay */}
+                                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded-full flex items-center justify-center transition-all duration-200">
+                                    <ZoomIn
+                                      size={16}
+                                      className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                                    />
+                                  </div>
+                                </motion.div>
+                              ) : (
+                                <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                                  <User size={20} className="text-gray-500" />
+                                </div>
+                              )}
                             </div>
-                            {/* Profile Picture */}
-                            {application.pictureUrl ? (
-                              <Image
-                                src={application.pictureUrl}
-                                alt={application.name}
-                                width={48}
-                                height={48}
-                                className="w-12 h-12 rounded-full object-cover border border-gray-200 shadow-sm"
-                              />
-                            ) : (
-                              <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                                <User size={20} className="text-gray-500" />
-                              </div>
-                            )}
+
                             <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                               <User size={20} className="text-blue-600" />
                               {application.name}
                             </h3>
-                          </label>
+                          </div>
                           <span
                             className={`px-3 py-1 rounded-full text-sm font-semibold border ${getStatusColor(application.status)} w-fit`}
                           >
