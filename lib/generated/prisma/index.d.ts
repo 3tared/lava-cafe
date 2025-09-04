@@ -113,6 +113,11 @@ export type SecuritySettings = $Result.DefaultSelection<Prisma.$SecuritySettings
  * 
  */
 export type ActivityLog = $Result.DefaultSelection<Prisma.$ActivityLogPayload>
+/**
+ * Model Occasion
+ * 
+ */
+export type Occasion = $Result.DefaultSelection<Prisma.$OccasionPayload>
 
 /**
  * Enums
@@ -458,6 +463,16 @@ export class PrismaClient<
     * ```
     */
   get activityLog(): Prisma.ActivityLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.occasion`: Exposes CRUD operations for the **Occasion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Occasions
+    * const occasions = await prisma.occasion.findMany()
+    * ```
+    */
+  get occasion(): Prisma.OccasionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -917,7 +932,8 @@ export namespace Prisma {
     AppearanceSettings: 'AppearanceSettings',
     IntegrationSettings: 'IntegrationSettings',
     SecuritySettings: 'SecuritySettings',
-    ActivityLog: 'ActivityLog'
+    ActivityLog: 'ActivityLog',
+    Occasion: 'Occasion'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -936,7 +952,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "galleryItem" | "user" | "employee" | "department" | "menuItem" | "category" | "nutritionalInfo" | "review" | "event" | "package" | "announcement" | "jobPosition" | "companyValue" | "jobApplication" | "restaurantSettings" | "notificationSettings" | "appearanceSettings" | "integrationSettings" | "securitySettings" | "activityLog"
+      modelProps: "galleryItem" | "user" | "employee" | "department" | "menuItem" | "category" | "nutritionalInfo" | "review" | "event" | "package" | "announcement" | "jobPosition" | "companyValue" | "jobApplication" | "restaurantSettings" | "notificationSettings" | "appearanceSettings" | "integrationSettings" | "securitySettings" | "activityLog" | "occasion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2420,6 +2436,80 @@ export namespace Prisma {
           }
         }
       }
+      Occasion: {
+        payload: Prisma.$OccasionPayload<ExtArgs>
+        fields: Prisma.OccasionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OccasionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OccasionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>
+          }
+          findFirst: {
+            args: Prisma.OccasionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OccasionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>
+          }
+          findMany: {
+            args: Prisma.OccasionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>[]
+          }
+          create: {
+            args: Prisma.OccasionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>
+          }
+          createMany: {
+            args: Prisma.OccasionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OccasionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>[]
+          }
+          delete: {
+            args: Prisma.OccasionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>
+          }
+          update: {
+            args: Prisma.OccasionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>
+          }
+          deleteMany: {
+            args: Prisma.OccasionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OccasionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccasionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>[]
+          }
+          upsert: {
+            args: Prisma.OccasionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccasionPayload>
+          }
+          aggregate: {
+            args: Prisma.OccasionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOccasion>
+          }
+          groupBy: {
+            args: Prisma.OccasionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OccasionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OccasionCountArgs<ExtArgs>
+            result: $Utils.Optional<OccasionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2524,6 +2614,7 @@ export namespace Prisma {
     integrationSettings?: IntegrationSettingsOmit
     securitySettings?: SecuritySettingsOmit
     activityLog?: ActivityLogOmit
+    occasion?: OccasionOmit
   }
 
   /* Types for Logging */
@@ -2611,6 +2702,37 @@ export namespace Prisma {
   /**
    * Count Types
    */
+
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    occasions: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    occasions?: boolean | UserCountOutputTypeCountOccasionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountOccasionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OccasionWhereInput
+  }
 
 
   /**
@@ -2712,10 +2834,12 @@ export namespace Prisma {
 
   export type PackageCountOutputType = {
     events: number
+    occasions: number
   }
 
   export type PackageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | PackageCountOutputTypeCountEventsArgs
+    occasions?: boolean | PackageCountOutputTypeCountOccasionsArgs
   }
 
   // Custom InputTypes
@@ -2734,6 +2858,13 @@ export namespace Prisma {
    */
   export type PackageCountOutputTypeCountEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EventWhereInput
+  }
+
+  /**
+   * PackageCountOutputType without action
+   */
+  export type PackageCountOutputTypeCountOccasionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OccasionWhereInput
   }
 
 
@@ -4023,6 +4154,8 @@ export namespace Prisma {
     role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    occasions?: boolean | User$occasionsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4062,10 +4195,18 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "kindeId" | "email" | "firstName" | "lastName" | "profileImage" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    occasions?: boolean | User$occasionsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      occasions: Prisma.$OccasionPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       kindeId: string
@@ -4470,6 +4611,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    occasions<T extends User$occasionsArgs<ExtArgs> = {}>(args?: Subset<T, User$occasionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4525,6 +4667,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -4543,6 +4689,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -4560,6 +4710,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -4609,6 +4763,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -4657,6 +4815,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -4699,6 +4861,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -4747,6 +4913,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -4814,6 +4984,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -4840,6 +5014,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -4860,6 +5038,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.occasions
+   */
+  export type User$occasionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    where?: OccasionWhereInput
+    orderBy?: OccasionOrderByWithRelationInput | OccasionOrderByWithRelationInput[]
+    cursor?: OccasionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OccasionScalarFieldEnum | OccasionScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4871,6 +5073,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -13160,6 +13366,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     events?: boolean | Package$eventsArgs<ExtArgs>
+    occasions?: boolean | Package$occasionsArgs<ExtArgs>
     _count?: boolean | PackageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["package"]>
 
@@ -13214,6 +13421,7 @@ export namespace Prisma {
   export type PackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "originalPrice" | "price" | "per" | "description" | "items" | "emoji" | "popular" | "tag" | "discount" | "createdAt" | "updatedAt", ExtArgs["result"]["package"]>
   export type PackageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | Package$eventsArgs<ExtArgs>
+    occasions?: boolean | Package$occasionsArgs<ExtArgs>
     _count?: boolean | PackageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PackageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -13223,6 +13431,7 @@ export namespace Prisma {
     name: "Package"
     objects: {
       events: Prisma.$EventPayload<ExtArgs>[]
+      occasions: Prisma.$OccasionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13633,6 +13842,7 @@ export namespace Prisma {
   export interface Prisma__PackageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     events<T extends Package$eventsArgs<ExtArgs> = {}>(args?: Subset<T, Package$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    occasions<T extends Package$occasionsArgs<ExtArgs> = {}>(args?: Subset<T, Package$occasionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14084,6 +14294,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EventScalarFieldEnum | EventScalarFieldEnum[]
+  }
+
+  /**
+   * Package.occasions
+   */
+  export type Package$occasionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    where?: OccasionWhereInput
+    orderBy?: OccasionOrderByWithRelationInput | OccasionOrderByWithRelationInput[]
+    cursor?: OccasionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OccasionScalarFieldEnum | OccasionScalarFieldEnum[]
   }
 
   /**
@@ -25119,6 +25353,1214 @@ export namespace Prisma {
 
 
   /**
+   * Model Occasion
+   */
+
+  export type AggregateOccasion = {
+    _count: OccasionCountAggregateOutputType | null
+    _avg: OccasionAvgAggregateOutputType | null
+    _sum: OccasionSumAggregateOutputType | null
+    _min: OccasionMinAggregateOutputType | null
+    _max: OccasionMaxAggregateOutputType | null
+  }
+
+  export type OccasionAvgAggregateOutputType = {
+    peopleCount: number | null
+    prepaid: number | null
+  }
+
+  export type OccasionSumAggregateOutputType = {
+    peopleCount: number | null
+    prepaid: number | null
+  }
+
+  export type OccasionMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    date: Date | null
+    type: string | null
+    packageId: string | null
+    peopleCount: number | null
+    time: string | null
+    contactNumber: string | null
+    prepaid: number | null
+    notes: string | null
+    createdById: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type OccasionMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    date: Date | null
+    type: string | null
+    packageId: string | null
+    peopleCount: number | null
+    time: string | null
+    contactNumber: string | null
+    prepaid: number | null
+    notes: string | null
+    createdById: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type OccasionCountAggregateOutputType = {
+    id: number
+    name: number
+    date: number
+    type: number
+    packageId: number
+    peopleCount: number
+    time: number
+    contactNumber: number
+    prepaid: number
+    notes: number
+    createdById: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type OccasionAvgAggregateInputType = {
+    peopleCount?: true
+    prepaid?: true
+  }
+
+  export type OccasionSumAggregateInputType = {
+    peopleCount?: true
+    prepaid?: true
+  }
+
+  export type OccasionMinAggregateInputType = {
+    id?: true
+    name?: true
+    date?: true
+    type?: true
+    packageId?: true
+    peopleCount?: true
+    time?: true
+    contactNumber?: true
+    prepaid?: true
+    notes?: true
+    createdById?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type OccasionMaxAggregateInputType = {
+    id?: true
+    name?: true
+    date?: true
+    type?: true
+    packageId?: true
+    peopleCount?: true
+    time?: true
+    contactNumber?: true
+    prepaid?: true
+    notes?: true
+    createdById?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type OccasionCountAggregateInputType = {
+    id?: true
+    name?: true
+    date?: true
+    type?: true
+    packageId?: true
+    peopleCount?: true
+    time?: true
+    contactNumber?: true
+    prepaid?: true
+    notes?: true
+    createdById?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type OccasionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Occasion to aggregate.
+     */
+    where?: OccasionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Occasions to fetch.
+     */
+    orderBy?: OccasionOrderByWithRelationInput | OccasionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OccasionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Occasions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Occasions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Occasions
+    **/
+    _count?: true | OccasionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OccasionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OccasionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OccasionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OccasionMaxAggregateInputType
+  }
+
+  export type GetOccasionAggregateType<T extends OccasionAggregateArgs> = {
+        [P in keyof T & keyof AggregateOccasion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOccasion[P]>
+      : GetScalarType<T[P], AggregateOccasion[P]>
+  }
+
+
+
+
+  export type OccasionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OccasionWhereInput
+    orderBy?: OccasionOrderByWithAggregationInput | OccasionOrderByWithAggregationInput[]
+    by: OccasionScalarFieldEnum[] | OccasionScalarFieldEnum
+    having?: OccasionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OccasionCountAggregateInputType | true
+    _avg?: OccasionAvgAggregateInputType
+    _sum?: OccasionSumAggregateInputType
+    _min?: OccasionMinAggregateInputType
+    _max?: OccasionMaxAggregateInputType
+  }
+
+  export type OccasionGroupByOutputType = {
+    id: string
+    name: string
+    date: Date
+    type: string
+    packageId: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid: number
+    notes: string | null
+    createdById: string
+    createdAt: Date
+    updatedAt: Date
+    _count: OccasionCountAggregateOutputType | null
+    _avg: OccasionAvgAggregateOutputType | null
+    _sum: OccasionSumAggregateOutputType | null
+    _min: OccasionMinAggregateOutputType | null
+    _max: OccasionMaxAggregateOutputType | null
+  }
+
+  type GetOccasionGroupByPayload<T extends OccasionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OccasionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OccasionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OccasionGroupByOutputType[P]>
+            : GetScalarType<T[P], OccasionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OccasionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    date?: boolean
+    type?: boolean
+    packageId?: boolean
+    peopleCount?: boolean
+    time?: boolean
+    contactNumber?: boolean
+    prepaid?: boolean
+    notes?: boolean
+    createdById?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    packageType?: boolean | PackageDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["occasion"]>
+
+  export type OccasionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    date?: boolean
+    type?: boolean
+    packageId?: boolean
+    peopleCount?: boolean
+    time?: boolean
+    contactNumber?: boolean
+    prepaid?: boolean
+    notes?: boolean
+    createdById?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    packageType?: boolean | PackageDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["occasion"]>
+
+  export type OccasionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    date?: boolean
+    type?: boolean
+    packageId?: boolean
+    peopleCount?: boolean
+    time?: boolean
+    contactNumber?: boolean
+    prepaid?: boolean
+    notes?: boolean
+    createdById?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    packageType?: boolean | PackageDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["occasion"]>
+
+  export type OccasionSelectScalar = {
+    id?: boolean
+    name?: boolean
+    date?: boolean
+    type?: boolean
+    packageId?: boolean
+    peopleCount?: boolean
+    time?: boolean
+    contactNumber?: boolean
+    prepaid?: boolean
+    notes?: boolean
+    createdById?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type OccasionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "date" | "type" | "packageId" | "peopleCount" | "time" | "contactNumber" | "prepaid" | "notes" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["occasion"]>
+  export type OccasionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    packageType?: boolean | PackageDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type OccasionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    packageType?: boolean | PackageDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type OccasionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    packageType?: boolean | PackageDefaultArgs<ExtArgs>
+    createdBy?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $OccasionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Occasion"
+    objects: {
+      packageType: Prisma.$PackagePayload<ExtArgs>
+      createdBy: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      date: Date
+      type: string
+      packageId: string
+      peopleCount: number
+      time: string
+      contactNumber: string
+      prepaid: number
+      notes: string | null
+      createdById: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["occasion"]>
+    composites: {}
+  }
+
+  type OccasionGetPayload<S extends boolean | null | undefined | OccasionDefaultArgs> = $Result.GetResult<Prisma.$OccasionPayload, S>
+
+  type OccasionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OccasionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OccasionCountAggregateInputType | true
+    }
+
+  export interface OccasionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Occasion'], meta: { name: 'Occasion' } }
+    /**
+     * Find zero or one Occasion that matches the filter.
+     * @param {OccasionFindUniqueArgs} args - Arguments to find a Occasion
+     * @example
+     * // Get one Occasion
+     * const occasion = await prisma.occasion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OccasionFindUniqueArgs>(args: SelectSubset<T, OccasionFindUniqueArgs<ExtArgs>>): Prisma__OccasionClient<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Occasion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OccasionFindUniqueOrThrowArgs} args - Arguments to find a Occasion
+     * @example
+     * // Get one Occasion
+     * const occasion = await prisma.occasion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OccasionFindUniqueOrThrowArgs>(args: SelectSubset<T, OccasionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OccasionClient<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Occasion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccasionFindFirstArgs} args - Arguments to find a Occasion
+     * @example
+     * // Get one Occasion
+     * const occasion = await prisma.occasion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OccasionFindFirstArgs>(args?: SelectSubset<T, OccasionFindFirstArgs<ExtArgs>>): Prisma__OccasionClient<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Occasion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccasionFindFirstOrThrowArgs} args - Arguments to find a Occasion
+     * @example
+     * // Get one Occasion
+     * const occasion = await prisma.occasion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OccasionFindFirstOrThrowArgs>(args?: SelectSubset<T, OccasionFindFirstOrThrowArgs<ExtArgs>>): Prisma__OccasionClient<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Occasions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccasionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Occasions
+     * const occasions = await prisma.occasion.findMany()
+     * 
+     * // Get first 10 Occasions
+     * const occasions = await prisma.occasion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const occasionWithIdOnly = await prisma.occasion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OccasionFindManyArgs>(args?: SelectSubset<T, OccasionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Occasion.
+     * @param {OccasionCreateArgs} args - Arguments to create a Occasion.
+     * @example
+     * // Create one Occasion
+     * const Occasion = await prisma.occasion.create({
+     *   data: {
+     *     // ... data to create a Occasion
+     *   }
+     * })
+     * 
+     */
+    create<T extends OccasionCreateArgs>(args: SelectSubset<T, OccasionCreateArgs<ExtArgs>>): Prisma__OccasionClient<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Occasions.
+     * @param {OccasionCreateManyArgs} args - Arguments to create many Occasions.
+     * @example
+     * // Create many Occasions
+     * const occasion = await prisma.occasion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OccasionCreateManyArgs>(args?: SelectSubset<T, OccasionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Occasions and returns the data saved in the database.
+     * @param {OccasionCreateManyAndReturnArgs} args - Arguments to create many Occasions.
+     * @example
+     * // Create many Occasions
+     * const occasion = await prisma.occasion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Occasions and only return the `id`
+     * const occasionWithIdOnly = await prisma.occasion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccasionCreateManyAndReturnArgs>(args?: SelectSubset<T, OccasionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Occasion.
+     * @param {OccasionDeleteArgs} args - Arguments to delete one Occasion.
+     * @example
+     * // Delete one Occasion
+     * const Occasion = await prisma.occasion.delete({
+     *   where: {
+     *     // ... filter to delete one Occasion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OccasionDeleteArgs>(args: SelectSubset<T, OccasionDeleteArgs<ExtArgs>>): Prisma__OccasionClient<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Occasion.
+     * @param {OccasionUpdateArgs} args - Arguments to update one Occasion.
+     * @example
+     * // Update one Occasion
+     * const occasion = await prisma.occasion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OccasionUpdateArgs>(args: SelectSubset<T, OccasionUpdateArgs<ExtArgs>>): Prisma__OccasionClient<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Occasions.
+     * @param {OccasionDeleteManyArgs} args - Arguments to filter Occasions to delete.
+     * @example
+     * // Delete a few Occasions
+     * const { count } = await prisma.occasion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OccasionDeleteManyArgs>(args?: SelectSubset<T, OccasionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Occasions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccasionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Occasions
+     * const occasion = await prisma.occasion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OccasionUpdateManyArgs>(args: SelectSubset<T, OccasionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Occasions and returns the data updated in the database.
+     * @param {OccasionUpdateManyAndReturnArgs} args - Arguments to update many Occasions.
+     * @example
+     * // Update many Occasions
+     * const occasion = await prisma.occasion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Occasions and only return the `id`
+     * const occasionWithIdOnly = await prisma.occasion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccasionUpdateManyAndReturnArgs>(args: SelectSubset<T, OccasionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Occasion.
+     * @param {OccasionUpsertArgs} args - Arguments to update or create a Occasion.
+     * @example
+     * // Update or create a Occasion
+     * const occasion = await prisma.occasion.upsert({
+     *   create: {
+     *     // ... data to create a Occasion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Occasion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OccasionUpsertArgs>(args: SelectSubset<T, OccasionUpsertArgs<ExtArgs>>): Prisma__OccasionClient<$Result.GetResult<Prisma.$OccasionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Occasions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccasionCountArgs} args - Arguments to filter Occasions to count.
+     * @example
+     * // Count the number of Occasions
+     * const count = await prisma.occasion.count({
+     *   where: {
+     *     // ... the filter for the Occasions we want to count
+     *   }
+     * })
+    **/
+    count<T extends OccasionCountArgs>(
+      args?: Subset<T, OccasionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OccasionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Occasion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccasionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OccasionAggregateArgs>(args: Subset<T, OccasionAggregateArgs>): Prisma.PrismaPromise<GetOccasionAggregateType<T>>
+
+    /**
+     * Group by Occasion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccasionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OccasionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OccasionGroupByArgs['orderBy'] }
+        : { orderBy?: OccasionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OccasionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOccasionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Occasion model
+   */
+  readonly fields: OccasionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Occasion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OccasionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    packageType<T extends PackageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PackageDefaultArgs<ExtArgs>>): Prisma__PackageClient<$Result.GetResult<Prisma.$PackagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    createdBy<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Occasion model
+   */
+  interface OccasionFieldRefs {
+    readonly id: FieldRef<"Occasion", 'String'>
+    readonly name: FieldRef<"Occasion", 'String'>
+    readonly date: FieldRef<"Occasion", 'DateTime'>
+    readonly type: FieldRef<"Occasion", 'String'>
+    readonly packageId: FieldRef<"Occasion", 'String'>
+    readonly peopleCount: FieldRef<"Occasion", 'Int'>
+    readonly time: FieldRef<"Occasion", 'String'>
+    readonly contactNumber: FieldRef<"Occasion", 'String'>
+    readonly prepaid: FieldRef<"Occasion", 'Float'>
+    readonly notes: FieldRef<"Occasion", 'String'>
+    readonly createdById: FieldRef<"Occasion", 'String'>
+    readonly createdAt: FieldRef<"Occasion", 'DateTime'>
+    readonly updatedAt: FieldRef<"Occasion", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Occasion findUnique
+   */
+  export type OccasionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * Filter, which Occasion to fetch.
+     */
+    where: OccasionWhereUniqueInput
+  }
+
+  /**
+   * Occasion findUniqueOrThrow
+   */
+  export type OccasionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * Filter, which Occasion to fetch.
+     */
+    where: OccasionWhereUniqueInput
+  }
+
+  /**
+   * Occasion findFirst
+   */
+  export type OccasionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * Filter, which Occasion to fetch.
+     */
+    where?: OccasionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Occasions to fetch.
+     */
+    orderBy?: OccasionOrderByWithRelationInput | OccasionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Occasions.
+     */
+    cursor?: OccasionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Occasions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Occasions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Occasions.
+     */
+    distinct?: OccasionScalarFieldEnum | OccasionScalarFieldEnum[]
+  }
+
+  /**
+   * Occasion findFirstOrThrow
+   */
+  export type OccasionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * Filter, which Occasion to fetch.
+     */
+    where?: OccasionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Occasions to fetch.
+     */
+    orderBy?: OccasionOrderByWithRelationInput | OccasionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Occasions.
+     */
+    cursor?: OccasionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Occasions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Occasions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Occasions.
+     */
+    distinct?: OccasionScalarFieldEnum | OccasionScalarFieldEnum[]
+  }
+
+  /**
+   * Occasion findMany
+   */
+  export type OccasionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * Filter, which Occasions to fetch.
+     */
+    where?: OccasionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Occasions to fetch.
+     */
+    orderBy?: OccasionOrderByWithRelationInput | OccasionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Occasions.
+     */
+    cursor?: OccasionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Occasions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Occasions.
+     */
+    skip?: number
+    distinct?: OccasionScalarFieldEnum | OccasionScalarFieldEnum[]
+  }
+
+  /**
+   * Occasion create
+   */
+  export type OccasionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Occasion.
+     */
+    data: XOR<OccasionCreateInput, OccasionUncheckedCreateInput>
+  }
+
+  /**
+   * Occasion createMany
+   */
+  export type OccasionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Occasions.
+     */
+    data: OccasionCreateManyInput | OccasionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Occasion createManyAndReturn
+   */
+  export type OccasionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Occasions.
+     */
+    data: OccasionCreateManyInput | OccasionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Occasion update
+   */
+  export type OccasionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Occasion.
+     */
+    data: XOR<OccasionUpdateInput, OccasionUncheckedUpdateInput>
+    /**
+     * Choose, which Occasion to update.
+     */
+    where: OccasionWhereUniqueInput
+  }
+
+  /**
+   * Occasion updateMany
+   */
+  export type OccasionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Occasions.
+     */
+    data: XOR<OccasionUpdateManyMutationInput, OccasionUncheckedUpdateManyInput>
+    /**
+     * Filter which Occasions to update
+     */
+    where?: OccasionWhereInput
+    /**
+     * Limit how many Occasions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Occasion updateManyAndReturn
+   */
+  export type OccasionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * The data used to update Occasions.
+     */
+    data: XOR<OccasionUpdateManyMutationInput, OccasionUncheckedUpdateManyInput>
+    /**
+     * Filter which Occasions to update
+     */
+    where?: OccasionWhereInput
+    /**
+     * Limit how many Occasions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Occasion upsert
+   */
+  export type OccasionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Occasion to update in case it exists.
+     */
+    where: OccasionWhereUniqueInput
+    /**
+     * In case the Occasion found by the `where` argument doesn't exist, create a new Occasion with this data.
+     */
+    create: XOR<OccasionCreateInput, OccasionUncheckedCreateInput>
+    /**
+     * In case the Occasion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OccasionUpdateInput, OccasionUncheckedUpdateInput>
+  }
+
+  /**
+   * Occasion delete
+   */
+  export type OccasionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+    /**
+     * Filter which Occasion to delete.
+     */
+    where: OccasionWhereUniqueInput
+  }
+
+  /**
+   * Occasion deleteMany
+   */
+  export type OccasionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Occasions to delete
+     */
+    where?: OccasionWhereInput
+    /**
+     * Limit how many Occasions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Occasion without action
+   */
+  export type OccasionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Occasion
+     */
+    select?: OccasionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Occasion
+     */
+    omit?: OccasionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccasionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -25458,6 +26900,25 @@ export namespace Prisma {
   export type ActivityLogScalarFieldEnum = (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum]
 
 
+  export const OccasionScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    date: 'date',
+    type: 'type',
+    packageId: 'packageId',
+    peopleCount: 'peopleCount',
+    time: 'time',
+    contactNumber: 'contactNumber',
+    prepaid: 'prepaid',
+    notes: 'notes',
+    createdById: 'createdById',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type OccasionScalarFieldEnum = (typeof OccasionScalarFieldEnum)[keyof typeof OccasionScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -25682,6 +27143,7 @@ export namespace Prisma {
     role?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    occasions?: OccasionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -25694,6 +27156,7 @@ export namespace Prisma {
     role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    occasions?: OccasionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -25709,6 +27172,7 @@ export namespace Prisma {
     role?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    occasions?: OccasionListRelationFilter
   }, "id" | "kindeId" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -26303,6 +27767,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Package"> | Date | string
     updatedAt?: DateTimeFilter<"Package"> | Date | string
     events?: EventListRelationFilter
+    occasions?: OccasionListRelationFilter
   }
 
   export type PackageOrderByWithRelationInput = {
@@ -26320,6 +27785,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     events?: EventOrderByRelationAggregateInput
+    occasions?: OccasionOrderByRelationAggregateInput
   }
 
   export type PackageWhereUniqueInput = Prisma.AtLeast<{
@@ -26340,6 +27806,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Package"> | Date | string
     updatedAt?: DateTimeFilter<"Package"> | Date | string
     events?: EventListRelationFilter
+    occasions?: OccasionListRelationFilter
   }, "id">
 
   export type PackageOrderByWithAggregationInput = {
@@ -27227,6 +28694,106 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"ActivityLog"> | Date | string
   }
 
+  export type OccasionWhereInput = {
+    AND?: OccasionWhereInput | OccasionWhereInput[]
+    OR?: OccasionWhereInput[]
+    NOT?: OccasionWhereInput | OccasionWhereInput[]
+    id?: StringFilter<"Occasion"> | string
+    name?: StringFilter<"Occasion"> | string
+    date?: DateTimeFilter<"Occasion"> | Date | string
+    type?: StringFilter<"Occasion"> | string
+    packageId?: StringFilter<"Occasion"> | string
+    peopleCount?: IntFilter<"Occasion"> | number
+    time?: StringFilter<"Occasion"> | string
+    contactNumber?: StringFilter<"Occasion"> | string
+    prepaid?: FloatFilter<"Occasion"> | number
+    notes?: StringNullableFilter<"Occasion"> | string | null
+    createdById?: StringFilter<"Occasion"> | string
+    createdAt?: DateTimeFilter<"Occasion"> | Date | string
+    updatedAt?: DateTimeFilter<"Occasion"> | Date | string
+    packageType?: XOR<PackageScalarRelationFilter, PackageWhereInput>
+    createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type OccasionOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    date?: SortOrder
+    type?: SortOrder
+    packageId?: SortOrder
+    peopleCount?: SortOrder
+    time?: SortOrder
+    contactNumber?: SortOrder
+    prepaid?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    packageType?: PackageOrderByWithRelationInput
+    createdBy?: UserOrderByWithRelationInput
+  }
+
+  export type OccasionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: OccasionWhereInput | OccasionWhereInput[]
+    OR?: OccasionWhereInput[]
+    NOT?: OccasionWhereInput | OccasionWhereInput[]
+    name?: StringFilter<"Occasion"> | string
+    date?: DateTimeFilter<"Occasion"> | Date | string
+    type?: StringFilter<"Occasion"> | string
+    packageId?: StringFilter<"Occasion"> | string
+    peopleCount?: IntFilter<"Occasion"> | number
+    time?: StringFilter<"Occasion"> | string
+    contactNumber?: StringFilter<"Occasion"> | string
+    prepaid?: FloatFilter<"Occasion"> | number
+    notes?: StringNullableFilter<"Occasion"> | string | null
+    createdById?: StringFilter<"Occasion"> | string
+    createdAt?: DateTimeFilter<"Occasion"> | Date | string
+    updatedAt?: DateTimeFilter<"Occasion"> | Date | string
+    packageType?: XOR<PackageScalarRelationFilter, PackageWhereInput>
+    createdBy?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type OccasionOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    date?: SortOrder
+    type?: SortOrder
+    packageId?: SortOrder
+    peopleCount?: SortOrder
+    time?: SortOrder
+    contactNumber?: SortOrder
+    prepaid?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: OccasionCountOrderByAggregateInput
+    _avg?: OccasionAvgOrderByAggregateInput
+    _max?: OccasionMaxOrderByAggregateInput
+    _min?: OccasionMinOrderByAggregateInput
+    _sum?: OccasionSumOrderByAggregateInput
+  }
+
+  export type OccasionScalarWhereWithAggregatesInput = {
+    AND?: OccasionScalarWhereWithAggregatesInput | OccasionScalarWhereWithAggregatesInput[]
+    OR?: OccasionScalarWhereWithAggregatesInput[]
+    NOT?: OccasionScalarWhereWithAggregatesInput | OccasionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Occasion"> | string
+    name?: StringWithAggregatesFilter<"Occasion"> | string
+    date?: DateTimeWithAggregatesFilter<"Occasion"> | Date | string
+    type?: StringWithAggregatesFilter<"Occasion"> | string
+    packageId?: StringWithAggregatesFilter<"Occasion"> | string
+    peopleCount?: IntWithAggregatesFilter<"Occasion"> | number
+    time?: StringWithAggregatesFilter<"Occasion"> | string
+    contactNumber?: StringWithAggregatesFilter<"Occasion"> | string
+    prepaid?: FloatWithAggregatesFilter<"Occasion"> | number
+    notes?: StringNullableWithAggregatesFilter<"Occasion"> | string | null
+    createdById?: StringWithAggregatesFilter<"Occasion"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Occasion"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Occasion"> | Date | string
+  }
+
   export type GalleryItemCreateInput = {
     title: string
     description: string
@@ -27304,6 +28871,7 @@ export namespace Prisma {
     role?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    occasions?: OccasionCreateNestedManyWithoutCreatedByInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -27316,6 +28884,7 @@ export namespace Prisma {
     role?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    occasions?: OccasionUncheckedCreateNestedManyWithoutCreatedByInput
   }
 
   export type UserUpdateInput = {
@@ -27328,6 +28897,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    occasions?: OccasionUpdateManyWithoutCreatedByNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -27340,6 +28910,7 @@ export namespace Prisma {
     role?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    occasions?: OccasionUncheckedUpdateManyWithoutCreatedByNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -27999,6 +29570,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     events?: EventCreateNestedManyWithoutPackageInput
+    occasions?: OccasionCreateNestedManyWithoutPackageTypeInput
   }
 
   export type PackageUncheckedCreateInput = {
@@ -28016,6 +29588,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     events?: EventUncheckedCreateNestedManyWithoutPackageInput
+    occasions?: OccasionUncheckedCreateNestedManyWithoutPackageTypeInput
   }
 
   export type PackageUpdateInput = {
@@ -28033,6 +29606,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUpdateManyWithoutPackageNestedInput
+    occasions?: OccasionUpdateManyWithoutPackageTypeNestedInput
   }
 
   export type PackageUncheckedUpdateInput = {
@@ -28050,6 +29624,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUncheckedUpdateManyWithoutPackageNestedInput
+    occasions?: OccasionUncheckedUpdateManyWithoutPackageTypeNestedInput
   }
 
   export type PackageCreateManyInput = {
@@ -29104,6 +30679,116 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type OccasionCreateInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    packageType: PackageCreateNestedOneWithoutOccasionsInput
+    createdBy: UserCreateNestedOneWithoutOccasionsInput
+  }
+
+  export type OccasionUncheckedCreateInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    packageId: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdById: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OccasionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    packageType?: PackageUpdateOneRequiredWithoutOccasionsNestedInput
+    createdBy?: UserUpdateOneRequiredWithoutOccasionsNestedInput
+  }
+
+  export type OccasionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    packageId?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccasionCreateManyInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    packageId: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdById: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OccasionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccasionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    packageId?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -29242,9 +30927,19 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type OccasionListRelationFilter = {
+    every?: OccasionWhereInput
+    some?: OccasionWhereInput
+    none?: OccasionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type OccasionOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -30341,6 +32036,74 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type PackageScalarRelationFilter = {
+    is?: PackageWhereInput
+    isNot?: PackageWhereInput
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type OccasionCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    date?: SortOrder
+    type?: SortOrder
+    packageId?: SortOrder
+    peopleCount?: SortOrder
+    time?: SortOrder
+    contactNumber?: SortOrder
+    prepaid?: SortOrder
+    notes?: SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OccasionAvgOrderByAggregateInput = {
+    peopleCount?: SortOrder
+    prepaid?: SortOrder
+  }
+
+  export type OccasionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    date?: SortOrder
+    type?: SortOrder
+    packageId?: SortOrder
+    peopleCount?: SortOrder
+    time?: SortOrder
+    contactNumber?: SortOrder
+    prepaid?: SortOrder
+    notes?: SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OccasionMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    date?: SortOrder
+    type?: SortOrder
+    packageId?: SortOrder
+    peopleCount?: SortOrder
+    time?: SortOrder
+    contactNumber?: SortOrder
+    prepaid?: SortOrder
+    notes?: SortOrder
+    createdById?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OccasionSumOrderByAggregateInput = {
+    peopleCount?: SortOrder
+    prepaid?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -30357,8 +32120,50 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type OccasionCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<OccasionCreateWithoutCreatedByInput, OccasionUncheckedCreateWithoutCreatedByInput> | OccasionCreateWithoutCreatedByInput[] | OccasionUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: OccasionCreateOrConnectWithoutCreatedByInput | OccasionCreateOrConnectWithoutCreatedByInput[]
+    createMany?: OccasionCreateManyCreatedByInputEnvelope
+    connect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+  }
+
+  export type OccasionUncheckedCreateNestedManyWithoutCreatedByInput = {
+    create?: XOR<OccasionCreateWithoutCreatedByInput, OccasionUncheckedCreateWithoutCreatedByInput> | OccasionCreateWithoutCreatedByInput[] | OccasionUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: OccasionCreateOrConnectWithoutCreatedByInput | OccasionCreateOrConnectWithoutCreatedByInput[]
+    createMany?: OccasionCreateManyCreatedByInputEnvelope
+    connect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type OccasionUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<OccasionCreateWithoutCreatedByInput, OccasionUncheckedCreateWithoutCreatedByInput> | OccasionCreateWithoutCreatedByInput[] | OccasionUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: OccasionCreateOrConnectWithoutCreatedByInput | OccasionCreateOrConnectWithoutCreatedByInput[]
+    upsert?: OccasionUpsertWithWhereUniqueWithoutCreatedByInput | OccasionUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: OccasionCreateManyCreatedByInputEnvelope
+    set?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    disconnect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    delete?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    connect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    update?: OccasionUpdateWithWhereUniqueWithoutCreatedByInput | OccasionUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: OccasionUpdateManyWithWhereWithoutCreatedByInput | OccasionUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: OccasionScalarWhereInput | OccasionScalarWhereInput[]
+  }
+
+  export type OccasionUncheckedUpdateManyWithoutCreatedByNestedInput = {
+    create?: XOR<OccasionCreateWithoutCreatedByInput, OccasionUncheckedCreateWithoutCreatedByInput> | OccasionCreateWithoutCreatedByInput[] | OccasionUncheckedCreateWithoutCreatedByInput[]
+    connectOrCreate?: OccasionCreateOrConnectWithoutCreatedByInput | OccasionCreateOrConnectWithoutCreatedByInput[]
+    upsert?: OccasionUpsertWithWhereUniqueWithoutCreatedByInput | OccasionUpsertWithWhereUniqueWithoutCreatedByInput[]
+    createMany?: OccasionCreateManyCreatedByInputEnvelope
+    set?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    disconnect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    delete?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    connect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    update?: OccasionUpdateWithWhereUniqueWithoutCreatedByInput | OccasionUpdateWithWhereUniqueWithoutCreatedByInput[]
+    updateMany?: OccasionUpdateManyWithWhereWithoutCreatedByInput | OccasionUpdateManyWithWhereWithoutCreatedByInput[]
+    deleteMany?: OccasionScalarWhereInput | OccasionScalarWhereInput[]
   }
 
   export type DepartmentCreateNestedOneWithoutEmployeesInput = {
@@ -30627,11 +32432,25 @@ export namespace Prisma {
     connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
   }
 
+  export type OccasionCreateNestedManyWithoutPackageTypeInput = {
+    create?: XOR<OccasionCreateWithoutPackageTypeInput, OccasionUncheckedCreateWithoutPackageTypeInput> | OccasionCreateWithoutPackageTypeInput[] | OccasionUncheckedCreateWithoutPackageTypeInput[]
+    connectOrCreate?: OccasionCreateOrConnectWithoutPackageTypeInput | OccasionCreateOrConnectWithoutPackageTypeInput[]
+    createMany?: OccasionCreateManyPackageTypeInputEnvelope
+    connect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+  }
+
   export type EventUncheckedCreateNestedManyWithoutPackageInput = {
     create?: XOR<EventCreateWithoutPackageInput, EventUncheckedCreateWithoutPackageInput> | EventCreateWithoutPackageInput[] | EventUncheckedCreateWithoutPackageInput[]
     connectOrCreate?: EventCreateOrConnectWithoutPackageInput | EventCreateOrConnectWithoutPackageInput[]
     createMany?: EventCreateManyPackageInputEnvelope
     connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+  }
+
+  export type OccasionUncheckedCreateNestedManyWithoutPackageTypeInput = {
+    create?: XOR<OccasionCreateWithoutPackageTypeInput, OccasionUncheckedCreateWithoutPackageTypeInput> | OccasionCreateWithoutPackageTypeInput[] | OccasionUncheckedCreateWithoutPackageTypeInput[]
+    connectOrCreate?: OccasionCreateOrConnectWithoutPackageTypeInput | OccasionCreateOrConnectWithoutPackageTypeInput[]
+    createMany?: OccasionCreateManyPackageTypeInputEnvelope
+    connect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
   }
 
   export type PackageUpdateitemsInput = {
@@ -30653,6 +32472,20 @@ export namespace Prisma {
     deleteMany?: EventScalarWhereInput | EventScalarWhereInput[]
   }
 
+  export type OccasionUpdateManyWithoutPackageTypeNestedInput = {
+    create?: XOR<OccasionCreateWithoutPackageTypeInput, OccasionUncheckedCreateWithoutPackageTypeInput> | OccasionCreateWithoutPackageTypeInput[] | OccasionUncheckedCreateWithoutPackageTypeInput[]
+    connectOrCreate?: OccasionCreateOrConnectWithoutPackageTypeInput | OccasionCreateOrConnectWithoutPackageTypeInput[]
+    upsert?: OccasionUpsertWithWhereUniqueWithoutPackageTypeInput | OccasionUpsertWithWhereUniqueWithoutPackageTypeInput[]
+    createMany?: OccasionCreateManyPackageTypeInputEnvelope
+    set?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    disconnect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    delete?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    connect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    update?: OccasionUpdateWithWhereUniqueWithoutPackageTypeInput | OccasionUpdateWithWhereUniqueWithoutPackageTypeInput[]
+    updateMany?: OccasionUpdateManyWithWhereWithoutPackageTypeInput | OccasionUpdateManyWithWhereWithoutPackageTypeInput[]
+    deleteMany?: OccasionScalarWhereInput | OccasionScalarWhereInput[]
+  }
+
   export type EventUncheckedUpdateManyWithoutPackageNestedInput = {
     create?: XOR<EventCreateWithoutPackageInput, EventUncheckedCreateWithoutPackageInput> | EventCreateWithoutPackageInput[] | EventUncheckedCreateWithoutPackageInput[]
     connectOrCreate?: EventCreateOrConnectWithoutPackageInput | EventCreateOrConnectWithoutPackageInput[]
@@ -30665,6 +32498,20 @@ export namespace Prisma {
     update?: EventUpdateWithWhereUniqueWithoutPackageInput | EventUpdateWithWhereUniqueWithoutPackageInput[]
     updateMany?: EventUpdateManyWithWhereWithoutPackageInput | EventUpdateManyWithWhereWithoutPackageInput[]
     deleteMany?: EventScalarWhereInput | EventScalarWhereInput[]
+  }
+
+  export type OccasionUncheckedUpdateManyWithoutPackageTypeNestedInput = {
+    create?: XOR<OccasionCreateWithoutPackageTypeInput, OccasionUncheckedCreateWithoutPackageTypeInput> | OccasionCreateWithoutPackageTypeInput[] | OccasionUncheckedCreateWithoutPackageTypeInput[]
+    connectOrCreate?: OccasionCreateOrConnectWithoutPackageTypeInput | OccasionCreateOrConnectWithoutPackageTypeInput[]
+    upsert?: OccasionUpsertWithWhereUniqueWithoutPackageTypeInput | OccasionUpsertWithWhereUniqueWithoutPackageTypeInput[]
+    createMany?: OccasionCreateManyPackageTypeInputEnvelope
+    set?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    disconnect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    delete?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    connect?: OccasionWhereUniqueInput | OccasionWhereUniqueInput[]
+    update?: OccasionUpdateWithWhereUniqueWithoutPackageTypeInput | OccasionUpdateWithWhereUniqueWithoutPackageTypeInput[]
+    updateMany?: OccasionUpdateManyWithWhereWithoutPackageTypeInput | OccasionUpdateManyWithWhereWithoutPackageTypeInput[]
+    deleteMany?: OccasionScalarWhereInput | OccasionScalarWhereInput[]
   }
 
   export type JobPositionCreaterequirementsInput = {
@@ -30734,6 +32581,34 @@ export namespace Prisma {
     upsert?: JobPositionUpsertWithoutApplicationsInput
     connect?: JobPositionWhereUniqueInput
     update?: XOR<XOR<JobPositionUpdateToOneWithWhereWithoutApplicationsInput, JobPositionUpdateWithoutApplicationsInput>, JobPositionUncheckedUpdateWithoutApplicationsInput>
+  }
+
+  export type PackageCreateNestedOneWithoutOccasionsInput = {
+    create?: XOR<PackageCreateWithoutOccasionsInput, PackageUncheckedCreateWithoutOccasionsInput>
+    connectOrCreate?: PackageCreateOrConnectWithoutOccasionsInput
+    connect?: PackageWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutOccasionsInput = {
+    create?: XOR<UserCreateWithoutOccasionsInput, UserUncheckedCreateWithoutOccasionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOccasionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PackageUpdateOneRequiredWithoutOccasionsNestedInput = {
+    create?: XOR<PackageCreateWithoutOccasionsInput, PackageUncheckedCreateWithoutOccasionsInput>
+    connectOrCreate?: PackageCreateOrConnectWithoutOccasionsInput
+    upsert?: PackageUpsertWithoutOccasionsInput
+    connect?: PackageWhereUniqueInput
+    update?: XOR<XOR<PackageUpdateToOneWithWhereWithoutOccasionsInput, PackageUpdateWithoutOccasionsInput>, PackageUncheckedUpdateWithoutOccasionsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutOccasionsNestedInput = {
+    create?: XOR<UserCreateWithoutOccasionsInput, UserUncheckedCreateWithoutOccasionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOccasionsInput
+    upsert?: UserUpsertWithoutOccasionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOccasionsInput, UserUpdateWithoutOccasionsInput>, UserUncheckedUpdateWithoutOccasionsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -30962,6 +32837,81 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type OccasionCreateWithoutCreatedByInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    packageType: PackageCreateNestedOneWithoutOccasionsInput
+  }
+
+  export type OccasionUncheckedCreateWithoutCreatedByInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    packageId: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OccasionCreateOrConnectWithoutCreatedByInput = {
+    where: OccasionWhereUniqueInput
+    create: XOR<OccasionCreateWithoutCreatedByInput, OccasionUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type OccasionCreateManyCreatedByInputEnvelope = {
+    data: OccasionCreateManyCreatedByInput | OccasionCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OccasionUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: OccasionWhereUniqueInput
+    update: XOR<OccasionUpdateWithoutCreatedByInput, OccasionUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<OccasionCreateWithoutCreatedByInput, OccasionUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type OccasionUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: OccasionWhereUniqueInput
+    data: XOR<OccasionUpdateWithoutCreatedByInput, OccasionUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type OccasionUpdateManyWithWhereWithoutCreatedByInput = {
+    where: OccasionScalarWhereInput
+    data: XOR<OccasionUpdateManyMutationInput, OccasionUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type OccasionScalarWhereInput = {
+    AND?: OccasionScalarWhereInput | OccasionScalarWhereInput[]
+    OR?: OccasionScalarWhereInput[]
+    NOT?: OccasionScalarWhereInput | OccasionScalarWhereInput[]
+    id?: StringFilter<"Occasion"> | string
+    name?: StringFilter<"Occasion"> | string
+    date?: DateTimeFilter<"Occasion"> | Date | string
+    type?: StringFilter<"Occasion"> | string
+    packageId?: StringFilter<"Occasion"> | string
+    peopleCount?: IntFilter<"Occasion"> | number
+    time?: StringFilter<"Occasion"> | string
+    contactNumber?: StringFilter<"Occasion"> | string
+    prepaid?: FloatFilter<"Occasion"> | number
+    notes?: StringNullableFilter<"Occasion"> | string | null
+    createdById?: StringFilter<"Occasion"> | string
+    createdAt?: DateTimeFilter<"Occasion"> | Date | string
+    updatedAt?: DateTimeFilter<"Occasion"> | Date | string
   }
 
   export type DepartmentCreateWithoutEmployeesInput = {
@@ -31521,6 +33471,7 @@ export namespace Prisma {
     discount: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    occasions?: OccasionCreateNestedManyWithoutPackageTypeInput
   }
 
   export type PackageUncheckedCreateWithoutEventsInput = {
@@ -31537,6 +33488,7 @@ export namespace Prisma {
     discount: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    occasions?: OccasionUncheckedCreateNestedManyWithoutPackageTypeInput
   }
 
   export type PackageCreateOrConnectWithoutEventsInput = {
@@ -31569,6 +33521,7 @@ export namespace Prisma {
     discount?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    occasions?: OccasionUpdateManyWithoutPackageTypeNestedInput
   }
 
   export type PackageUncheckedUpdateWithoutEventsInput = {
@@ -31585,6 +33538,7 @@ export namespace Prisma {
     discount?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    occasions?: OccasionUncheckedUpdateManyWithoutPackageTypeNestedInput
   }
 
   export type EventCreateWithoutPackageInput = {
@@ -31621,6 +33575,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type OccasionCreateWithoutPackageTypeInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: UserCreateNestedOneWithoutOccasionsInput
+  }
+
+  export type OccasionUncheckedCreateWithoutPackageTypeInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdById: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OccasionCreateOrConnectWithoutPackageTypeInput = {
+    where: OccasionWhereUniqueInput
+    create: XOR<OccasionCreateWithoutPackageTypeInput, OccasionUncheckedCreateWithoutPackageTypeInput>
+  }
+
+  export type OccasionCreateManyPackageTypeInputEnvelope = {
+    data: OccasionCreateManyPackageTypeInput | OccasionCreateManyPackageTypeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EventUpsertWithWhereUniqueWithoutPackageInput = {
     where: EventWhereUniqueInput
     update: XOR<EventUpdateWithoutPackageInput, EventUncheckedUpdateWithoutPackageInput>
@@ -31651,6 +33645,22 @@ export namespace Prisma {
     packageId?: StringNullableFilter<"Event"> | string | null
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
+  }
+
+  export type OccasionUpsertWithWhereUniqueWithoutPackageTypeInput = {
+    where: OccasionWhereUniqueInput
+    update: XOR<OccasionUpdateWithoutPackageTypeInput, OccasionUncheckedUpdateWithoutPackageTypeInput>
+    create: XOR<OccasionCreateWithoutPackageTypeInput, OccasionUncheckedCreateWithoutPackageTypeInput>
+  }
+
+  export type OccasionUpdateWithWhereUniqueWithoutPackageTypeInput = {
+    where: OccasionWhereUniqueInput
+    data: XOR<OccasionUpdateWithoutPackageTypeInput, OccasionUncheckedUpdateWithoutPackageTypeInput>
+  }
+
+  export type OccasionUpdateManyWithWhereWithoutPackageTypeInput = {
+    where: OccasionScalarWhereInput
+    data: XOR<OccasionUpdateManyMutationInput, OccasionUncheckedUpdateManyWithoutPackageTypeInput>
   }
 
   export type JobApplicationCreateWithoutPositionInput = {
@@ -31777,6 +33787,214 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     requirements?: JobPositionUpdaterequirementsInput | string[]
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PackageCreateWithoutOccasionsInput = {
+    id?: string
+    name: string
+    originalPrice: string
+    price: string
+    per: string
+    description: string
+    items?: PackageCreateitemsInput | string[]
+    emoji: string
+    popular?: boolean
+    tag: string
+    discount: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventCreateNestedManyWithoutPackageInput
+  }
+
+  export type PackageUncheckedCreateWithoutOccasionsInput = {
+    id?: string
+    name: string
+    originalPrice: string
+    price: string
+    per: string
+    description: string
+    items?: PackageCreateitemsInput | string[]
+    emoji: string
+    popular?: boolean
+    tag: string
+    discount: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventUncheckedCreateNestedManyWithoutPackageInput
+  }
+
+  export type PackageCreateOrConnectWithoutOccasionsInput = {
+    where: PackageWhereUniqueInput
+    create: XOR<PackageCreateWithoutOccasionsInput, PackageUncheckedCreateWithoutOccasionsInput>
+  }
+
+  export type UserCreateWithoutOccasionsInput = {
+    id?: string
+    kindeId: string
+    email: string
+    firstName?: string | null
+    lastName?: string | null
+    profileImage?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutOccasionsInput = {
+    id?: string
+    kindeId: string
+    email: string
+    firstName?: string | null
+    lastName?: string | null
+    profileImage?: string | null
+    role?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutOccasionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutOccasionsInput, UserUncheckedCreateWithoutOccasionsInput>
+  }
+
+  export type PackageUpsertWithoutOccasionsInput = {
+    update: XOR<PackageUpdateWithoutOccasionsInput, PackageUncheckedUpdateWithoutOccasionsInput>
+    create: XOR<PackageCreateWithoutOccasionsInput, PackageUncheckedCreateWithoutOccasionsInput>
+    where?: PackageWhereInput
+  }
+
+  export type PackageUpdateToOneWithWhereWithoutOccasionsInput = {
+    where?: PackageWhereInput
+    data: XOR<PackageUpdateWithoutOccasionsInput, PackageUncheckedUpdateWithoutOccasionsInput>
+  }
+
+  export type PackageUpdateWithoutOccasionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    originalPrice?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    per?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    items?: PackageUpdateitemsInput | string[]
+    emoji?: StringFieldUpdateOperationsInput | string
+    popular?: BoolFieldUpdateOperationsInput | boolean
+    tag?: StringFieldUpdateOperationsInput | string
+    discount?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUpdateManyWithoutPackageNestedInput
+  }
+
+  export type PackageUncheckedUpdateWithoutOccasionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    originalPrice?: StringFieldUpdateOperationsInput | string
+    price?: StringFieldUpdateOperationsInput | string
+    per?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    items?: PackageUpdateitemsInput | string[]
+    emoji?: StringFieldUpdateOperationsInput | string
+    popular?: BoolFieldUpdateOperationsInput | boolean
+    tag?: StringFieldUpdateOperationsInput | string
+    discount?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUncheckedUpdateManyWithoutPackageNestedInput
+  }
+
+  export type UserUpsertWithoutOccasionsInput = {
+    update: XOR<UserUpdateWithoutOccasionsInput, UserUncheckedUpdateWithoutOccasionsInput>
+    create: XOR<UserCreateWithoutOccasionsInput, UserUncheckedCreateWithoutOccasionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutOccasionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutOccasionsInput, UserUncheckedUpdateWithoutOccasionsInput>
+  }
+
+  export type UserUpdateWithoutOccasionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kindeId?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutOccasionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kindeId?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccasionCreateManyCreatedByInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    packageId: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OccasionUpdateWithoutCreatedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    packageType?: PackageUpdateOneRequiredWithoutOccasionsNestedInput
+  }
+
+  export type OccasionUncheckedUpdateWithoutCreatedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    packageId?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccasionUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    packageId?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -31953,6 +34171,21 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type OccasionCreateManyPackageTypeInput = {
+    id?: string
+    name: string
+    date: Date | string
+    type: string
+    peopleCount: number
+    time: string
+    contactNumber: string
+    prepaid?: number
+    notes?: string | null
+    createdById: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type EventUpdateWithoutPackageInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -31985,6 +34218,51 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     time?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccasionUpdateWithoutPackageTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: UserUpdateOneRequiredWithoutOccasionsNestedInput
+  }
+
+  export type OccasionUncheckedUpdateWithoutPackageTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccasionUncheckedUpdateManyWithoutPackageTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: StringFieldUpdateOperationsInput | string
+    peopleCount?: IntFieldUpdateOperationsInput | number
+    time?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    prepaid?: FloatFieldUpdateOperationsInput | number
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdById?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
