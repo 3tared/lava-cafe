@@ -2,6 +2,10 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+// Force dynamic behavior to prevent caching
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // GET - Fetch all departments
 export async function GET() {
   try {
