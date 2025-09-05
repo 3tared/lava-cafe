@@ -1,3 +1,4 @@
+// navbar.tsx
 "use client";
 // Import necessary dependencies and components
 import Image from "next/image";
