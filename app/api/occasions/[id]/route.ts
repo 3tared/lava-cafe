@@ -23,13 +23,15 @@ const updateOccasionSchema = z.object({
 // GET - Fetch single occasion by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAuth(["admin", "moderator", "employee_viewer"]);
 
+    const { id } = await params;
+
     const occasion = await prisma.occasion.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         packageType: true,
         createdBy: {
@@ -76,7 +78,7 @@ export async function GET(
 // PUT - Update occasion
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await requireAuth(["admin", "moderator", "employee_viewer"]);
@@ -89,9 +91,11 @@ export async function PUT(
       );
     }
 
+    const { id } = await params;
+
     // Check if occasion exists
     const existingOccasion = await prisma.occasion.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existingOccasion) {
@@ -118,7 +122,7 @@ export async function PUT(
 
     // Update the occasion
     const occasion = await prisma.occasion.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name: validatedData.name,
         date: new Date(validatedData.date),
@@ -181,7 +185,7 @@ export async function PUT(
 // DELETE - Delete occasion
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await requireAuth(["admin", "moderator", "employee_viewer"]);
@@ -194,9 +198,11 @@ export async function DELETE(
       );
     }
 
+    const { id } = await params;
+
     // Check if occasion exists
     const existingOccasion = await prisma.occasion.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existingOccasion) {
@@ -208,7 +214,7 @@ export async function DELETE(
 
     // Delete the occasion
     await prisma.occasion.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({
