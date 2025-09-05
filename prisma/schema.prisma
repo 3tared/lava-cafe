@@ -35,9 +35,12 @@ model User {
   lastName      String?
   profileImage  String?
   role          String   @default("user") 
+  occasions   Occasion[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
+
+
 
 model Employee {
   id           String   @id @default(cuid())
@@ -150,6 +153,7 @@ model Package {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   events        Event[]
+  occasions   Occasion[]
 
   @@map("packages")
 }
@@ -366,4 +370,25 @@ model ActivityLog {
   createdAt   DateTime @default(now())
   
   @@map("activity_logs")
+}
+
+
+model Occasion {
+  id            String      @id @default(cuid())
+  name          String
+  date          DateTime
+  type          String
+  packageType   Package     @relation(fields: [packageId], references: [id])
+  packageId     String
+  peopleCount   Int
+  time          String
+  contactNumber String
+  prepaid       Float       @default(0)
+  notes         String?
+  createdBy     User        @relation(fields: [createdById], references: [id])
+  createdById   String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@map("occasions")
 }

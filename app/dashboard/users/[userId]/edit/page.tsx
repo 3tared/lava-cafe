@@ -12,7 +12,7 @@ interface UserFormData {
   email: string;
   phone: string;
   profileImage: string;
-  role: string; // Add role field
+  role: string;
 }
 
 interface PageProps {
@@ -348,6 +348,7 @@ export default function UserEditPage({ params }: PageProps) {
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
                   <option value="moderator">Moderator</option>
+                  <option value="employee_viewer">employee_viewer</option>
                 </select>
                 <p className="text-sm text-gray-500 mt-1">
                   Only administrators can change user roles.
