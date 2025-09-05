@@ -5,9 +5,8 @@ import GradientHeading from "@/components/ui/GradientHeading";
 import { prisma } from "@/lib/prisma";
 import React from "react";
 
-// Force dynamic rendering to prevent caching
-export const dynamic = "force-dynamic";
-// Alternative: export const revalidate = 0;
+export const dynamic = "force-dynamic"; // Ensure the page is always server-side rendered
+export const revalidate = 0; // Disable ISR, always fetch fresh data
 
 const AboutUsPage = async () => {
   // Fetch departments with their employees
