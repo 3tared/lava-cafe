@@ -31,15 +31,15 @@ export default function TeamSection({ departments }: TeamSectionProps) {
 
   // Debug logging - remove in production
   useEffect(() => {
-    console.log('TeamSection - Departments received:', departments);
-    console.log('TeamSection - Total departments:', departments?.length || 0);
-    
+    console.log("TeamSection - Departments received:", departments);
+    console.log("TeamSection - Total departments:", departments?.length || 0);
+
     departments?.forEach((dept, index) => {
       console.log(`Department ${index + 1}:`, {
         id: dept.id,
         title: dept.title,
         employeeCount: dept.employees?.length || 0,
-        employees: dept.employees
+        employees: dept.employees,
       });
     });
   }, [departments]);
@@ -87,11 +87,11 @@ export default function TeamSection({ departments }: TeamSectionProps) {
             </h2>
             <div className="p-4 bg-yellow-100 border border-yellow-400 rounded-md">
               <p className="text-yellow-800">
-                {departments === undefined 
-                  ? "Loading team data..." 
+                {departments === undefined
+                  ? "Loading team data..."
                   : "No departments found. Check your data fetching."}
               </p>
-              <button 
+              <button
                 onClick={() => setDebugMode(!debugMode)}
                 className="mt-2 text-sm text-blue-600 underline"
               >
@@ -124,10 +124,10 @@ export default function TeamSection({ departments }: TeamSectionProps) {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Meet the passionate people who make our café special every day.
           </p>
-          
+
           {/* Debug toggle - remove in production */}
-          {process.env.NODE_ENV !== 'production' && (
-            <button 
+          {process.env.NODE_ENV !== "production" && (
+            <button
               onClick={() => setDebugMode(!debugMode)}
               className="mt-4 text-sm text-blue-600 underline"
             >
@@ -141,9 +141,11 @@ export default function TeamSection({ departments }: TeamSectionProps) {
           <div className="mb-8 p-4 bg-gray-100 rounded-lg text-left text-sm">
             <h4 className="font-bold mb-2">Debug Information:</h4>
             <p>Departments count: {departments.length}</p>
-            {departments.map((dept, index) => (
+            {departments.map((dept) => (
               <div key={dept.id} className="mb-2">
-                <p>• {dept.title}: {dept.employees?.length || 0} employees</p>
+                <p>
+                  • {dept.title}: {dept.employees?.length || 0} employees
+                </p>
               </div>
             ))}
           </div>
@@ -166,7 +168,7 @@ export default function TeamSection({ departments }: TeamSectionProps) {
               <p className="text-lg text-gray-600">
                 {department.description || ""}
               </p>
-              
+
               {/* Show employee count */}
               <p className="text-sm text-gray-500 mt-2">
                 {department.employees?.length || 0} team member(s)
