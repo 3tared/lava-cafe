@@ -369,7 +369,7 @@ function Navbar() {
       );
     }
 
-    if (isAuthenticated && user && !isLoading) {
+    if (isAuthenticated && user && !isLoading && !isCheckingAdmin) {
       return (
         <div className="flex items-center space-x-3">
           {/* Search Icon */}
@@ -647,7 +647,7 @@ function Navbar() {
       );
     }
     // Only show auth buttons if we're definitively NOT authenticated
-    if (!isAuthenticated && !isLoading) {
+    if (!isAuthenticated && !isLoading && !isCheckingAdmin) {
       return (
         <div className="flex items-center space-x-3">
           <motion.div
