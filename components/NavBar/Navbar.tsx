@@ -87,6 +87,10 @@ function Navbar() {
   // Check if we are on the dashboard page
   const isDashboardPage = pathname?.startsWith("/dashboard") || false;
 
+  // Add a new state to track if initial role check is complete
+  const [initialRoleCheckComplete, setInitialRoleCheckComplete] =
+    useState(false);
+
   // Check if user has access to a specific nav item
   const hasAccess = (roles: string[]) => {
     if (roles.includes("all")) return true;
@@ -155,9 +159,15 @@ function Navbar() {
   // Updated admin check effect with better error handling
   useEffect(() => {
     const checkAdminStatus = async () => {
-      // Only run if we have a confirmed authenticated user
+      console.log("=== ADMIN CHECK START ===");
+      console.log("isAuthenticated:", isAuthenticated);
+      console.log("user?.email:", user?.email);
+      console.log("isLoading:", isLoading);
+
       if (isAuthenticated && user?.email && !isLoading) {
+        console.log("Starting admin check for:", user.email);
         setIsCheckingAdmin(true);
+
         try {
           const response = await fetch(
             `/api/admin-check?email=${encodeURIComponent(user.email)}`,
@@ -169,8 +179,11 @@ function Navbar() {
             }
           );
 
+          console.log("Admin check response status:", response.status);
+
           if (response.ok) {
             const data = await response.json();
+            console.log("Admin check data:", data);
             setIsAdmin(data.isAdmin);
             setUserRole(data.role);
             setNotifications(Math.floor(Math.random() * 5));
@@ -185,13 +198,19 @@ function Navbar() {
           setUserRole("user");
         } finally {
           setIsCheckingAdmin(false);
+          setInitialRoleCheckComplete(true); // Mark as complete
+          console.log("Admin check completed");
         }
       } else if (!isAuthenticated && !isLoading) {
-        // Reset states when not authenticated
+        console.log("User not authenticated, resetting states");
         setIsAdmin(false);
         setUserRole("user");
         setIsCheckingAdmin(false);
+        setInitialRoleCheckComplete(true); // Also complete for non-auth users
+      } else {
+        console.log("Waiting for auth state to stabilize");
       }
+      console.log("=== ADMIN CHECK END ===");
     };
 
     checkAdminStatus();
@@ -357,7 +376,15 @@ function Navbar() {
 
   // Render professional authentication buttons for desktop
   const renderAuthButtons = () => {
-    if (isLoading || isCheckingAdmin) {
+    console.log("=== RENDER AUTH BUTTONS ===");
+    console.log("isLoading:", isLoading);
+    console.log("isCheckingAdmin:", isCheckingAdmin);
+    console.log("initialRoleCheckComplete:", initialRoleCheckComplete);
+    console.log("isAuthenticated:", isAuthenticated);
+    console.log("user exists:", !!user);
+    console.log("userRole:", userRole);
+    if (isLoading || isCheckingAdmin || !initialRoleCheckComplete) {
+      console.log("Showing loading state");
       return (
         <div className="flex items-center space-x-3">
           <div className="flex space-x-3">
@@ -369,7 +396,8 @@ function Navbar() {
       );
     }
 
-    if (isAuthenticated && user && !isLoading && !isCheckingAdmin) {
+    if (isAuthenticated && user && initialRoleCheckComplete) {
+      console.log("Showing authenticated UI for role:", userRole);
       return (
         <div className="flex items-center space-x-3">
           {/* Search Icon */}
@@ -647,7 +675,8 @@ function Navbar() {
       );
     }
     // Only show auth buttons if we're definitively NOT authenticated
-    if (!isAuthenticated && !isLoading && !isCheckingAdmin) {
+    if (!isAuthenticated && initialRoleCheckComplete) {
+      console.log("Showing auth buttons - NOT authenticated");
       return (
         <div className="flex items-center space-x-3">
           <motion.div
@@ -682,6 +711,7 @@ function Navbar() {
         </div>
       );
     }
+    console.log("Showing fallback loading state");
     return (
       <div className="flex items-center space-x-3">
         <div className="w-20 h-10 bg-white/20 rounded-xl animate-pulse"></div>
