@@ -6,10 +6,20 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-// GET - Fetch all departments
+// GET - Fetch all departments with their employees
 export async function GET() {
   try {
     const departments = await prisma.department.findMany({
+      include: {
+        employees: {
+          where: {
+            status: "active", // Only include active employees
+          },
+          orderBy: {
+            name: "asc",
+          },
+        },
+      },
       orderBy: {
         title: "asc",
       },
@@ -34,6 +44,9 @@ export async function POST(request: NextRequest) {
       data: {
         title: data.title,
         description: data.description || null,
+      },
+      include: {
+        employees: true, // Include employees in the response
       },
     });
 

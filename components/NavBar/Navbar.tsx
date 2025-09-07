@@ -91,7 +91,20 @@ function Navbar() {
   const hasAccess = (roles: string[]) => {
     if (roles.includes("all")) return true;
     if (!isAuthenticated) return false;
-    return roles.includes(userRole);
+
+    // Add debugging for production
+    console.log("🔍 HasAccess Debug:", {
+      requiredRoles: roles,
+      userRole: userRole,
+      isAuthenticated: isAuthenticated,
+      user: user,
+      userEmail: user?.email,
+    });
+
+    const hasRoleAccess = roles.includes(userRole);
+    console.log("✅ Access granted:", hasRoleAccess);
+
+    return hasRoleAccess;
   };
 
   // Filter navigation items based on user role
@@ -139,21 +152,32 @@ function Navbar() {
     return items;
   };
 
+  // Updated admin check effect with better error handling
   useEffect(() => {
     const checkAdminStatus = async () => {
-      if (isAuthenticated && user?.email) {
+      // Only run if we have a confirmed authenticated user
+      if (isAuthenticated && user?.email && !isLoading) {
         setIsCheckingAdmin(true);
         try {
           const response = await fetch(
-            `/api/admin-check?email=${encodeURIComponent(user.email)}`
+            `/api/admin-check?email=${encodeURIComponent(user.email)}`,
+            {
+              method: "GET",
+              headers: {
+                "Cache-Control": "no-cache",
+              },
+            }
           );
+
           if (response.ok) {
             const data = await response.json();
             setIsAdmin(data.isAdmin);
             setUserRole(data.role);
-
-            // Simulate notifications for demo (replace with actual API call)
             setNotifications(Math.floor(Math.random() * 5));
+          } else {
+            console.error("Admin check failed:", response.status);
+            setIsAdmin(false);
+            setUserRole("user");
           }
         } catch (error) {
           console.error("Failed to check admin status:", error);
@@ -162,11 +186,16 @@ function Navbar() {
         } finally {
           setIsCheckingAdmin(false);
         }
+      } else if (!isAuthenticated && !isLoading) {
+        // Reset states when not authenticated
+        setIsAdmin(false);
+        setUserRole("user");
+        setIsCheckingAdmin(false);
       }
     };
 
     checkAdminStatus();
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user?.email, isLoading]);
 
   // Enhanced scroll effect handler
   useEffect(() => {
@@ -340,7 +369,7 @@ function Navbar() {
       );
     }
 
-    if (isAuthenticated && user) {
+    if (isAuthenticated && user && !isLoading) {
       return (
         <div className="flex items-center space-x-3">
           {/* Search Icon */}
@@ -617,42 +646,48 @@ function Navbar() {
         </div>
       );
     }
+    // Only show auth buttons if we're definitively NOT authenticated
+    if (!isAuthenticated && !isLoading) {
+      return (
+        <div className="flex items-center space-x-3">
+          <motion.div
+            variants={buttonVariants}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
+          >
+            <LoginLink className="flex items-center space-x-2 px-5 py-3 text-base font-semibold text-white/90 hover:text-white transition-all duration-300 rounded-xl hover:bg-white/10 backdrop-blur-sm border border-transparent hover:border-white/20 group">
+              <LogIn
+                size={20}
+                className="group-hover:scale-110 transition-transform"
+              />
+              <span className="hidden sm:block">Sign In</span>
+            </LoginLink>
+          </motion.div>
 
+          <motion.div
+            variants={buttonVariants}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
+          >
+            <RegisterLink className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-white/20 to-white/30 hover:from-white/30 hover:to-white/40 rounded-xl text-base font-semibold text-white transition-all duration-300 backdrop-blur-sm border border-white/30 hover:border-white/40 shadow-lg hover:shadow-xl group">
+              <UserPlus
+                size={20}
+                className="group-hover:scale-110 transition-transform"
+              />
+              <span>Get Started</span>
+            </RegisterLink>
+          </motion.div>
+        </div>
+      );
+    }
     return (
       <div className="flex items-center space-x-3">
-        <motion.div
-          variants={buttonVariants}
-          initial="rest"
-          whileHover="hover"
-          whileTap="tap"
-        >
-          <LoginLink className="flex items-center space-x-2 px-5 py-3 text-base font-semibold text-white/90 hover:text-white transition-all duration-300 rounded-xl hover:bg-white/10 backdrop-blur-sm border border-transparent hover:border-white/20 group">
-            <LogIn
-              size={20}
-              className="group-hover:scale-110 transition-transform"
-            />
-            <span className="hidden sm:block">Sign In</span>
-          </LoginLink>
-        </motion.div>
-
-        <motion.div
-          variants={buttonVariants}
-          initial="rest"
-          whileHover="hover"
-          whileTap="tap"
-        >
-          <RegisterLink className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-white/20 to-white/30 hover:from-white/30 hover:to-white/40 rounded-xl text-base font-semibold text-white transition-all duration-300 backdrop-blur-sm border border-white/30 hover:border-white/40 shadow-lg hover:shadow-xl group">
-            <UserPlus
-              size={20}
-              className="group-hover:scale-110 transition-transform"
-            />
-            <span>Get Started</span>
-          </RegisterLink>
-        </motion.div>
+        <div className="w-20 h-10 bg-white/20 rounded-xl animate-pulse"></div>
       </div>
     );
   };
-
   // Enhanced mobile authentication section - now unified with navigation
   const renderUnifiedMobileMenu = () => {
     if (isLoading || isCheckingAdmin) {
